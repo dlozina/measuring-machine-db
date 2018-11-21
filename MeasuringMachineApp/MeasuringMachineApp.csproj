@@ -122,6 +122,10 @@
       <Project>{f47cf844-432e-4d79-a1c9-8c84a619a998}</Project>
       <Name>Snap7Library</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataBase\DataBase.csproj">
+      <Project>{45310a7d-e162-49b3-9559-762e924b7b34}</Project>
+      <Name>DataBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

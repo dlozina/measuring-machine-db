@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using DataBase;
 using PLCInterface;
 
 namespace MeasuringMachineApp
@@ -17,11 +18,16 @@ namespace MeasuringMachineApp
     {
         public static PLCInterface.Interface PlcInterface;
         public static MainWindow mwHandle;
+        public static MyDatabase Database;
+        // SslMode=none - If local host does not support SSL
+        static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
+        private bool _oneCallFlagRecord;
 
         public App()
         {
             //PlcInterface = new PLCInterface.Interface();
             PlcInterface = new Interface();
+            Database = new MyDatabase();
             PlcInterface.StartCyclic(); // Possible system null reference
             PlcInterface.Update_Online_Flag += new Interface.OnlineMarker(PLCInterface_PLCOnlineChanged);
             PlcInterface.Update_100_ms += new Interface.UpdateHandler(PLC_Update_100_ms);
@@ -30,6 +36,29 @@ namespace MeasuringMachineApp
         private void PLC_Update_100_ms(Interface sender, InterfaceEventArgs e)
         {
             String msg = "SISTEM SPREMAN";
+
+            // Signal to fill SQL Database
+            if ((bool)e.StatusData.Data.Record.Value && _oneCallFlagRecord)
+            {
+                _oneCallFlagRecord = false;
+                //Value setting
+                Database.RadniNalog = "Dino";
+                Database.KotaC = (float) e.StatusData.Measured.C.Value;
+                Database.KotaA11 = (float)e.StatusData.Measured.A11.Value;
+                Database.KotaA12 = (float)e.StatusData.Measured.A12.Value;
+                Database.KotaB = (float)e.StatusData.Measured.B.Value;
+                Database.KotaF = (float)e.StatusData.Measured.F.Value;
+                Database.KotaE = (float)e.StatusData.Measured.E.Value;
+                Database.KotaD = (float)e.StatusData.Measured.D.Value;
+                // Fill SQL base
+                Database.ModifyDb(MySQLconnectionString);
+            }
+            else if (!(bool)e.StatusData.Data.Record.Value)
+            {
+                _oneCallFlagRecord = true;
+            }
+
+
 
             if (mwHandle != null)
             {

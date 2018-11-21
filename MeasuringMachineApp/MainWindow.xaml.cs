@@ -23,6 +23,7 @@ namespace MeasuringMachineApp
         public MainWindow()
         {
             InitializeComponent();
+            App.mwHandle = this;
         }
     }
 }

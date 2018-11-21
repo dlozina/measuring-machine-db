@@ -5,8 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeasuringMachineApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="APLIKACIJA MJERNE STANICE" Height="350" Width="550">
     <Grid>
+        <StatusBar Height="20" VerticalAlignment="Bottom" Margin="0,0,0,0">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" MinWidth="5" />
+                            <ColumnDefinition Width="135" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem>
+                <TextBlock x:Name="TbCameraOnline" Text="CNC: Offline" />
+            </StatusBarItem>
+            <Separator Grid.Column="1" />
+            <StatusBarItem Grid.Column="2" HorizontalAlignment="Left" Width="710">
+                <TextBlock x:Name="TbStatusMessage" Text="SPREMAN" FontWeight="Bold" FontStyle="Italic" HorizontalAlignment="Left" />
+            </StatusBarItem>
+            <Separator Grid.Column="3" />
+            <StatusBarItem Grid.Column="4">
+                <TextBlock x:Name="TbConnectionStatus" Text="PLC Status: Offline"/>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="4" Margin="0" HorizontalAlignment="Right">
+                <Ellipse x:Name="onlineFlag" Height="13" Margin="0" Stroke="#00000000" Width="13" VerticalAlignment="Bottom" HorizontalAlignment="Right" RenderTransformOrigin="-1.467,0.467">
+                    <Ellipse.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF979797" Offset="0"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+            </StatusBarItem>
+        </StatusBar>
         
     </Grid>
 </Window>

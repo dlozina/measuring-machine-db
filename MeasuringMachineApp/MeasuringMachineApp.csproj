@@ -114,17 +114,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\PLCInterface\PLCInterface\PLCInterface\PLCInterface.csproj">
-      <Project>{037b1160-421d-417f-bdcb-a339b40b3b10}</Project>
-      <Name>PLCInterface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\PLCInterface\PLCInterface\Snap7Library\Snap7Library.csproj">
-      <Project>{f47cf844-432e-4d79-a1c9-8c84a619a998}</Project>
-      <Name>Snap7Library</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataBase\DataBase.csproj">
       <Project>{45310a7d-e162-49b3-9559-762e924b7b34}</Project>
       <Name>DataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PLCInterface\PLCInterface.csproj">
+      <Project>{037b1160-421d-417f-bdcb-a339b40b3b10}</Project>
+      <Name>PLCInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Snap7Library\Snap7Library.csproj">
+      <Project>{f47cf844-432e-4d79-a1c9-8c84a619a998}</Project>
+      <Name>Snap7Library</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

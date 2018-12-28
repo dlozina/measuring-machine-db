@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeasuringMachineApp"
         mc:Ignorable="d"
-        Title="APLIKACIJA MJERNE STANICE" Height="650" Width="850">
+        Title="APLIKACIJA MJERNE STANICE" Height="650" Width="1020">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="180"/>

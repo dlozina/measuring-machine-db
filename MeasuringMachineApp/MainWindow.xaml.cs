@@ -38,7 +38,7 @@ namespace MeasuringMachineApp
         private void Data1_Click(object sender, RoutedEventArgs e)
         {
             //MainFrame.Navigate(new Data1());
-            MainFrame.Content = new Data2();
+            MainFrame.Content = new Data1();
         }
 
         // Machine 2

@@ -5,26 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeasuringMachineApp"
         mc:Ignorable="d"
-        Title="APLIKACIJA MJERNE STANICE" Height="350" Width="550">
+        Title="APLIKACIJA MJERNE STANICE" Height="650" Width="850">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="180"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="22"/>
         </Grid.RowDefinitions>
-        
-        <Grid Grid.Column="0">
-            <Button Name="Machine1" Content="STROJ 1" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED"/>
+
+        <Grid Grid.Row="0" Grid.Column="0" Background="Black">
+            <Label  Content="STROJ 1" Margin="1" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
         </Grid>
 
-        <Grid Grid.Column="1">
-            <Button Name="Machine2" Content="STROJ 2" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED"/>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Button Name="Control1" Margin="0,1,0,0" Content="UPRAVLJANJE" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED"  />
         </Grid>
 
-        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Button Name="Data1" Margin="0,1,0,0" Content="BAZA PODATAKA" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED"/>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="2" Background="Black">
+            <Label  Content="STROJ 2" Margin="1" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Button Name="Control2" Margin="0,1,0,0" Content="UPRAVLJANJE" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="2">
+            <Button Name="Data2" Margin="0,1,0,0" Content="BAZA PODATAKA" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED"/>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
             <StatusBar Height="20" VerticalAlignment="Bottom" Margin="0,0,0,0">
                 <StatusBar.ItemsPanel>
                     <ItemsPanelTemplate>

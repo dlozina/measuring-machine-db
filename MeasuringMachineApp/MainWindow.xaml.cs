@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MeasuringMachineApp.PagesM1;
+using MeasuringMachineApp.PagesM2;
 
 namespace MeasuringMachineApp
 {
@@ -24,6 +26,32 @@ namespace MeasuringMachineApp
         {
             InitializeComponent();
             App.mwHandle = this;
+        }
+
+        // Machine 1
+        private void Control1_Click(object sender, RoutedEventArgs e)
+        {
+            //MainFrame.Navigate(new Control1());
+            MainFrame.Content = new Control1();
+        }
+
+        private void Data1_Click(object sender, RoutedEventArgs e)
+        {
+            //MainFrame.Navigate(new Data1());
+            MainFrame.Content = new Data2();
+        }
+
+        // Machine 2
+        private void Control2_Click(object sender, RoutedEventArgs e)
+        {
+            //MainFrame.Navigate(new Control2());
+            MainFrame.Content = new Control2();
+        }
+
+        private void Data2_Click(object sender, RoutedEventArgs e)
+        {
+            //MainFrame.Navigate(new Data2());
+            MainFrame.Content = new Data2();
         }
     }
 }

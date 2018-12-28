@@ -86,8 +86,36 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PagesM1\Control1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PagesM1\Data1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PagesM2\Control2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PagesM2\Data2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PagesM1\Control1.xaml.cs">
+      <DependentUpon>Control1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PagesM1\Data1.xaml.cs">
+      <DependentUpon>Data1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PagesM2\Control2.xaml.cs">
+      <DependentUpon>Control2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PagesM2\Data2.xaml.cs">
+      <DependentUpon>Data2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

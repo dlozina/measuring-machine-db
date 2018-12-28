@@ -25,13 +25,22 @@ namespace MeasuringMachineApp
 
         public App()
         {
-            //PlcInterface = new PLCInterface.Interface();
             PlcInterface = new Interface();
             Database = new MyDatabase();
             PlcInterface.StartCyclic(); // Possible system null reference
             PlcInterface.Update_Online_Flag += new Interface.OnlineMarker(PLCInterface_PLCOnlineChanged);
             PlcInterface.Update_100_ms += new Interface.UpdateHandler(PLC_Update_100_ms);
         }
+
+        // Bootstrapper takes control of APP startup
+        protected override void OnStartup(StartupEventArgs z)
+        {
+            base.OnStartup(z);
+
+            var bootstrapper = new Bootstrapper();
+            bootstrapper.Run();
+        }
+
 
         private void PLC_Update_100_ms(Interface sender, InterfaceEventArgs e)
         {
@@ -40,6 +49,7 @@ namespace MeasuringMachineApp
             // Signal to fill SQL Database
             if ((bool)e.StatusData.Data.Record.Value && _oneCallFlagRecord)
             {
+                // Fill data from PLC device
                 _oneCallFlagRecord = false;
                 // Value setting
                 // Database.RadniNalog = "Dino";

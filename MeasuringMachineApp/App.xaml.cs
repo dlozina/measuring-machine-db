@@ -43,13 +43,13 @@ namespace MeasuringMachineApp
                 _oneCallFlagRecord = false;
                 // Value setting
                 // Database.RadniNalog = "Dino";
-                Database.KotaC = (float) e.StatusData.Measured.C.Value;
-                Database.KotaA11 = (float)e.StatusData.Measured.A11.Value;
-                Database.KotaA12 = (float)e.StatusData.Measured.A12.Value;
-                Database.KotaB = (float)e.StatusData.Measured.B.Value;
-                Database.KotaF = (float)e.StatusData.Measured.F.Value;
-                Database.KotaE = (float)e.StatusData.Measured.E.Value;
-                Database.KotaD = (float)e.StatusData.Measured.D.Value;
+                Database.KotaCPoz1 = (float) e.StatusData.Measured.C.Value;
+                Database.KotaA11Poz1 = (float)e.StatusData.Measured.A11.Value;
+                Database.KotaA12Poz1 = (float)e.StatusData.Measured.A12.Value;
+                Database.KotaBPoz1 = (float)e.StatusData.Measured.B.Value;
+                Database.KotaF1LG2Poz1 = (float)e.StatusData.Measured.F.Value;
+                Database.KotaEPoz1 = (float)e.StatusData.Measured.E.Value;
+                Database.KotaDPoz1 = (float)e.StatusData.Measured.D.Value;
                 Database.RadniNalog = (string) e.StatusData.Measured.RadniNalog.Value;
                 // Fill SQL base
                 Database.ModifyDb(MySQLconnectionString);

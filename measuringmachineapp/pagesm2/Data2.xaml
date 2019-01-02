@@ -10,7 +10,11 @@
 
     <Grid>
 
-        <DataGrid x:Name="Machine2Data" ItemsSource="{Binding}" 
+        <DataGrid x:Name="Machine2Data" 
+                  ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                  
+                  ItemsSource="{Binding}" 
+                  MinColumnWidth="100"
                   AutoGenerateColumns="True"
                   CanUserResizeRows="False" 
                   CanUserAddRows="False" 
@@ -19,7 +23,17 @@
                   CanUserResizeColumns="False"
                   CanUserSortColumns="True"
                   IsReadOnly="True"
-                           
+    
+                  VerticalGridLinesBrush="Black" 
+                  HorizontalGridLinesBrush="Black"
+                  GridLinesVisibility="All"
+                  RowBackground="#FFF1EDED"
+                  AlternatingRowBackground="BlanchedAlmond" 
+
+                  
+                  
+                  
+                  
         />
 
     </Grid>

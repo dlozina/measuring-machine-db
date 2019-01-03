@@ -31,7 +31,7 @@ namespace MeasuringMachineApp.PagesM2
         // Database string - Change if needed
         static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
         // Select all data in database
-        private string query = "SELECT * FROM `mjerenevrijednosti` WHERE 1 ";
+        private string query = "SELECT * FROM `hstectest` WHERE 1 ";
 
         private void Data2PageLoaded(object sender, RoutedEventArgs e)
         {

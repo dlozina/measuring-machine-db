@@ -21,7 +21,9 @@ namespace MeasuringMachineApp
         public static MyDatabase Database;
         // SslMode=none - If local host does not support SSL
         static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
-        private bool _oneCallFlagRecord;
+        private bool _oneCallFlagSaveM1;
+        private bool _oneCallFlagSaveM2;
+        private string _tableName;
 
         public App()
         {
@@ -37,29 +39,57 @@ namespace MeasuringMachineApp
         {
             String msg = "SISTEM SPREMAN";
 
-            // Signal to fill SQL Database
-            if ((bool)e.StatusData.Data.Record.Value && _oneCallFlagRecord)
+            // Signal to fill SQL Database for Machine1
+            if ((bool)e.StatusData.Savedata.M1.Value && _oneCallFlagSaveM1)
             {
-                _oneCallFlagRecord = false;
+                _oneCallFlagSaveM1 = false;
+                _tableName = "hstectest";
                 // Value setting
-                // Database.RadniNalog = "Dino";
-                Database.KotaCPoz1 = (float) e.StatusData.Measured.C.Value;
-                Database.KotaA11Poz1 = (float)e.StatusData.Measured.A11.Value;
-                Database.KotaA12Poz1 = (float)e.StatusData.Measured.A12.Value;
-                Database.KotaBPoz1 = (float)e.StatusData.Measured.B.Value;
-                Database.KotaF1LG2Poz1 = (float)e.StatusData.Measured.F.Value;
-                Database.KotaEPoz1 = (float)e.StatusData.Measured.E.Value;
-                Database.KotaDPoz1 = (float)e.StatusData.Measured.D.Value;
-                Database.RadniNalog = (string) e.StatusData.Measured.RadniNalog.Value;
-                // Fill SQL base
-                Database.ModifyDb(MySQLconnectionString);
+                // C
+                Database.KotaCPoz1 = (float) e.StatusData.MeasuredPos1.C.Value;
+                Database.KotaCPoz2 = (float)e.StatusData.MeasuredPos2.C.Value;
+                // A1.2
+                Database.KotaA12Poz1 = (float)e.StatusData.MeasuredPos1.A12.Value;
+                Database.KotaA12Poz2 = (float)e.StatusData.MeasuredPos2.A12.Value;
+                // A1.1
+                Database.KotaA11Poz1 = (float)e.StatusData.MeasuredPos1.A11.Value;
+                Database.KotaA11Poz2 = (float)e.StatusData.MeasuredPos2.A11.Value;
+                // B
+                Database.KotaBPoz1 = (float)e.StatusData.MeasuredPos1.B.Value;
+                Database.KotaBPoz2 = (float)e.StatusData.MeasuredPos2.B.Value;
+                // F1 AND F2 POS 1
+                Database.KotaF1LG2Poz1 = (float)e.StatusData.MeasuredPos1.F1LG2.Value;
+                Database.KotaF2LG2Poz1 = (float)e.StatusData.MeasuredPos1.F2LG2.Value;
+                Database.KotaF1LG3Poz1 = (float)e.StatusData.MeasuredPos1.F1LG3.Value;
+                Database.KotaF2LG3Poz1 = (float)e.StatusData.MeasuredPos1.F2LG3.Value;
+                // F1 AND F2 POS 2
+                Database.KotaF1LG2Poz2 = (float)e.StatusData.MeasuredPos2.F1LG2.Value;
+                Database.KotaF2LG2Poz2 = (float)e.StatusData.MeasuredPos2.F2LG2.Value;
+                Database.KotaF1LG3Poz2 = (float)e.StatusData.MeasuredPos2.F1LG3.Value;
+                Database.KotaF2LG3Poz2 = (float)e.StatusData.MeasuredPos2.F2LG3.Value;
+                // E
+                Database.KotaEPoz1 = (float)e.StatusData.MeasuredPos1.E.Value;
+                Database.KotaEPoz2 = (float)e.StatusData.MeasuredPos2.E.Value;
+                // D
+                Database.KotaDPoz1 = (float)e.StatusData.MeasuredPos1.D.Value;
+                Database.KotaDPoz2 = (float)e.StatusData.MeasuredPos2.D.Value;
+                // H1
+                Database.KotaH1Poz1 = (float)e.StatusData.MeasuredPos1.H1.Value;
+                Database.KotaH1Poz2 = (float)e.StatusData.MeasuredPos2.H1.Value;
+                // K
+                Database.KotaKPoz1 = (float)e.StatusData.MeasuredPos1.K.Value;
+                Database.KotaKPoz2 = (float)e.StatusData.MeasuredPos2.K.Value;
+
+                // Workpiecedata
+                Database.RadniNalog = (string)e.StatusData.Workpiecedata.RadniNalog.Value;
+
+                // Fill SQL base for Machine 1
+                Database.ModifyDb(MySQLconnectionString, _tableName);
             }
-            else if (!(bool)e.StatusData.Data.Record.Value)
+            else if (!(bool)e.StatusData.Savedata.M1.Value)
             {
-                _oneCallFlagRecord = true;
+                _oneCallFlagSaveM1 = true;
             }
-
-
 
             if (mwHandle != null)
             {
@@ -67,6 +97,17 @@ namespace MeasuringMachineApp
             }
 
         }
+
+        private void WriteToDatabaseM1()
+        {
+
+        }
+
+        private void WriteToDatabaseM2()
+        {
+
+        }
+
         private void PLCInterface_PLCOnlineChanged(object sender, OnlineMarkerEventArgs e)
         {
             if (e.OnlineMark)

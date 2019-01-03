@@ -28,7 +28,7 @@
                   HorizontalGridLinesBrush="Black"
                   GridLinesVisibility="All"
                   RowBackground="#FFF1EDED"
-                  AlternatingRowBackground="BlanchedAlmond" 
+                  AlternatingRowBackground="DarkGray" 
 
                   
                   

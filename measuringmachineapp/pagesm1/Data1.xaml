@@ -12,10 +12,10 @@
 
         <DataGrid x:Name="Machine1Data" 
                   ItemsSource="{Binding}" 
-                  
                   CanUserResizeRows="False" 
                   CanUserAddRows="False" 
                   IsReadOnly="True"
+                  AlternatingRowBackground="DarkGray" 
                   
         />
 

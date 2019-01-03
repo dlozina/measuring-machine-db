@@ -113,22 +113,42 @@ namespace PLCInterface
             int result = -99;
             if (Client.Connected())
                 // Buffer 64 set for String with *14* characters
-                result = Client.DBRead(48, 0, 64, CyclicStatusBuffer);
+                result = Client.DBRead(48, 0, 104, CyclicStatusBuffer);
             if (result == 0)
             {
                 lock (StatusControlLock)
                 {
-                    // Data
-                    STATUS.Data.Record.GetValueFromGroupBuffer(CyclicStatusBuffer);
-                    //Measured
-                    STATUS.Measured.C.GetValueFromGroupBuffer(CyclicStatusBuffer);
-                    STATUS.Measured.A11.GetValueFromGroupBuffer(CyclicStatusBuffer);
-                    STATUS.Measured.A12.GetValueFromGroupBuffer(CyclicStatusBuffer);
-                    STATUS.Measured.B.GetValueFromGroupBuffer(CyclicStatusBuffer);
-                    STATUS.Measured.F.GetValueFromGroupBuffer(CyclicStatusBuffer);
-                    STATUS.Measured.E.GetValueFromGroupBuffer(CyclicStatusBuffer);
-                    STATUS.Measured.D.GetValueFromGroupBuffer(CyclicStatusBuffer);
-                    STATUS.Measured.RadniNalog.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    // Savedata
+                    STATUS.Savedata.M1.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.Savedata.M2.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    // Measuredpos1
+                    STATUS.MeasuredPos1.C.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos1.A11.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos1.A12.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos1.B.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos1.F1LG2.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos1.F1LG3.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos1.F2LG2.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos1.F2LG3.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos1.E.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos1.D.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos1.K.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos1.H1.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    // Measuredpos1
+                    STATUS.MeasuredPos2.C.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos2.A11.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos2.A12.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos2.B.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos2.F1LG2.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos2.F1LG3.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos2.F2LG2.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos2.F2LG3.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos2.E.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos2.D.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos2.K.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos2.H1.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    // Workpiecedata
+                    STATUS.Workpiecedata.RadniNalog.GetValueFromGroupBuffer(CyclicStatusBuffer);
                 }
             }
             return result;

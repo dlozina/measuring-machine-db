@@ -113,7 +113,7 @@ namespace PLCInterface
             int result = -99;
             if (Client.Connected())
                 // Buffer 64 set for String with *14* characters
-                result = Client.DBRead(48, 0, 104, CyclicStatusBuffer);
+                result = Client.DBRead(48, 0, 106, CyclicStatusBuffer);
             if (result == 0)
             {
                 lock (StatusControlLock)

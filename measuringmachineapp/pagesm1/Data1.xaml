@@ -11,11 +11,24 @@
     <Grid>
 
         <DataGrid x:Name="Machine1Data" 
+                  ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                  
                   ItemsSource="{Binding}" 
+                  MinColumnWidth="100"
+                  AutoGenerateColumns="True"
                   CanUserResizeRows="False" 
                   CanUserAddRows="False" 
+                  CanUserDeleteRows="False"
+                  CanUserReorderColumns="False"
+                  CanUserResizeColumns="False"
+                  CanUserSortColumns="True"
                   IsReadOnly="True"
-                  AlternatingRowBackground="DarkGray" 
+    
+                  VerticalGridLinesBrush="Black" 
+                  HorizontalGridLinesBrush="Black"
+                  GridLinesVisibility="All"
+                  RowBackground="#FFF1EDED"
+                  AlternatingRowBackground="DarkGray"  
                   
         />
 

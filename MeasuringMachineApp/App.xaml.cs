@@ -43,7 +43,7 @@ namespace MeasuringMachineApp
             if ((bool)e.StatusData.Savedata.M1.Value && _oneCallFlagSaveM1)
             {
                 _oneCallFlagSaveM1 = false;
-                _tableName = "hstectest";
+                _tableName = "stroj1";
                 // Value setting
                 // C
                 Database.KotaCPoz1 = (float) e.StatusData.MeasuredPos1.C.Value;
@@ -89,6 +89,58 @@ namespace MeasuringMachineApp
             else if (!(bool)e.StatusData.Savedata.M1.Value)
             {
                 _oneCallFlagSaveM1 = true;
+            }
+
+            // Signal to fill SQL Database for Machine2
+            if ((bool)e.StatusData.Savedata.M2.Value && _oneCallFlagSaveM2)
+            {
+                _oneCallFlagSaveM2 = false;
+                _tableName = "stroj2";
+                // Value setting
+                // C
+                Database.KotaCPoz1 = (float)e.StatusData.MeasuredPos1.C.Value;
+                Database.KotaCPoz2 = (float)e.StatusData.MeasuredPos2.C.Value;
+                // A1.2
+                Database.KotaA12Poz1 = (float)e.StatusData.MeasuredPos1.A12.Value;
+                Database.KotaA12Poz2 = (float)e.StatusData.MeasuredPos2.A12.Value;
+                // A1.1
+                Database.KotaA11Poz1 = (float)e.StatusData.MeasuredPos1.A11.Value;
+                Database.KotaA11Poz2 = (float)e.StatusData.MeasuredPos2.A11.Value;
+                // B
+                Database.KotaBPoz1 = (float)e.StatusData.MeasuredPos1.B.Value;
+                Database.KotaBPoz2 = (float)e.StatusData.MeasuredPos2.B.Value;
+                // F1 AND F2 POS 1
+                Database.KotaF1LG2Poz1 = (float)e.StatusData.MeasuredPos1.F1LG2.Value;
+                Database.KotaF2LG2Poz1 = (float)e.StatusData.MeasuredPos1.F2LG2.Value;
+                Database.KotaF1LG3Poz1 = (float)e.StatusData.MeasuredPos1.F1LG3.Value;
+                Database.KotaF2LG3Poz1 = (float)e.StatusData.MeasuredPos1.F2LG3.Value;
+                // F1 AND F2 POS 2
+                Database.KotaF1LG2Poz2 = (float)e.StatusData.MeasuredPos2.F1LG2.Value;
+                Database.KotaF2LG2Poz2 = (float)e.StatusData.MeasuredPos2.F2LG2.Value;
+                Database.KotaF1LG3Poz2 = (float)e.StatusData.MeasuredPos2.F1LG3.Value;
+                Database.KotaF2LG3Poz2 = (float)e.StatusData.MeasuredPos2.F2LG3.Value;
+                // E
+                Database.KotaEPoz1 = (float)e.StatusData.MeasuredPos1.E.Value;
+                Database.KotaEPoz2 = (float)e.StatusData.MeasuredPos2.E.Value;
+                // D
+                Database.KotaDPoz1 = (float)e.StatusData.MeasuredPos1.D.Value;
+                Database.KotaDPoz2 = (float)e.StatusData.MeasuredPos2.D.Value;
+                // H1
+                Database.KotaH1Poz1 = (float)e.StatusData.MeasuredPos1.H1.Value;
+                Database.KotaH1Poz2 = (float)e.StatusData.MeasuredPos2.H1.Value;
+                // K
+                Database.KotaKPoz1 = (float)e.StatusData.MeasuredPos1.K.Value;
+                Database.KotaKPoz2 = (float)e.StatusData.MeasuredPos2.K.Value;
+
+                // Workpiecedata
+                Database.RadniNalog = (string)e.StatusData.Workpiecedata.RadniNalog.Value;
+
+                // Fill SQL base for Machine 1
+                Database.ModifyDb(MySQLconnectionString, _tableName);
+            }
+            else if (!(bool)e.StatusData.Savedata.M2.Value)
+            {
+                _oneCallFlagSaveM2 = true;
             }
 
             if (mwHandle != null)

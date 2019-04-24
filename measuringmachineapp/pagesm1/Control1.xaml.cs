@@ -24,5 +24,10 @@ namespace MeasuringMachineApp.PagesM1
         {
             InitializeComponent();
         }
+
+        private void ReadDb_Click(object sender, RoutedEventArgs e)
+        {
+            App.MeasurmentCalculation.MeasurementDataLoaded();
+        }
     }
 }

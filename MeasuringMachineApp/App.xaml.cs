@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Media;
 using DataBase;
 using PLCInterface;
+using ToolOffset;
 
 namespace MeasuringMachineApp
 {
@@ -19,6 +20,7 @@ namespace MeasuringMachineApp
         public static PLCInterface.Interface PlcInterface;
         public static MainWindow mwHandle;
         public static MyDatabase Database;
+        public static MeasurmentCalculation MeasurmentCalculation;
         // SslMode=none - If local host does not support SSL
         static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
         private bool _oneCallFlagSaveM1;
@@ -30,6 +32,7 @@ namespace MeasuringMachineApp
             //PlcInterface = new PLCInterface.Interface();
             PlcInterface = new Interface();
             Database = new MyDatabase();
+            MeasurmentCalculation = new MeasurmentCalculation();
             PlcInterface.StartCyclic(); // Possible system null reference
             PlcInterface.Update_Online_Flag += new Interface.OnlineMarker(PLCInterface_PLCOnlineChanged);
             PlcInterface.Update_100_ms += new Interface.UpdateHandler(PLC_Update_100_ms);

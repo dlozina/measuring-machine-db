@@ -155,6 +155,10 @@
       <Project>{f47cf844-432e-4d79-a1c9-8c84a619a998}</Project>
       <Name>Snap7Library</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ToolOffset\ToolOffset.csproj">
+      <Project>{338bebfa-7bc0-405a-9498-6ce650023fa4}</Project>
+      <Name>ToolOffset</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

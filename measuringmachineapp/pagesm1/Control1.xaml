@@ -30,7 +30,7 @@
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1" Background="Black">
-            <Button Name="OffsetCal" Margin="0,1,0,0" Content="KOREKCIJA" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED" />
+            <Button Name="OffsetCal" Margin="0,1,0,0" Content="KOREKCIJA" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED" Click="OffsetCal_Click" />
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="2" Background="Black">

@@ -36,6 +36,7 @@ namespace MeasuringMachineApp
             PlcInterface.StartCyclic(); // Possible system null reference
             PlcInterface.Update_Online_Flag += new Interface.OnlineMarker(PLCInterface_PLCOnlineChanged);
             PlcInterface.Update_100_ms += new Interface.UpdateHandler(PLC_Update_100_ms);
+            MeasurmentCalculation.StartCyclic();
         }
 
         private void PLC_Update_100_ms(Interface sender, InterfaceEventArgs e)

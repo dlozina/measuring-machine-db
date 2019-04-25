@@ -29,5 +29,10 @@ namespace MeasuringMachineApp.PagesM1
         {
             App.MeasurmentCalculation.MeasurementDataLoaded();
         }
+
+        private void OffsetCal_Click(object sender, RoutedEventArgs e)
+        {
+            App.MeasurmentCalculation.DatabaseCount();
+        }
     }
 }

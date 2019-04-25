@@ -12,10 +12,15 @@ namespace ToolOffset
     public class MeasurmentCalculation
     {
         // 1. Read data from database - Last 5 members
+        private int DataBaseCounter = 0;
+        private int DataBaseReadCounter;
+        private int LastFiveChanges = 0;
+        System.Timers.Timer Clock_ms;
         // Database string - Change if needed
         static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
         // Select all data in database
         private string query = "SELECT * FROM `stroj2` ORDER BY IDMjerenje DESC LIMIT 5";
+        private string queryCount = "SELECT COUNT(*) FROM `stroj2`";
         DataSet ds = new DataSet();
         DataTable dt = new DataTable();
         private int _rowNum;
@@ -24,6 +29,91 @@ namespace ToolOffset
         private string _cPoz2;
         private float CPoz1Value;
         private float CPoz2Value;
+
+        public MeasurmentCalculation()
+        {
+            
+            Clock_ms = new System.Timers.Timer(60000);
+            Clock_ms.Elapsed += OnClockmsTick;
+            Clock_ms.AutoReset = false;
+        }
+
+        public void StartCyclic()
+        {
+            Clock_ms.Start();
+        }
+
+        private void OnClockmsTick(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            DatabaseCount();
+            Clock_ms.Start();
+        }
+
+        // Scan database for new entry
+        public void DatabaseCount()
+        {
+            MySqlConnection databaseConnection = new MySqlConnection(MySQLconnectionString);
+            MySqlCommand commandDatabase = new MySqlCommand(queryCount, databaseConnection);
+
+            // Good practice add query timeout 30 sec
+            commandDatabase.CommandTimeout = 30;
+
+            try
+            {
+                // APP START CONDITION
+                if (DataBaseCounter == 0)
+                {
+                    // Open com with database
+                    databaseConnection.Open();
+                    Console.WriteLine("Veza sa bazom ostvarena");
+                    //MySqlDataReader myReader = commandDatabase.ExecuteReader();
+                    DataBaseReadCounter = int.Parse(commandDatabase.ExecuteScalar().ToString());
+                    DataBaseCounter = DataBaseReadCounter;
+                    
+                }
+
+                else
+                {
+                    // Open com with database
+                    databaseConnection.Open();
+                    Console.WriteLine("Veza sa bazom ostvarena");
+                    //MySqlDataReader myReader = commandDatabase.ExecuteReader();
+                    DataBaseReadCounter = int.Parse(commandDatabase.ExecuteScalar().ToString());
+                }
+
+                // DETECT DATABSE CHANGE
+                if (DataBaseCounter != DataBaseReadCounter)
+                {
+                    Console.WriteLine("Vrijednosti u bazi su izmjenjene");
+                    LastFiveChanges++;
+                    DataBaseCounter = DataBaseReadCounter;
+                }
+                else
+                {
+                    Console.WriteLine("Vrijednosti u bazi su iste");
+                }
+
+                // IF WE HAVE FIVE RESULTS FROM SAME WP LOAD DATA
+                if (LastFiveChanges == 5)
+                {
+                    MeasurementDataLoaded();
+                    LastFiveChanges = 0;
+                }
+
+            }
+            catch (Exception b)
+            {
+                Console.WriteLine("Submit error" + b.Message);
+            }
+            finally
+            {
+                if (databaseConnection != null)
+                {
+                    databaseConnection.Close();
+                    Console.WriteLine("Veza sa bazom podataka je zatvorena!");
+                }
+            }
+        }
 
         // Fill table on page loaded event
         public void MeasurementDataLoaded()

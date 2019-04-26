@@ -21,6 +21,7 @@ namespace MeasuringMachineApp
         public static MainWindow mwHandle;
         public static MyDatabase Database;
         public static MeasurmentCalculation MeasurmentCalculation;
+        public static MeasurementData MeasurementData;
         // SslMode=none - If local host does not support SSL
         static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
         private bool _oneCallFlagSaveM1;
@@ -33,6 +34,7 @@ namespace MeasuringMachineApp
             PlcInterface = new Interface();
             Database = new MyDatabase();
             MeasurmentCalculation = new MeasurmentCalculation();
+            MeasurementData = new MeasurementData();
             PlcInterface.StartCyclic(); // Possible system null reference
             PlcInterface.Update_Online_Flag += new Interface.OnlineMarker(PLCInterface_PLCOnlineChanged);
             PlcInterface.Update_100_ms += new Interface.UpdateHandler(PLC_Update_100_ms);
@@ -42,6 +44,24 @@ namespace MeasuringMachineApp
         private void PLC_Update_100_ms(Interface sender, InterfaceEventArgs e)
         {
             String msg = "SISTEM SPREMAN";
+            // Workpiece Nominal Values from Machine 1
+            MeasurementData.cNominalM1 = (float)e.StatusData.Machine1Data.C.Value;
+            MeasurementData.aNominalM1 = (float)e.StatusData.Machine1Data.A.Value;
+            MeasurementData.bNominalM1 = (float)e.StatusData.Machine1Data.B.Value;
+            MeasurementData.jNominalM1 = (float)e.StatusData.Machine1Data.J.Value;
+            MeasurementData.fNominalM1 = (float)e.StatusData.Machine1Data.F.Value;
+            MeasurementData.eNominalM1 = (float)e.StatusData.Machine1Data.E.Value;
+            MeasurementData.dNominalM1 = (float)e.StatusData.Machine1Data.D.Value;
+            MeasurementData.gNominalM1 = (float)e.StatusData.Machine1Data.G.Value;
+            // Workpiece Nominal Values from Machine 2
+            MeasurementData.cNominalM2 = (float)e.StatusData.Machine2Data.C.Value;
+            MeasurementData.aNominalM2 = (float)e.StatusData.Machine2Data.A.Value;
+            MeasurementData.bNominalM2 = (float)e.StatusData.Machine2Data.B.Value;
+            MeasurementData.jNominalM2 = (float)e.StatusData.Machine2Data.J.Value;
+            MeasurementData.fNominalM2 = (float)e.StatusData.Machine2Data.F.Value;
+            MeasurementData.eNominalM2 = (float)e.StatusData.Machine2Data.E.Value;
+            MeasurementData.dNominalM2 = (float)e.StatusData.Machine2Data.D.Value;
+            MeasurementData.gNominalM2 = (float)e.StatusData.Machine2Data.G.Value;
 
             // Signal to fill SQL Database for Machine1
             if ((bool)e.StatusData.Savedata.M1.Value && _oneCallFlagSaveM1)
@@ -50,7 +70,7 @@ namespace MeasuringMachineApp
                 _tableName = "stroj1";
                 // Value setting
                 // C
-                Database.KotaCPoz1 = (float) e.StatusData.MeasuredPos1.C.Value;
+                Database.KotaCPoz1 = (float)e.StatusData.MeasuredPos1.C.Value;
                 Database.KotaCPoz2 = (float)e.StatusData.MeasuredPos2.C.Value;
                 // A1.2
                 Database.KotaA12Poz1 = (float)e.StatusData.MeasuredPos1.A12.Value;

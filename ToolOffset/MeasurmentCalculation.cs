@@ -30,6 +30,7 @@ namespace ToolOffset
         private float CPoz1Value;
         private float CPoz2Value;
 
+
         public MeasurmentCalculation()
         {
             
@@ -150,6 +151,9 @@ namespace ToolOffset
                 CPoz2Value = float.Parse(_cPoz2);
 
                 float CAverageValueMeas1 = (CPoz1Value + CPoz2Value) / 2;
+
+                // COMPARE AVERAGE VALUE WITH NOMINAL
+
 
                 //***********************************
                 // MEASUREMENT NO.2                 *

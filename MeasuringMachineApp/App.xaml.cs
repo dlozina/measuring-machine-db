@@ -17,6 +17,9 @@ namespace MeasuringMachineApp
     /// </summary>
     public partial class App : Application
     {
+        // DatabaseTimer
+        System.Timers.Timer Clock_ms;
+        // Static Class definition
         public static PLCInterface.Interface PlcInterface;
         public static MainWindow mwHandle;
         public static MyDatabase Database;
@@ -38,7 +41,22 @@ namespace MeasuringMachineApp
             PlcInterface.StartCyclic(); // Possible system null reference
             PlcInterface.Update_Online_Flag += new Interface.OnlineMarker(PLCInterface_PLCOnlineChanged);
             PlcInterface.Update_100_ms += new Interface.UpdateHandler(PLC_Update_100_ms);
-            MeasurmentCalculation.StartCyclic();
+            // Timer call for database check
+            Clock_ms = new System.Timers.Timer(60000);
+            Clock_ms.Elapsed += OnClockmsTick;
+            Clock_ms.AutoReset = false;
+            StartCyclic();
+        }
+
+        public void StartCyclic()
+        {
+            Clock_ms.Start();
+        }
+
+        private void OnClockmsTick(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            MeasurmentCalculation.DatabaseCount();
+            Clock_ms.Start();
         }
 
         private void PLC_Update_100_ms(Interface sender, InterfaceEventArgs e)

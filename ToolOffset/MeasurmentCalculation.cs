@@ -15,7 +15,7 @@ namespace ToolOffset
         private int DataBaseCounter = 0;
         private int DataBaseReadCounter;
         private int LastFiveChanges = 0;
-        System.Timers.Timer Clock_ms;
+        //System.Timers.Timer Clock_ms;
         // Database string - Change if needed
         static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
         // Select all data in database
@@ -31,24 +31,24 @@ namespace ToolOffset
         private float CPoz2Value;
 
 
-        public MeasurmentCalculation()
-        {
+        //public MeasurmentCalculation()
+        //{
             
-            Clock_ms = new System.Timers.Timer(60000);
-            Clock_ms.Elapsed += OnClockmsTick;
-            Clock_ms.AutoReset = false;
-        }
+        //    Clock_ms = new System.Timers.Timer(60000);
+        //    Clock_ms.Elapsed += OnClockmsTick;
+        //    Clock_ms.AutoReset = false;
+        //}
 
-        public void StartCyclic()
-        {
-            Clock_ms.Start();
-        }
+        //public void StartCyclic()
+        //{
+        //    Clock_ms.Start();
+        //}
 
-        private void OnClockmsTick(Object source, System.Timers.ElapsedEventArgs e)
-        {
-            DatabaseCount();
-            Clock_ms.Start();
-        }
+        //private void OnClockmsTick(Object source, System.Timers.ElapsedEventArgs e)
+        //{
+        //    DatabaseCount();
+        //    Clock_ms.Start();
+        //}
 
         // Scan database for new entry
         public void DatabaseCount()

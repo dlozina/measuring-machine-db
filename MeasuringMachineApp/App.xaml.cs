@@ -31,6 +31,8 @@ namespace MeasuringMachineApp
         private bool _oneCallFlagSaveM2;
         private string _tableName;
 
+        public float CorectionNo1;
+
         public App()
         {
             //PlcInterface = new PLCInterface.Interface();
@@ -42,6 +44,7 @@ namespace MeasuringMachineApp
             PlcInterface.Update_Online_Flag += new Interface.OnlineMarker(PLCInterface_PLCOnlineChanged);
             PlcInterface.Update_100_ms += new Interface.UpdateHandler(PLC_Update_100_ms);
             // Timer call for database check
+            MeasurmentCalculation.DatabaseChanged += OnDatabaseChanged;
             Clock_ms = new System.Timers.Timer(60000);
             Clock_ms.Elapsed += OnClockmsTick;
             Clock_ms.AutoReset = false;
@@ -55,8 +58,38 @@ namespace MeasuringMachineApp
 
         private void OnClockmsTick(Object source, System.Timers.ElapsedEventArgs e)
         {
+            // Get last five values
             MeasurmentCalculation.DatabaseCount();
             Clock_ms.Start();
+        }
+
+        // Calculate correction when we have results
+        public void OnDatabaseChanged(object source, EventArgs e)
+        {
+            // Corection value for diameter C
+            MeasurementData.CorrectionCno1 = MeasurmentCalculation.CAverageValueMeas1 - MeasurementData.cNominalM2;
+            MeasurementData.CorrectionCno2 = MeasurmentCalculation.CAverageValueMeas2 - MeasurementData.cNominalM2;
+            MeasurementData.CorrectionCno3 = MeasurmentCalculation.CAverageValueMeas3 - MeasurementData.cNominalM2;
+            MeasurementData.CorrectionCno4 = MeasurmentCalculation.CAverageValueMeas4 - MeasurementData.cNominalM2;
+            MeasurementData.CorrectionCno5 = MeasurmentCalculation.CAverageValueMeas1 - MeasurementData.cNominalM2;
+            MeasurementData.CorrectionCforMachine = (MeasurementData.CorrectionCno1 + MeasurementData.CorrectionCno2 +
+                                                     MeasurementData.CorrectionCno3 + MeasurementData.CorrectionCno4 +
+                                                     MeasurementData.CorrectionCno5);
+
+            // Corection value for diameter A (Two Point)
+
+            // Corection value for diameter A (One Point)
+
+            // Corection value for diameter B
+
+            // Corection value for diameter J - Add new Measurement
+
+            // Corection value for diameter F
+
+            // Corection value for diameter E
+
+            // Corection value for diameter D
+
         }
 
         private void PLC_Update_100_ms(Interface sender, InterfaceEventArgs e)

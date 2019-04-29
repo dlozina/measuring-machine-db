@@ -11,6 +11,7 @@ namespace ToolOffset
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        #region Nominal Values for M1 from PLC
         //MACHINE 1 NOMINAL VALUES
         // Nominal Value no.1
         private float _cNominalM1;
@@ -124,7 +125,9 @@ namespace ToolOffset
                 }
             }
         }
+        #endregion
 
+        #region Nominal values for M2 from PLC
         //MACHINE 2 NOMINAL VALUES
         // Nominal Value no.1
         private float _cNominalM2;
@@ -238,6 +241,94 @@ namespace ToolOffset
                 }
             }
         }
+        #endregion
+
+        #region Corection data to Machine
+        // CORECTION DATA
+        private float _correctionCno1;
+        public float CorrectionCno1
+        {
+            get { return _correctionCno1; }
+            set
+            {
+                if (_correctionCno1 != value)
+                {
+                    _correctionCno1 = value;
+                    OnPropertyChanged("CorrectionCno1");
+                }
+            }
+        }
+
+        private float _correctionCno2;
+        public float CorrectionCno2
+        {
+            get { return _correctionCno2; }
+            set
+            {
+                if (_correctionCno2 != value)
+                {
+                    _correctionCno2 = value;
+                    OnPropertyChanged("CorrectionCno2");
+                }
+            }
+        }
+
+        private float _correctionCno3;
+        public float CorrectionCno3
+        {
+            get { return _correctionCno3; }
+            set
+            {
+                if (_correctionCno3 != value)
+                {
+                    _correctionCno3 = value;
+                    OnPropertyChanged("CorrectionCno3");
+                }
+            }
+        }
+
+        private float _correctionCno4;
+        public float CorrectionCno4
+        {
+            get { return _correctionCno4; }
+            set
+            {
+                if (_correctionCno4 != value)
+                {
+                    _correctionCno4 = value;
+                    OnPropertyChanged("CorrectionCno4");
+                }
+            }
+        }
+
+        private float _correctionCno5;
+        public float CorrectionCno5
+        {
+            get { return _correctionCno5; }
+            set
+            {
+                if (_correctionCno5 != value)
+                {
+                    _correctionCno5 = value;
+                    OnPropertyChanged("CorrectionCno5");
+                }
+            }
+        }
+
+        private float _correctionCforMachine;
+        public float CorrectionCforMachine
+        {
+            get { return _correctionCforMachine; }
+            set
+            {
+                if (_correctionCforMachine != value)
+                {
+                    _correctionCforMachine = value;
+                    OnPropertyChanged("CorrectionCforMachine");
+                }
+            }
+        }
+        #endregion
 
         // Property changed implementation
         protected virtual void OnPropertyChanged(string propertyName)

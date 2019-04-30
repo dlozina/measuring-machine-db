@@ -27,12 +27,12 @@ namespace MeasuringMachineApp.PagesM1
 
         private void ReadDb_Click(object sender, RoutedEventArgs e)
         {
-            App.MeasurmentCalculation.MeasurementDataLoaded();
+            App.MeasurmentCalculationM2.MeasurementDataLoaded();
         }
 
         private void OffsetCal_Click(object sender, RoutedEventArgs e)
         {
-            App.MeasurmentCalculation.DatabaseCount();
+            App.MeasurmentCalculationM2.DatabaseCount();
         }
     }
 }

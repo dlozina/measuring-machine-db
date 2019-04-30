@@ -77,19 +77,61 @@ namespace MeasuringMachineApp
                                                      MeasurementData.CorrectionCno5);
 
             // Corection value for diameter A (Two Point)
-
+            MeasurementData.CorrectionA2no1 = MeasurmentCalculation.AtwoPointAverageValueMeas1 - MeasurementData.aNominalM2;
+            MeasurementData.CorrectionA2no2 = MeasurmentCalculation.AtwoPointAverageValueMeas1 - MeasurementData.aNominalM2;
+            MeasurementData.CorrectionA2no3 = MeasurmentCalculation.AtwoPointAverageValueMeas1 - MeasurementData.aNominalM2;
+            MeasurementData.CorrectionA2no4 = MeasurmentCalculation.AtwoPointAverageValueMeas1 - MeasurementData.aNominalM2;
+            MeasurementData.CorrectionA2no5 = MeasurmentCalculation.AtwoPointAverageValueMeas1 - MeasurementData.aNominalM2;
+            MeasurementData.CorrectionA2forMachine = (MeasurementData.CorrectionA2no1 + MeasurementData.CorrectionA2no2 +
+                                                     MeasurementData.CorrectionA2no3 + MeasurementData.CorrectionA2no4 +
+                                                     MeasurementData.CorrectionA2no5);
             // Corection value for diameter A (One Point)
-
+            MeasurementData.CorrectionA1no1 = MeasurmentCalculation.AonePointAverageValueMeas1 - MeasurementData.aNominalM2;
+            MeasurementData.CorrectionA1no2 = MeasurmentCalculation.AonePointAverageValueMeas1 - MeasurementData.aNominalM2;
+            MeasurementData.CorrectionA1no3 = MeasurmentCalculation.AonePointAverageValueMeas1 - MeasurementData.aNominalM2;
+            MeasurementData.CorrectionA1no4 = MeasurmentCalculation.AonePointAverageValueMeas1 - MeasurementData.aNominalM2;
+            MeasurementData.CorrectionA1no5 = MeasurmentCalculation.AonePointAverageValueMeas1 - MeasurementData.aNominalM2;
+            MeasurementData.CorrectionA1forMachine = (MeasurementData.CorrectionA1no1 + MeasurementData.CorrectionA1no2 +
+                                                      MeasurementData.CorrectionA1no3 + MeasurementData.CorrectionA1no4 +
+                                                      MeasurementData.CorrectionA1no5);
             // Corection value for diameter B
-
+            MeasurementData.CorrectionBno1 = MeasurmentCalculation.BAverageValueMeas1 - MeasurementData.bNominalM2;
+            MeasurementData.CorrectionBno2 = MeasurmentCalculation.BAverageValueMeas2 - MeasurementData.bNominalM2;
+            MeasurementData.CorrectionBno3 = MeasurmentCalculation.BAverageValueMeas3 - MeasurementData.bNominalM2;
+            MeasurementData.CorrectionBno4 = MeasurmentCalculation.BAverageValueMeas4 - MeasurementData.bNominalM2;
+            MeasurementData.CorrectionBno5 = MeasurmentCalculation.BAverageValueMeas5 - MeasurementData.bNominalM2;
+            MeasurementData.CorrectionBforMachine = (MeasurementData.CorrectionBno1 + MeasurementData.CorrectionBno2 +
+                                                      MeasurementData.CorrectionBno3 + MeasurementData.CorrectionBno4 +
+                                                      MeasurementData.CorrectionBno5);
             // Corection value for diameter J - Add new Measurement
 
             // Corection value for diameter F
-
+            MeasurementData.CorrectionFno1 = MeasurmentCalculation.FAverageValueMeas1 - MeasurementData.fNominalM2;
+            MeasurementData.CorrectionFno2 = MeasurmentCalculation.FAverageValueMeas2 - MeasurementData.fNominalM2;
+            MeasurementData.CorrectionFno3 = MeasurmentCalculation.FAverageValueMeas3 - MeasurementData.fNominalM2;
+            MeasurementData.CorrectionFno4 = MeasurmentCalculation.FAverageValueMeas4 - MeasurementData.fNominalM2;
+            MeasurementData.CorrectionFno5 = MeasurmentCalculation.FAverageValueMeas5 - MeasurementData.fNominalM2;
+            MeasurementData.CorrectionFforMachine = (MeasurementData.CorrectionFno1 + MeasurementData.CorrectionFno2 +
+                                                     MeasurementData.CorrectionFno3 + MeasurementData.CorrectionFno4 +
+                                                     MeasurementData.CorrectionFno5);
             // Corection value for diameter E
-
+            MeasurementData.CorrectionEno1 = MeasurmentCalculation.EAverageValueMeas1 - MeasurementData.eNominalM2;
+            MeasurementData.CorrectionEno2 = MeasurmentCalculation.EAverageValueMeas2 - MeasurementData.eNominalM2;
+            MeasurementData.CorrectionEno3 = MeasurmentCalculation.EAverageValueMeas3 - MeasurementData.eNominalM2;
+            MeasurementData.CorrectionEno4 = MeasurmentCalculation.EAverageValueMeas4 - MeasurementData.eNominalM2;
+            MeasurementData.CorrectionEno5 = MeasurmentCalculation.EAverageValueMeas5 - MeasurementData.eNominalM2;
+            MeasurementData.CorrectionEforMachine = (MeasurementData.CorrectionEno1 + MeasurementData.CorrectionEno2 +
+                                                     MeasurementData.CorrectionEno3 + MeasurementData.CorrectionEno4 +
+                                                     MeasurementData.CorrectionEno5);
             // Corection value for diameter D
-
+            //MeasurementData.CorrectionDno1 = MeasurmentCalculation.DAverageValueMeas1 - MeasurementData.dNominalM2;
+            //MeasurementData.CorrectionDno2 = MeasurmentCalculation.DAverageValueMeas2 - MeasurementData.dNominalM2;
+            //MeasurementData.CorrectionDno3 = MeasurmentCalculation.DAverageValueMeas3 - MeasurementData.dNominalM2;
+            //MeasurementData.CorrectionDno4 = MeasurmentCalculation.DAverageValueMeas4 - MeasurementData.dNominalM2;
+            //MeasurementData.CorrectionDno5 = MeasurmentCalculation.DAverageValueMeas5 - MeasurementData.dNominalM2;
+            //MeasurementData.CorrectionDforMachine = (MeasurementData.CorrectionDno1 + MeasurementData.CorrectionDno2 +
+            //                                         MeasurementData.CorrectionDno3 + MeasurementData.CorrectionDno4 +
+            //                                         MeasurementData.CorrectionDno5);
         }
 
         private void PLC_Update_100_ms(Interface sender, InterfaceEventArgs e)

@@ -28,17 +28,26 @@ namespace ToolOffset
         private string _columnName;
         private string _Poz1;
         private string _Poz2;
+        // C VALUE
         private float CPoz1Value;
         private float CPoz2Value;
+        // A VALUE (TWO POINT)
         private float A12Poz1Value;
         private float A12Poz2Value;
         private float A11Poz1Value;
         private float A11Poz2Value;
+        // A VALUE (ONE POINT)
         private float APoz1Value;
         private float APoz2Value;
+        // B VALUE
         private float BPoz1Value;
         private float BPoz2Value;
         // F VALUE
+        private float F1T2Poz1Value;
+        private float F1T2Poz2Value;
+        private float F1T3Poz1Value;
+        private float F1T3Poz2Value;
+        // E VALUE
         private float EPoz1Value;
         private float EPoz2Value;
 
@@ -310,14 +319,243 @@ namespace ToolOffset
         //***********************************
         // B  DIAMETER AVERAGE              *
         //***********************************
+        #region B diameter average
+        //MACHINE  AVERAGE VALUES
+        private float _BAverageValueMeas1;
+        public float BAverageValueMeas1
+        {
+            get { return _BAverageValueMeas1; }
+            set
+            {
+                if (_BAverageValueMeas1 != value)
+                {
+                    _BAverageValueMeas1 = value;
+                    OnPropertyChanged("BAverageValueMeas1");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _BAverageValueMeas2;
+        public float BAverageValueMeas2
+        {
+            get { return _BAverageValueMeas2; }
+            set
+            {
+                if (_BAverageValueMeas2 != value)
+                {
+                    _BAverageValueMeas2 = value;
+                    OnPropertyChanged("BAverageValueMeas2");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _BAverageValueMeas3;
+        public float BAverageValueMeas3
+        {
+            get { return _BAverageValueMeas3; }
+            set
+            {
+                if (_BAverageValueMeas3 != value)
+                {
+                    _BAverageValueMeas3 = value;
+                    OnPropertyChanged("BAverageValueMeas3");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _BAverageValueMeas4;
+        public float BAverageValueMeas4
+        {
+            get { return _BAverageValueMeas4; }
+            set
+            {
+                if (_BAverageValueMeas4 != value)
+                {
+                    _BAverageValueMeas4 = value;
+                    OnPropertyChanged("BAverageValueMeas4");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _BAverageValueMeas5;
+        public float BAverageValueMeas5
+        {
+            get { return _BAverageValueMeas5; }
+            set
+            {
+                if (_BAverageValueMeas5 != value)
+                {
+                    _BAverageValueMeas5 = value;
+                    OnPropertyChanged("BAverageValueMeas5");
+                }
+            }
+        }
+        #endregion
 
         //***********************************
         // F  GUTTER AVERAGE                *
         //***********************************
+        #region F gutter average
+        //MACHINE  AVERAGE VALUES
+        private float _FAverageValueMeas1;
+        public float FAverageValueMeas1
+        {
+            get { return _FAverageValueMeas1; }
+            set
+            {
+                if (_FAverageValueMeas1 != value)
+                {
+                    _FAverageValueMeas1 = value;
+                    OnPropertyChanged("FAverageValueMeas1");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _FAverageValueMeas2;
+        public float FAverageValueMeas2
+        {
+            get { return _FAverageValueMeas2; }
+            set
+            {
+                if (_FAverageValueMeas2 != value)
+                {
+                    _FAverageValueMeas2 = value;
+                    OnPropertyChanged("FAverageValueMeas2");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _FAverageValueMeas3;
+        public float FAverageValueMeas3
+        {
+            get { return _FAverageValueMeas3; }
+            set
+            {
+                if (_FAverageValueMeas3 != value)
+                {
+                    _FAverageValueMeas3 = value;
+                    OnPropertyChanged("FAverageValueMeas3");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _FAverageValueMeas4;
+        public float FAverageValueMeas4
+        {
+            get { return _FAverageValueMeas4; }
+            set
+            {
+                if (_FAverageValueMeas4 != value)
+                {
+                    _FAverageValueMeas4 = value;
+                    OnPropertyChanged("FAverageValueMeas4");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _FAverageValueMeas5;
+        public float FAverageValueMeas5
+        {
+            get { return _FAverageValueMeas5; }
+            set
+            {
+                if (_FAverageValueMeas5 != value)
+                {
+                    _FAverageValueMeas5 = value;
+                    OnPropertyChanged("FAverageValueMeas5");
+                }
+            }
+        }
+        #endregion
 
         //***********************************
         // E  GUTTER AVERAGE                *
         //***********************************
+        #region E height average
+        //MACHINE  AVERAGE VALUES
+        private float _EAverageValueMeas1;
+        public float EAverageValueMeas1
+        {
+            get { return _EAverageValueMeas1; }
+            set
+            {
+                if (_EAverageValueMeas1 != value)
+                {
+                    _EAverageValueMeas1 = value;
+                    OnPropertyChanged("EAverageValueMeas1");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _EAverageValueMeas2;
+        public float EAverageValueMeas2
+        {
+            get { return _EAverageValueMeas2; }
+            set
+            {
+                if (_EAverageValueMeas2 != value)
+                {
+                    _EAverageValueMeas2 = value;
+                    OnPropertyChanged("EAverageValueMeas2");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _EAverageValueMeas3;
+        public float EAverageValueMeas3
+        {
+            get { return _EAverageValueMeas3; }
+            set
+            {
+                if (_EAverageValueMeas3 != value)
+                {
+                    _EAverageValueMeas3 = value;
+                    OnPropertyChanged("EAverageValueMeas3");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _EAverageValueMeas4;
+        public float EAverageValueMeas4
+        {
+            get { return _EAverageValueMeas4; }
+            set
+            {
+                if (_EAverageValueMeas4 != value)
+                {
+                    _EAverageValueMeas4 = value;
+                    OnPropertyChanged("EAverageValueMeas4");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _EAverageValueMeas5;
+        public float EAverageValueMeas5
+        {
+            get { return _EAverageValueMeas5; }
+            set
+            {
+                if (_EAverageValueMeas5 != value)
+                {
+                    _EAverageValueMeas5 = value;
+                    OnPropertyChanged("EAverageValueMeas5");
+                }
+            }
+        }
+        #endregion
+
 
         // Property changed implementation
         protected virtual void OnPropertyChanged(string propertyName)
@@ -413,7 +651,7 @@ namespace ToolOffset
                 // To read a specific cell in a row:
 
                 // C MEASSUREMENT
-
+                #region C calculation
                 //***********************************
                 // MEASUREMENT NO.1                 *
                 //***********************************
@@ -498,9 +736,10 @@ namespace ToolOffset
                 CPoz2Value = float.Parse(_Poz2);
 
                 CAverageValueMeas5 = (CPoz1Value + CPoz2Value) / 2;
+                #endregion
 
                 // A MEASSUREMENT (TWO POINT MEASUREMENT)
-
+                #region A two point calculation
                 //***********************************
                 // MEASUREMENT NO.1                 *
                 //***********************************
@@ -645,9 +884,10 @@ namespace ToolOffset
                 A11Poz2Value = float.Parse(_Poz2);
 
                 AtwoPointAverageValueMeas5 = (A12Poz1Value + A12Poz2Value + A11Poz1Value + A11Poz2Value) / 4;
+                #endregion
 
                 // A MEASSUREMENT (ONE POINT MEASUREMENT)
-
+                #region A one point calculation
                 //***********************************
                 // MEASUREMENT NO.1                 *
                 //***********************************
@@ -732,7 +972,331 @@ namespace ToolOffset
                 APoz2Value = float.Parse(_Poz2);
 
                 AonePointAverageValueMeas4 = (APoz1Value + APoz2Value) / 2;
+                #endregion
 
+                // B MEASUREMENT
+                #region B calculation
+                //***********************************
+                // MEASUREMENT NO.1                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 0; // row number
+                _columnName = "BPoz1";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                BPoz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 0; // row number
+                _columnName = "BPoz2";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                BPoz2Value = float.Parse(_Poz2);
+
+                BAverageValueMeas1 = (BPoz1Value + BPoz2Value) / 2;
+
+                //***********************************
+                // MEASUREMENT NO.2                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 1; // row number
+                _columnName = "BPoz1";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                BPoz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 1; // row number
+                _columnName = "BPoz2";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                APoz2Value = float.Parse(_Poz2);
+
+                BAverageValueMeas2 = (BPoz1Value + BPoz2Value) / 2;
+
+                //***********************************
+                // MEASUREMENT NO.3                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 2; // row number
+                _columnName = "BPoz1";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                BPoz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 2; // row number
+                _columnName = "BPoz2";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                BPoz2Value = float.Parse(_Poz2);
+
+                BAverageValueMeas3 = (BPoz1Value + BPoz2Value) / 2;
+
+                //***********************************
+                // MEASUREMENT NO.4                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 3; // row number
+                _columnName = "BPoz1";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                BPoz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 3; // row number
+                _columnName = "BPoz2";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                BPoz2Value = float.Parse(_Poz2);
+
+                BAverageValueMeas4 = (BPoz1Value + BPoz2Value) / 2;
+
+                //***********************************
+                // MEASUREMENT NO.5                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 4; // row number
+                _columnName = "BPoz1";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                BPoz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 4; // row number
+                _columnName = "BPoz2";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                BPoz2Value = float.Parse(_Poz2);
+
+                BAverageValueMeas4 = (BPoz1Value + BPoz2Value) / 2;
+                #endregion
+
+                // F MEASUREMENT
+                #region F two point calculation
+                //***********************************
+                // MEASUREMENT NO.1                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 0; // row number
+                _columnName = "F1Ticalo2Poz1";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T2Poz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 0; // row number
+                _columnName = "F1Ticalo3Poz1";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T3Poz1Value = float.Parse(_Poz2);
+
+                // POZ 1 VALUE
+                _rowNum = 0; // row number
+                _columnName = "F1Ticalo2Poz2";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T2Poz2Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 0; // row number
+                _columnName = "F1Ticalo3Poz2";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T3Poz2Value = float.Parse(_Poz2);
+
+                FAverageValueMeas1 = (F1T2Poz1Value + F1T3Poz1Value + F1T2Poz2Value + F1T3Poz2Value) / 4;
+
+                //***********************************
+                // MEASUREMENT NO.2                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 1; // row number
+                _columnName = "F1Ticalo2Poz1";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T2Poz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 1; // row number
+                _columnName = "F1Ticalo3Poz1";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T3Poz1Value = float.Parse(_Poz2);
+
+                // POZ 1 VALUE
+                _rowNum = 1; // row number
+                _columnName = "F1Ticalo2Poz2";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T2Poz2Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 1; // row number
+                _columnName = "F1Ticalo3Poz2";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T3Poz2Value = float.Parse(_Poz2);
+
+                FAverageValueMeas2 = (F1T2Poz1Value + F1T3Poz1Value + F1T2Poz2Value + F1T3Poz2Value) / 4;
+
+                //***********************************
+                // MEASUREMENT NO.3                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 2; // row number
+                _columnName = "F1Ticalo2Poz1";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T2Poz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 2; // row number
+                _columnName = "F1Ticalo3Poz1";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T3Poz1Value = float.Parse(_Poz2);
+
+                // POZ 1 VALUE
+                _rowNum = 2; // row number
+                _columnName = "F1Ticalo2Poz2";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T2Poz2Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 2; // row number
+                _columnName = "F1Ticalo3Poz2";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T3Poz2Value = float.Parse(_Poz2);
+
+                FAverageValueMeas3 = (F1T2Poz1Value + F1T3Poz1Value + F1T2Poz2Value + F1T3Poz2Value) / 4;
+
+                //***********************************
+                // MEASUREMENT NO.4                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 3; // row number
+                _columnName = "F1Ticalo2Poz1";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T2Poz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 3; // row number
+                _columnName = "F1Ticalo3Poz1";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T3Poz1Value = float.Parse(_Poz2);
+
+                // POZ 1 VALUE
+                _rowNum = 3; // row number
+                _columnName = "F1Ticalo2Poz2";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T2Poz2Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 3; // row number
+                _columnName = "F1Ticalo3Poz2";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T3Poz2Value = float.Parse(_Poz2);
+
+                FAverageValueMeas4 = (F1T2Poz1Value + F1T3Poz1Value + F1T2Poz2Value + F1T3Poz2Value) / 4;
+
+                //***********************************
+                // MEASUREMENT NO.5                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 4; // row number
+                _columnName = "F1Ticalo2Poz1";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T2Poz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 4; // row number
+                _columnName = "F1Ticalo3Poz1";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T3Poz1Value = float.Parse(_Poz2);
+
+                // POZ 1 VALUE
+                _rowNum = 4; // row number
+                _columnName = "F1Ticalo2Poz2";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T2Poz2Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 4; // row number
+                _columnName = "F1Ticalo3Poz2";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                F1T3Poz2Value = float.Parse(_Poz2);
+
+                FAverageValueMeas5 = (F1T2Poz1Value + F1T3Poz1Value + F1T2Poz2Value + F1T3Poz2Value) / 4;
+                #endregion
+
+                // E MEASUREMENT
+                #region E calculation
+                //***********************************
+                // MEASUREMENT NO.1                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 0; // row number
+                _columnName = "EPoz1";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                EPoz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 0; // row number
+                _columnName = "EPoz2";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                EPoz2Value = float.Parse(_Poz2);
+
+                EAverageValueMeas1 = (EPoz1Value + EPoz2Value) / 2;
+
+                //***********************************
+                // MEASUREMENT NO.2                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 1; // row number
+                _columnName = "EPoz1";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                EPoz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 1; // row number
+                _columnName = "EPoz2";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                EPoz2Value = float.Parse(_Poz2);
+
+                EAverageValueMeas2 = (EPoz1Value + EPoz2Value) / 2;
+
+                //***********************************
+                // MEASUREMENT NO.3                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 2; // row number
+                _columnName = "EPoz1";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                EPoz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 2; // row number
+                _columnName = "EPoz2";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                EPoz2Value = float.Parse(_Poz2);
+
+                EAverageValueMeas3 = (BPoz1Value + BPoz2Value) / 2;
+
+                //***********************************
+                // MEASUREMENT NO.4                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 3; // row number
+                _columnName = "EPoz1";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                EPoz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 3; // row number
+                _columnName = "EPoz2";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                EPoz2Value = float.Parse(_Poz2);
+
+                EAverageValueMeas4 = (BPoz1Value + BPoz2Value) / 2;
+
+                //***********************************
+                // MEASUREMENT NO.5                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 4; // row number
+                _columnName = "BPoz1";  // database table column name
+                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                EPoz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 4; // row number
+                _columnName = "BPoz2";  // database table column name
+                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                EPoz2Value = float.Parse(_Poz2);
+
+                EAverageValueMeas4 = (BPoz1Value + BPoz2Value) / 2;
+                #endregion
 
 
                 // CHECK DATA IN COLUMN

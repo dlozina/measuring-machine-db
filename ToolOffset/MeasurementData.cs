@@ -11,233 +11,117 @@ namespace ToolOffset
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        #region Nominal Values for M1 from PLC
+        #region Nominal Values from PLC
         //MACHINE 1 NOMINAL VALUES
         // Nominal Value no.1
-        private float _cNominalM1;
-        public float cNominalM1
+        private float _cNominal;
+        public float cNominal
         {
-            get { return _cNominalM1; }
+            get { return _cNominal; }
             set
             {
-                if (_cNominalM1 != value)
+                if (_cNominal != value)
                 {
-                    _cNominalM1 = value;
-                    OnPropertyChanged("CNominalM1");
+                    _cNominal = value;
+                    OnPropertyChanged("CNominal");
                 }
             }
         }
         // Nominal Value no.2
-        private float _aNominalM1;
-        public float aNominalM1
+        private float _aNominal;
+        public float aNominal
         {
-            get { return _aNominalM1; }
+            get { return _aNominal; }
             set
             {
-                if (_aNominalM1 != value)
+                if (_aNominal != value)
                 {
-                    _aNominalM1 = value;
-                    OnPropertyChanged("ANominalM1");
+                    _aNominal = value;
+                    OnPropertyChanged("ANominal");
                 }
             }
         }
         // Nominal Value no.3
-        private float _bNominalM1;
-        public float bNominalM1
+        private float _bNominal;
+        public float bNominal
         {
-            get { return _bNominalM1; }
+            get { return _bNominal; }
             set
             {
-                if (_bNominalM1 != value)
+                if (_bNominal != value)
                 {
-                    _bNominalM1 = value;
-                    OnPropertyChanged("BNominalM1");
+                    _bNominal = value;
+                    OnPropertyChanged("BNominal");
                 }
             }
         }
         // Nominal Value no.4
-        private float _jNominalM1;
-        public float jNominalM1
+        private float _jNominal;
+        public float jNominal
         {
-            get { return _jNominalM1; }
+            get { return _jNominal; }
             set
             {
-                if (_jNominalM1 != value)
+                if (_jNominal != value)
                 {
-                    _jNominalM1 = value;
-                    OnPropertyChanged("JNominalM1");
+                    _jNominal = value;
+                    OnPropertyChanged("JNominal");
                 }
             }
         }
         // Nominal Value no.5
-        private float _fNominalM1;
-        public float fNominalM1
+        private float _fNominal;
+        public float fNominal
         {
-            get { return _fNominalM1; }
+            get { return _fNominal; }
             set
             {
-                if (_fNominalM1 != value)
+                if (_fNominal != value)
                 {
-                    _fNominalM1 = value;
-                    OnPropertyChanged("FNominalM1");
+                    _fNominal = value;
+                    OnPropertyChanged("FNominal");
                 }
             }
         }
         // Nominal Value no.6
-        private float _eNominalM1;
-        public float eNominalM1
+        private float _eNominal;
+        public float eNominal
         {
-            get { return _eNominalM1; }
+            get { return _eNominal; }
             set
             {
-                if (_eNominalM1 != value)
+                if (_eNominal != value)
                 {
-                    _eNominalM1 = value;
-                    OnPropertyChanged("ENominalM1");
+                    _eNominal = value;
+                    OnPropertyChanged("ENominal");
                 }
             }
         }
         // Nominal Value no.7
-        private float _dNominalM1;
-        public float dNominalM1
+        private float _dNominal;
+        public float dNominal
         {
-            get { return _dNominalM1; }
+            get { return _dNominal; }
             set
             {
-                if (_dNominalM1 != value)
+                if (_dNominal != value)
                 {
-                    _dNominalM1 = value;
-                    OnPropertyChanged("DNominalM1");
+                    _dNominal = value;
+                    OnPropertyChanged("DNominal");
                 }
             }
         }
         // Nominal Value no.8
-        private float _gNominalM1;
-        public float gNominalM1
+        private float _gNominal;
+        public float gNominal
         {
-            get { return _gNominalM1; }
+            get { return _gNominal; }
             set
             {
-                if (_gNominalM1 != value)
+                if (_gNominal != value)
                 {
-                    _gNominalM1 = value;
-                    OnPropertyChanged("GNmominalM1");
-                }
-            }
-        }
-        #endregion
-
-        #region Nominal values for M2 from PLC
-        //MACHINE 2 NOMINAL VALUES
-        // Nominal Value no.1
-        private float _cNominalM2;
-        public float cNominalM2
-        {
-            get { return _cNominalM2; }
-            set
-            {
-                if (_cNominalM2 != value)
-                {
-                    _cNominalM2 = value;
-                    OnPropertyChanged("CNominalM2");
-                }
-            }
-        }
-        // Nominal Value no.2
-        private float _aNominalM2;
-        public float aNominalM2
-        {
-            get { return _aNominalM2; }
-            set
-            {
-                if (_aNominalM2 != value)
-                {
-                    _aNominalM2 = value;
-                    OnPropertyChanged("ANominalM2");
-                }
-            }
-        }
-        // Nominal Value no.3
-        private float _bNominalM2;
-        public float bNominalM2
-        {
-            get { return _bNominalM2; }
-            set
-            {
-                if (_bNominalM2 != value)
-                {
-                    _bNominalM2 = value;
-                    OnPropertyChanged("BNominalM2");
-                }
-            }
-        }
-        // Nominal Value no.4
-        private float _jNominalM2;
-        public float jNominalM2
-        {
-            get { return _jNominalM2; }
-            set
-            {
-                if (_jNominalM2 != value)
-                {
-                    _jNominalM2 = value;
-                    OnPropertyChanged("JNominalM2");
-                }
-            }
-        }
-        // Nominal Value no.5
-        private float _fNominalM2;
-        public float fNominalM2
-        {
-            get { return _fNominalM2; }
-            set
-            {
-                if (_fNominalM2 != value)
-                {
-                    _fNominalM2 = value;
-                    OnPropertyChanged("FNominalM2");
-                }
-            }
-        }
-        // Nominal Value no.6
-        private float _eNominalM2;
-        public float eNominalM2
-        {
-            get { return _eNominalM2; }
-            set
-            {
-                if (_eNominalM2 != value)
-                {
-                    _eNominalM2 = value;
-                    OnPropertyChanged("ENominalM2");
-                }
-            }
-        }
-        // Nominal Value no.7
-        private float _dNominalM2;
-        public float dNominalM2
-        {
-            get { return _dNominalM2; }
-            set
-            {
-                if (_dNominalM2 != value)
-                {
-                    _dNominalM2 = value;
-                    OnPropertyChanged("DNominalM2");
-                }
-            }
-        }
-        // Nominal Value no.8
-        private float _gNominalM2;
-        public float gNominalM2
-        {
-            get { return _gNominalM2; }
-            set
-            {
-                if (_gNominalM2 != value)
-                {
-                    _gNominalM2 = value;
-                    OnPropertyChanged("GNmominalM2");
+                    _gNominal = value;
+                    OnPropertyChanged("GNmominal");
                 }
             }
         }

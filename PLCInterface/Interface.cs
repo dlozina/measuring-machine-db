@@ -113,7 +113,7 @@ namespace PLCInterface
             int result = -99;
             if (Client.Connected())
                 // Buffer 762 is set for String with *6* characters
-                result = Client.DBRead(48, 0, 762, CyclicStatusBuffer);
+                result = Client.DBRead(48, 0, 268, CyclicStatusBuffer);
             if (result == 0)
             {
                 lock (StatusControlLock)
@@ -124,6 +124,7 @@ namespace PLCInterface
                     // Measuredpos1
                     STATUS.MeasuredPos1.C.GetValueFromGroupBuffer(CyclicStatusBuffer);
                     STATUS.MeasuredPos1.A11.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos1.A.GetValueFromGroupBuffer(CyclicStatusBuffer);
                     STATUS.MeasuredPos1.A12.GetValueFromGroupBuffer(CyclicStatusBuffer);
                     STATUS.MeasuredPos1.B.GetValueFromGroupBuffer(CyclicStatusBuffer);
                     STATUS.MeasuredPos1.F1LG2.GetValueFromGroupBuffer(CyclicStatusBuffer);
@@ -137,6 +138,7 @@ namespace PLCInterface
                     // Measuredpos1
                     STATUS.MeasuredPos2.C.GetValueFromGroupBuffer(CyclicStatusBuffer);
                     STATUS.MeasuredPos2.A11.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos1.A.GetValueFromGroupBuffer(CyclicStatusBuffer);
                     STATUS.MeasuredPos2.A12.GetValueFromGroupBuffer(CyclicStatusBuffer);
                     STATUS.MeasuredPos2.B.GetValueFromGroupBuffer(CyclicStatusBuffer);
                     STATUS.MeasuredPos2.F1LG2.GetValueFromGroupBuffer(CyclicStatusBuffer);

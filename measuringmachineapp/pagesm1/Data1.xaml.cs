@@ -27,23 +27,24 @@ namespace MeasuringMachineApp.PagesM1
             InitializeComponent();
             Loaded += Data1PageLoaded;
         }
+        DataSet ds = new DataSet();
         // Database string - Change if needed
         static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
         // Select all data in database
-        private string query = "SELECT * FROM `stroj1` WHERE 1";
+        static string query = "SELECT * FROM `stroj1` WHERE 1";
+        MySqlConnection databaseConnection = new MySqlConnection(MySQLconnectionString);
+        MySqlDataAdapter adapter = new MySqlDataAdapter(query, MySQLconnectionString);
 
         // Fill table on page loaded event
         private void Data1PageLoaded(object sender, RoutedEventArgs e)
         {
-            MySqlConnection databaseConnection = new MySqlConnection(MySQLconnectionString);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(query, MySQLconnectionString);
+            
             
             try
             {
                 // Open com with database
                 databaseConnection.Open();
-                // Fill database with data
-                DataSet ds = new DataSet();
+                // Fill database with data if data changed
                 adapter.Fill(ds);
                 Machine1Data.DataContext = ds.Tables[0].DefaultView;
                 Console.WriteLine("Baza je učitana na stranicu!");

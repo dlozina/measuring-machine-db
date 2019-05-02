@@ -25,14 +25,19 @@ namespace MeasuringMachineApp.PagesM1
             InitializeComponent();
         }
 
+        static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
+        private string _tableName;
+
         private void ReadDb_Click(object sender, RoutedEventArgs e)
         {
-            App.MeasurmentCalculationM2.MeasurementDataLoaded();
+            _tableName = "stroj1";
+            App.MeasurmentCalculationM2.MeasurementDataLoaded(MySQLconnectionString, _tableName);
         }
 
         private void OffsetCal_Click(object sender, RoutedEventArgs e)
         {
-            App.MeasurmentCalculationM2.DatabaseCount();
+            _tableName = "stroj1";
+            App.MeasurmentCalculationM2.DatabaseCount(MySQLconnectionString, _tableName);
         }
     }
 }

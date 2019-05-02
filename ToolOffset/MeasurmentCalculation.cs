@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Annotations;
 using MySql.Data.MySqlClient;
 
 namespace ToolOffset
@@ -18,16 +19,21 @@ namespace ToolOffset
         private int LastFiveChanges = 0;
         //System.Timers.Timer Clock_ms;
         // Database string - Change if needed
-        static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
+        //static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
         // Select all data in database
-        private string query = "SELECT * FROM `stroj2` ORDER BY IDMjerenje DESC LIMIT 5";
-        private string queryCount = "SELECT COUNT(*) FROM `stroj2`";
-        DataSet ds = new DataSet();
-        DataTable dt = new DataTable();
+        //private string query = "SELECT * FROM `stroj2` ORDER BY IDMjerenje DESC LIMIT 5";
+        //private string queryCount = "SELECT COUNT(*) FROM `stroj2`";
+        DataSet ds5ResultsSet = new DataSet();
+        DataSet ds2ResultsSet = new DataSet();
+        DataTable dt5ResultsTable = new DataTable();
+        DataTable dt2ResultsTable = new DataTable();
         private int _rowNum;
         private string _columnName;
         private string _Poz1;
         private string _Poz2;
+        // WORK ORDER DATA
+        private string _firstWorkOrder;
+        private string _secondWorkOrder;
         // C VALUE
         private float CPoz1Value;
         private float CPoz2Value;
@@ -564,11 +570,16 @@ namespace ToolOffset
         }
 
         // Scan database for new entry
-        public void DatabaseCount()
+        public void DatabaseCount(string mySQLconnectionString, string tableName)
         {
-            MySqlConnection databaseConnection = new MySqlConnection(MySQLconnectionString);
+            string query = $"SELECT * FROM {tableName} ORDER BY IDMjerenje DESC LIMIT 2";
+
+            string queryCount = $"SELECT COUNT(*) FROM {tableName}";
+            MySqlConnection databaseConnection = new MySqlConnection(mySQLconnectionString);
+
             MySqlCommand commandDatabase = new MySqlCommand(queryCount, databaseConnection);
 
+            MySqlDataAdapter adapter = new MySqlDataAdapter(query, mySQLconnectionString);
             // Good practice add query timeout 30 sec
             commandDatabase.CommandTimeout = 30;
 
@@ -595,8 +606,24 @@ namespace ToolOffset
                     DataBaseReadCounter = int.Parse(commandDatabase.ExecuteScalar().ToString());
                 }
 
+                adapter.Fill(ds2ResultsSet, tableName);
+                dt2ResultsTable = ds2ResultsSet.Tables[tableName];
+
+                //***********************************
+                // Grab workpiece order data        *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 0; // row number
+                _columnName = "RadniNalog";  // database table column name
+                _firstWorkOrder = dt2ResultsTable.Rows[_rowNum][_columnName].ToString();
+                
+                // POZ 2 VALUE
+                _rowNum = 1; // row number
+                _columnName = "RadniNalog";  // database table column name
+                _secondWorkOrder = dt2ResultsTable.Rows[_rowNum][_columnName].ToString();
+
                 // DETECT DATABSE CHANGE
-                if (DataBaseCounter != DataBaseReadCounter)
+                if (DataBaseCounter != DataBaseReadCounter && _firstWorkOrder == _secondWorkOrder)
                 {
                     Console.WriteLine("Vrijednosti u bazi su izmjenjene");
                     LastFiveChanges++;
@@ -610,7 +637,7 @@ namespace ToolOffset
                 // IF WE HAVE FIVE RESULTS FROM SAME WP LOAD DATA
                 if (LastFiveChanges == 5)
                 {
-                    MeasurementDataLoaded();
+                    MeasurementDataLoaded(mySQLconnectionString, tableName);
                     OnDatabaseChange();
                     DatabaseChange = true;
                     LastFiveChanges = 0;
@@ -626,16 +653,17 @@ namespace ToolOffset
                 if (databaseConnection != null)
                 {
                     databaseConnection.Close();
-                    Console.WriteLine("Veza sa bazom podataka je zatvorena!");
+                    Console.WriteLine($"Veza sa bazom podataka {tableName} je zatvorena!");
                 }
             }
         }
 
         // Fill table on page loaded event
-        public void MeasurementDataLoaded()
+        public void MeasurementDataLoaded(string mySQLconnectionString, string tableName)
         {
-            MySqlConnection databaseConnection = new MySqlConnection(MySQLconnectionString);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(query, MySQLconnectionString);
+            string query = $"SELECT * FROM {tableName} ORDER BY IDMjerenje DESC LIMIT 5";
+            MySqlConnection databaseConnection = new MySqlConnection(mySQLconnectionString);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(query, mySQLconnectionString);
 
             try
             {
@@ -643,8 +671,8 @@ namespace ToolOffset
                 databaseConnection.Open();
 
                 // Fill database with data
-                adapter.Fill(ds, "stroj1");
-                dt = ds.Tables["stroj1"];
+                adapter.Fill(ds5ResultsSet, tableName);
+                dt5ResultsTable = ds5ResultsSet.Tables[tableName];
 
                 Console.WriteLine("Baza je učitana na stranicu!");
 
@@ -658,13 +686,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 0; // row number
                 _columnName = "CPoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 CPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 0; // row number
                 _columnName = "CPoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 CPoz2Value = float.Parse(_Poz2);
 
                 CAverageValueMeas1 = (CPoz1Value + CPoz2Value) / 2;
@@ -675,13 +703,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 1; // row number
                 _columnName = "CPoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 CPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 1; // row number
                 _columnName = "CPoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 CPoz2Value = float.Parse(_Poz2);
 
                 CAverageValueMeas2 = (CPoz1Value + CPoz2Value) / 2;
@@ -692,13 +720,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 2; // row number
                 _columnName = "CPoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 CPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 2; // row number
                 _columnName = "CPoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 CPoz2Value = float.Parse(_Poz2);
 
                 CAverageValueMeas3 = (CPoz1Value + CPoz2Value) / 2;
@@ -709,13 +737,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 3; // row number
                 _columnName = "CPoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 CPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 3; // row number
                 _columnName = "CPoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 CPoz2Value = float.Parse(_Poz2);
 
                 CAverageValueMeas4 = (CPoz1Value + CPoz2Value) / 2;
@@ -726,13 +754,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 4; // row number
                 _columnName = "CPoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 CPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 4; // row number
                 _columnName = "CPoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 CPoz2Value = float.Parse(_Poz2);
 
                 CAverageValueMeas5 = (CPoz1Value + CPoz2Value) / 2;
@@ -746,25 +774,25 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 0; // row number
                 _columnName = "A12Poz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A12Poz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 0; // row number
                 _columnName = "A12Poz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A12Poz2Value = float.Parse(_Poz2);
 
                 // POZ 1 VALUE
                 _rowNum = 0; // row number
                 _columnName = "A11Poz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A11Poz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 0; // row number
                 _columnName = "A11Poz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A11Poz2Value = float.Parse(_Poz2);
 
                 AtwoPointAverageValueMeas1 = (A12Poz1Value + A12Poz2Value + A11Poz1Value + A11Poz2Value) / 4;
@@ -775,25 +803,25 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 1; // row number
                 _columnName = "A12Poz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A12Poz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 1; // row number
                 _columnName = "A12Poz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A12Poz2Value = float.Parse(_Poz2);
 
                 // POZ 1 VALUE
                 _rowNum = 1; // row number
                 _columnName = "A11Poz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A11Poz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 1; // row number
                 _columnName = "A11Poz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A11Poz2Value = float.Parse(_Poz2);
 
                 AtwoPointAverageValueMeas2 = (A12Poz1Value + A12Poz2Value + A11Poz1Value + A11Poz2Value) / 4;
@@ -804,25 +832,25 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 2; // row number
                 _columnName = "A12Poz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A12Poz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 2; // row number
                 _columnName = "A12Poz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A12Poz2Value = float.Parse(_Poz2);
 
                 // POZ 1 VALUE
                 _rowNum = 2; // row number
                 _columnName = "A11Poz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A11Poz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 2; // row number
                 _columnName = "A11Poz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A11Poz2Value = float.Parse(_Poz2);
 
                 AtwoPointAverageValueMeas3 = (A12Poz1Value + A12Poz2Value + A11Poz1Value + A11Poz2Value) / 4;
@@ -833,25 +861,25 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 3; // row number
                 _columnName = "A12Poz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A12Poz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 3; // row number
                 _columnName = "A12Poz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A12Poz2Value = float.Parse(_Poz2);
 
                 // POZ 1 VALUE
                 _rowNum = 3; // row number
                 _columnName = "A11Poz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A11Poz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 3; // row number
                 _columnName = "A11Poz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A11Poz2Value = float.Parse(_Poz2);
 
                 AtwoPointAverageValueMeas4 = (A12Poz1Value + A12Poz2Value + A11Poz1Value + A11Poz2Value) / 4;
@@ -862,25 +890,25 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 4; // row number
                 _columnName = "A12Poz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A12Poz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 4; // row number
                 _columnName = "A12Poz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A12Poz2Value = float.Parse(_Poz2);
 
                 // POZ 1 VALUE
                 _rowNum = 4; // row number
                 _columnName = "A11Poz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A11Poz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 4; // row number
                 _columnName = "A11Poz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 A11Poz2Value = float.Parse(_Poz2);
 
                 AtwoPointAverageValueMeas5 = (A12Poz1Value + A12Poz2Value + A11Poz1Value + A11Poz2Value) / 4;
@@ -894,13 +922,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 0; // row number
                 _columnName = "APoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 APoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 0; // row number
                 _columnName = "APoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 APoz2Value = float.Parse(_Poz2);
 
                 AonePointAverageValueMeas1 = (APoz1Value + APoz2Value) / 2;
@@ -911,13 +939,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 1; // row number
                 _columnName = "APoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 APoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 1; // row number
                 _columnName = "APoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 APoz2Value = float.Parse(_Poz2);
 
                 AonePointAverageValueMeas2 = (APoz1Value + APoz2Value) / 2;
@@ -928,13 +956,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 2; // row number
                 _columnName = "APoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 APoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 2; // row number
                 _columnName = "APoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 APoz2Value = float.Parse(_Poz2);
 
                 AonePointAverageValueMeas3 = (APoz1Value + APoz2Value) / 2;
@@ -945,13 +973,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 3; // row number
                 _columnName = "APoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 APoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 3; // row number
                 _columnName = "APoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 APoz2Value = float.Parse(_Poz2);
 
                 AonePointAverageValueMeas4 = (APoz1Value + APoz2Value) / 2;
@@ -962,13 +990,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 4; // row number
                 _columnName = "APoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 APoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 4; // row number
                 _columnName = "APoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 APoz2Value = float.Parse(_Poz2);
 
                 AonePointAverageValueMeas4 = (APoz1Value + APoz2Value) / 2;
@@ -982,13 +1010,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 0; // row number
                 _columnName = "BPoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 BPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 0; // row number
                 _columnName = "BPoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 BPoz2Value = float.Parse(_Poz2);
 
                 BAverageValueMeas1 = (BPoz1Value + BPoz2Value) / 2;
@@ -999,13 +1027,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 1; // row number
                 _columnName = "BPoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 BPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 1; // row number
                 _columnName = "BPoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 APoz2Value = float.Parse(_Poz2);
 
                 BAverageValueMeas2 = (BPoz1Value + BPoz2Value) / 2;
@@ -1016,13 +1044,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 2; // row number
                 _columnName = "BPoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 BPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 2; // row number
                 _columnName = "BPoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 BPoz2Value = float.Parse(_Poz2);
 
                 BAverageValueMeas3 = (BPoz1Value + BPoz2Value) / 2;
@@ -1033,13 +1061,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 3; // row number
                 _columnName = "BPoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 BPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 3; // row number
                 _columnName = "BPoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 BPoz2Value = float.Parse(_Poz2);
 
                 BAverageValueMeas4 = (BPoz1Value + BPoz2Value) / 2;
@@ -1050,13 +1078,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 4; // row number
                 _columnName = "BPoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 BPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 4; // row number
                 _columnName = "BPoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 BPoz2Value = float.Parse(_Poz2);
 
                 BAverageValueMeas4 = (BPoz1Value + BPoz2Value) / 2;
@@ -1070,25 +1098,25 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 0; // row number
                 _columnName = "F1Ticalo2Poz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T2Poz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 0; // row number
                 _columnName = "F1Ticalo3Poz1";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T3Poz1Value = float.Parse(_Poz2);
 
                 // POZ 1 VALUE
                 _rowNum = 0; // row number
                 _columnName = "F1Ticalo2Poz2";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T2Poz2Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 0; // row number
                 _columnName = "F1Ticalo3Poz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T3Poz2Value = float.Parse(_Poz2);
 
                 FAverageValueMeas1 = (F1T2Poz1Value + F1T3Poz1Value + F1T2Poz2Value + F1T3Poz2Value) / 4;
@@ -1099,25 +1127,25 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 1; // row number
                 _columnName = "F1Ticalo2Poz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T2Poz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 1; // row number
                 _columnName = "F1Ticalo3Poz1";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T3Poz1Value = float.Parse(_Poz2);
 
                 // POZ 1 VALUE
                 _rowNum = 1; // row number
                 _columnName = "F1Ticalo2Poz2";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T2Poz2Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 1; // row number
                 _columnName = "F1Ticalo3Poz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T3Poz2Value = float.Parse(_Poz2);
 
                 FAverageValueMeas2 = (F1T2Poz1Value + F1T3Poz1Value + F1T2Poz2Value + F1T3Poz2Value) / 4;
@@ -1128,25 +1156,25 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 2; // row number
                 _columnName = "F1Ticalo2Poz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T2Poz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 2; // row number
                 _columnName = "F1Ticalo3Poz1";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T3Poz1Value = float.Parse(_Poz2);
 
                 // POZ 1 VALUE
                 _rowNum = 2; // row number
                 _columnName = "F1Ticalo2Poz2";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T2Poz2Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 2; // row number
                 _columnName = "F1Ticalo3Poz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T3Poz2Value = float.Parse(_Poz2);
 
                 FAverageValueMeas3 = (F1T2Poz1Value + F1T3Poz1Value + F1T2Poz2Value + F1T3Poz2Value) / 4;
@@ -1157,25 +1185,25 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 3; // row number
                 _columnName = "F1Ticalo2Poz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T2Poz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 3; // row number
                 _columnName = "F1Ticalo3Poz1";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T3Poz1Value = float.Parse(_Poz2);
 
                 // POZ 1 VALUE
                 _rowNum = 3; // row number
                 _columnName = "F1Ticalo2Poz2";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T2Poz2Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 3; // row number
                 _columnName = "F1Ticalo3Poz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T3Poz2Value = float.Parse(_Poz2);
 
                 FAverageValueMeas4 = (F1T2Poz1Value + F1T3Poz1Value + F1T2Poz2Value + F1T3Poz2Value) / 4;
@@ -1186,25 +1214,25 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 4; // row number
                 _columnName = "F1Ticalo2Poz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T2Poz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 4; // row number
                 _columnName = "F1Ticalo3Poz1";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T3Poz1Value = float.Parse(_Poz2);
 
                 // POZ 1 VALUE
                 _rowNum = 4; // row number
                 _columnName = "F1Ticalo2Poz2";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T2Poz2Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 4; // row number
                 _columnName = "F1Ticalo3Poz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 F1T3Poz2Value = float.Parse(_Poz2);
 
                 FAverageValueMeas5 = (F1T2Poz1Value + F1T3Poz1Value + F1T2Poz2Value + F1T3Poz2Value) / 4;
@@ -1218,13 +1246,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 0; // row number
                 _columnName = "EPoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 EPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 0; // row number
                 _columnName = "EPoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 EPoz2Value = float.Parse(_Poz2);
 
                 EAverageValueMeas1 = (EPoz1Value + EPoz2Value) / 2;
@@ -1235,13 +1263,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 1; // row number
                 _columnName = "EPoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 EPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 1; // row number
                 _columnName = "EPoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 EPoz2Value = float.Parse(_Poz2);
 
                 EAverageValueMeas2 = (EPoz1Value + EPoz2Value) / 2;
@@ -1252,13 +1280,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 2; // row number
                 _columnName = "EPoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 EPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 2; // row number
                 _columnName = "EPoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 EPoz2Value = float.Parse(_Poz2);
 
                 EAverageValueMeas3 = (BPoz1Value + BPoz2Value) / 2;
@@ -1269,13 +1297,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 3; // row number
                 _columnName = "EPoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 EPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 3; // row number
                 _columnName = "EPoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 EPoz2Value = float.Parse(_Poz2);
 
                 EAverageValueMeas4 = (BPoz1Value + BPoz2Value) / 2;
@@ -1286,13 +1314,13 @@ namespace ToolOffset
                 // POZ 1 VALUE
                 _rowNum = 4; // row number
                 _columnName = "BPoz1";  // database table column name
-                _Poz1 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 EPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 4; // row number
                 _columnName = "BPoz2";  // database table column name
-                _Poz2 = dt.Rows[_rowNum][_columnName].ToString();
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 EPoz2Value = float.Parse(_Poz2);
 
                 EAverageValueMeas4 = (BPoz1Value + BPoz2Value) / 2;
@@ -1300,7 +1328,7 @@ namespace ToolOffset
 
 
                 // CHECK DATA IN COLUMN
-                //foreach (DataRow dr in dt.Rows)
+                //foreach (DataRow dr in dt5ResultsTable.Rows)
                 //{
                 //    MessageBox.Show(dr["CPoz1"].ToString());
                 //}
@@ -1316,7 +1344,7 @@ namespace ToolOffset
                 if (databaseConnection != null)
                 {
                     databaseConnection.Close();
-                    Console.WriteLine("Veza sa bazom podataka je zatvorena!");
+                    Console.WriteLine($"Veza sa bazom podataka {tableName} je zatvorena!");
                 }
             }
         }

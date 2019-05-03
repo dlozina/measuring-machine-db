@@ -74,8 +74,8 @@ namespace ToolOffset
             }
         }
         // DATABASE ROW NUMBER
-        private int _databeseRowNubmer;
-        public int DatabaseRowNumber
+        private string _databeseRowNubmer;
+        public string DatabaseRowNumber
         {
             get { return _databeseRowNubmer; }
             set
@@ -643,7 +643,7 @@ namespace ToolOffset
                     //MySqlDataReader myReader = commandDatabase.ExecuteReader();
                     DataBaseReadCounter = int.Parse(commandDatabase.ExecuteScalar().ToString());
                     DataBaseCounter = DataBaseReadCounter;
-                    DatabaseRowNumber = DataBaseReadCounter;
+                    DatabaseRowNumber = DataBaseReadCounter.ToString();
                 }
 
                 else
@@ -653,7 +653,7 @@ namespace ToolOffset
                     Console.WriteLine($"Veza sa bazom {tableName} ostvarena");
                     //MySqlDataReader myReader = commandDatabase.ExecuteReader();
                     DataBaseReadCounter = int.Parse(commandDatabase.ExecuteScalar().ToString());
-                    DatabaseRowNumber = DataBaseReadCounter;
+                    DatabaseRowNumber = DataBaseReadCounter.ToString();
                 }
 
                 if (DataBaseCounter != DataBaseReadCounter && LastWorkOrder != BeforeLastWorkOrder)

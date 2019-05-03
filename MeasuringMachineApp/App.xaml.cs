@@ -25,7 +25,8 @@ namespace MeasuringMachineApp
         public static PLCInterface.Interface PlcInterface;
         public static MainWindow mwHandle;
         public static MyDatabase Database;
-        public MeasurmentCalculation MeasurmentCalculationM1;
+        // This is made static to access from another GUI class
+        public static MeasurmentCalculation MeasurmentCalculationM1;
         public static MeasurmentCalculation MeasurmentCalculationM2;
         public MeasurementData MeasurementDataM1;
         public MeasurementData MeasurementDataM2;

@@ -87,6 +87,20 @@ namespace ToolOffset
                 }
             }
         }
+        // CONSECUTIVE WORK ORDERS
+        private string _consecutiveOrders;
+        public string ConsecutiveOrders
+        {
+            get { return _consecutiveOrders; }
+            set
+            {
+                if (_consecutiveOrders != value)
+                {
+                    _consecutiveOrders = value;
+                    OnPropertyChanged("ConsecutiveOrders");
+                }
+            }
+        }
 
         //***********************************
         // C DIAMETER AVERAGE               *
@@ -661,6 +675,7 @@ namespace ToolOffset
                     Console.WriteLine($"U bazu {tableName} dodana nova vrijednost razlicitog naloga");
                     // We are tracking last five changes from same work order
                     LastFiveChanges = 0;
+                    ConsecutiveOrders = LastFiveChanges.ToString();
                     DataBaseCounter = DataBaseReadCounter;
                 }
 
@@ -669,6 +684,7 @@ namespace ToolOffset
                 {
                     Console.WriteLine($"U bazu {tableName} dodana nova vrijednost istog naloga");
                     LastFiveChanges++;
+                    ConsecutiveOrders = LastFiveChanges.ToString();
                     DataBaseCounter = DataBaseReadCounter;
                 }
                 else
@@ -683,6 +699,7 @@ namespace ToolOffset
                     OnDatabaseChange();
                     DatabaseChange = true;
                     LastFiveChanges = 0;
+                    ConsecutiveOrders = LastFiveChanges.ToString();
                 }
 
             }

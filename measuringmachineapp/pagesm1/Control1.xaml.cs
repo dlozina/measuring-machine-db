@@ -24,7 +24,9 @@ namespace MeasuringMachineApp.PagesM1
         {
             InitializeComponent();
             DbCountLabel.DataContext = App.MeasurmentCalculationM1;
+            DbCountSameOrder.DataContext = App.MeasurmentCalculationM1;
             App.MeasurmentCalculationM1.DatabaseRowNumber = "0";
+            App.MeasurmentCalculationM1.ConsecutiveOrders = "0";
         }
 
         static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";

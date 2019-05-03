@@ -232,16 +232,6 @@ namespace MeasuringMachineApp
             //                                         MeasurementDataM1.CorrectionDno5);
         }
 
-        // Bootstrapper takes control of APP startup
-        protected override void OnStartup(StartupEventArgs z)
-        {
-            base.OnStartup(z);
-
-            var bootstrapper = new Bootstrapper();
-            bootstrapper.Run();
-        }
-
-
         private void PLC_Update_100_ms(Interface sender, InterfaceEventArgs e)
         {
             String msg = "SISTEM SPREMAN";
@@ -267,13 +257,8 @@ namespace MeasuringMachineApp
             // Signal to fill SQL Database for Machine1
             if ((bool)e.StatusData.Savedata.M1.Value && _oneCallFlagSaveM1)
             {
-<<<<<<< HEAD
-                // Fill data from PLC device
-                _oneCallFlagRecord = false;
-=======
                 _oneCallFlagSaveM1 = false;
                 _tableName = "stroj1";
->>>>>>> cleanstate
                 // Value setting
                 // C
                 Database.KotaCPoz1 = (float)e.StatusData.MeasuredPos1.C.Value;

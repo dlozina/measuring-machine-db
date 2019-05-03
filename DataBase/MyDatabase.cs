@@ -12,6 +12,7 @@ namespace DataBase
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        // Databaseposition 3 - Workpiece name in documentation
         private string _radninalog;
         public string RadniNalog
         {
@@ -25,127 +26,384 @@ namespace DataBase
                 }
             }
         }
-
-        private float _kotac;
-        public float KotaC
+        // Databaseposition 4 - Diameter C Position 1
+        private float _kotacpoz1;
+        public float KotaCPoz1
         {
-            get { return _kotac; }
+            get { return _kotacpoz1; }
             set
             {
-                if (_kotac != value)
+                if (_kotacpoz1 != value)
                 {
-                    _kotac = value;
-                    OnPropertyChanged("KotaC");
+                    _kotacpoz1 = value;
+                    OnPropertyChanged("KotaCPoz1");
                 }
             }
         }
-
-        private float _kotaca11;
-        public float KotaA11
+        // Databaseposition 5 - Diameter C Position 2
+        private float _kotacpoz2;
+        public float KotaCPoz2
         {
-            get { return _kotaca11; }
+            get { return _kotacpoz2; }
             set
             {
-                if (_kotaca11 != value)
+                if (_kotacpoz2 != value)
                 {
-                    _kotaca11 = value;
-                    OnPropertyChanged("KotaA11");
+                    _kotacpoz2 = value;
+                    OnPropertyChanged("KotaCPoz2");
                 }
             }
         }
-
-        private float _kotaca12;
-        public float KotaA12
+        // Databaseposition 6 - Diameter A1.1 Position 1
+        private float _kotaca11poz1;
+        public float KotaA11Poz1
         {
-            get { return _kotaca12; }
+            get { return _kotaca11poz1; }
             set
             {
-                if (_kotaca12 != value)
+                if (_kotaca11poz1 != value)
                 {
-                    _kotaca12 = value;
-                    OnPropertyChanged("KotaA12");
+                    _kotaca11poz1 = value;
+                    OnPropertyChanged("KotaA11Poz1");
                 }
             }
         }
-
-        private float _kotacab;
-        public float KotaB
+        // Databaseposition 7 - Diameter A1.1 Position 2
+        private float _kotaca11poz2;
+        public float KotaA11Poz2
         {
-            get { return _kotacab; }
+            get { return _kotaca11poz2; }
             set
             {
-                if (_kotacab != value)
+                if (_kotaca11poz2 != value)
                 {
-                    _kotacab = value;
-                    OnPropertyChanged("KotaB");
+                    _kotaca11poz2 = value;
+                    OnPropertyChanged("KotaA11Poz2");
                 }
             }
         }
-
-        private float _kotacaf;
-        public float KotaF
+        // Databaseposition 8 - Diameter A1.2 Position 1
+        private float _kotaca12poz1;
+        public float KotaA12Poz1
         {
-            get { return _kotacaf; }
+            get { return _kotaca12poz1; }
             set
             {
-                if (_kotacaf != value)
+                if (_kotaca12poz1 != value)
                 {
-                    _kotacaf = value;
-                    OnPropertyChanged("KotaF");
+                    _kotaca12poz1 = value;
+                    OnPropertyChanged("KotaA12Poz1");
                 }
             }
         }
-
-        private float _kotacae;
-        public float KotaE
+        // Databaseposition 9 - Diameter A1.2 Position 2
+        private float _kotaca12poz2;
+        public float KotaA12Poz2
         {
-            get { return _kotacae; }
+            get { return _kotaca12poz2; }
             set
             {
-                if (_kotacae != value)
+                if (_kotaca12poz2 != value)
                 {
-                    _kotacae = value;
-                    OnPropertyChanged("KotaE");
+                    _kotaca12poz2 = value;
+                    OnPropertyChanged("KotaA12Poz2");
                 }
             }
         }
-
-        private float _kotacad;
-        public float KotaD
+        // Databaseposition 10 - Diameter B Position 1
+        private float _kotabpoz1;
+        public float KotaBPoz1
         {
-            get { return _kotacad; }
+            get { return _kotabpoz1; }
             set
             {
-                if (_kotacad != value)
+                if (_kotabpoz1 != value)
                 {
-                    _kotacad = value;
-                    OnPropertyChanged("KotaD");
+                    _kotabpoz1 = value;
+                    OnPropertyChanged("KotaBPoz1");
                 }
             }
         }
-
-
-        public void ModifyDb(string mySQLconnectionString)
+        // Databaseposition 11 - Diameter B Position 2
+        private float _kotabpoz2;
+        public float KotaBPoz2
+        {
+            get { return _kotabpoz2; }
+            set
+            {
+                if (_kotabpoz2 != value)
+                {
+                    _kotabpoz2 = value;
+                    OnPropertyChanged("KotaBPoz2");
+                }
+            }
+        }
+        // Databaseposition 12 - Dimension F1 with Length Gauge 2 (LG2) Position 1
+        private float _kotaf1lg2poz1;
+        public float KotaF1LG2Poz1
+        {
+            get { return _kotaf1lg2poz1; }
+            set
+            {
+                if (_kotaf1lg2poz1 != value)
+                {
+                    _kotaf1lg2poz1 = value;
+                    OnPropertyChanged("KotaF1LG2Poz1");
+                }
+            }
+        }
+        // Databaseposition 13 - Dimension F1 with Length Gauge 3 (LG3) Position 1
+        private float _kotaf1lg3poz1;
+        public float KotaF1LG3Poz1
+        {
+            get { return _kotaf1lg3poz1; }
+            set
+            {
+                if (_kotaf1lg3poz1 != value)
+                {
+                    _kotaf1lg3poz1 = value;
+                    OnPropertyChanged("KotaF1LG3Poz1");
+                }
+            }
+        }
+        // Databaseposition 14 - Dimension F2 with Length Gauge 2 (LG2) Position 1
+        private float _kotaf2lg2poz1;
+        public float KotaF2LG2Poz1
+        {
+            get { return _kotaf2lg2poz1; }
+            set
+            {
+                if (_kotaf2lg2poz1 != value)
+                {
+                    _kotaf2lg2poz1 = value;
+                    OnPropertyChanged("KotaF2LG2Poz1");
+                }
+            }
+        }
+        // Databaseposition 15 - Dimension F2 with Length Gauge 3 (LG3) Position 1
+        private float _kotaf2lg3poz1;
+        public float KotaF2LG3Poz1
+        {
+            get { return _kotaf2lg3poz1; }
+            set
+            {
+                if (_kotaf2lg3poz1 != value)
+                {
+                    _kotaf2lg3poz1 = value;
+                    OnPropertyChanged("KotaF2LG3Poz1");
+                }
+            }
+        }
+        // Databaseposition 16 - Dimension F1 with Length Gauge 2 (LG2) Position 2
+        private float _kotaf1lg2poz2;
+        public float KotaF1LG2Poz2
+        {
+            get { return _kotaf1lg2poz2; }
+            set
+            {
+                if (_kotaf1lg2poz2 != value)
+                {
+                    _kotaf1lg2poz2 = value;
+                    OnPropertyChanged("KotaF1LG2Poz2");
+                }
+            }
+        }
+        // Databaseposition 17 - Dimension F1 with Length Gauge 3 (LG3) Position 2
+        private float _kotaf1lg3poz2;
+        public float KotaF1LG3Poz2
+        {
+            get { return _kotaf1lg3poz2; }
+            set
+            {
+                if (_kotaf1lg3poz2 != value)
+                {
+                    _kotaf1lg3poz2 = value;
+                    OnPropertyChanged("KotaF1LG3Poz2");
+                }
+            }
+        }
+        // Databaseposition 18 - Dimension F2 with Length Gauge 2 (LG2) Position 2
+        private float _kotaf2lg2poz2;
+        public float KotaF2LG2Poz2
+        {
+            get { return _kotaf2lg2poz2; }
+            set
+            {
+                if (_kotaf2lg2poz2 != value)
+                {
+                    _kotaf2lg2poz2 = value;
+                    OnPropertyChanged("KotaF2LG2Poz2");
+                }
+            }
+        }
+        // Databaseposition 19 - Dimension F2 with Length Gauge 3 (LG3) Position 2
+        private float _kotaf2lg3poz2;
+        public float KotaF2LG3Poz2
+        {
+            get { return _kotaf2lg3poz2; }
+            set
+            {
+                if (_kotaf2lg3poz2 != value)
+                {
+                    _kotaf2lg3poz2 = value;
+                    OnPropertyChanged("KotaF2LG3Poz2");
+                }
+            }
+        }
+        // Databaseposition 20 - Height E Position 1
+        private float _kotacepoz1;
+        public float KotaEPoz1
+        {
+            get { return _kotacepoz1; }
+            set
+            {
+                if (_kotacepoz1 != value)
+                {
+                    _kotacepoz1 = value;
+                    OnPropertyChanged("KotaEPoz1");
+                }
+            }
+        }
+        // Databaseposition 21 - Height E Position 2
+        private float _kotacepoz2;
+        public float KotaEPoz2
+        {
+            get { return _kotacepoz2; }
+            set
+            {
+                if (_kotacepoz2 != value)
+                {
+                    _kotacepoz2 = value;
+                    OnPropertyChanged("KotaEPoz2");
+                }
+            }
+        }
+        // Databaseposition 22 - Height D Position 1
+        private float _kotadPoz1;
+        public float KotaDPoz1
+        {
+            get { return _kotadPoz1; }
+            set
+            {
+                if (_kotadPoz1 != value)
+                {
+                    _kotadPoz1 = value;
+                    OnPropertyChanged("KotaDPoz1");
+                }
+            }
+        }
+        // Databaseposition 23 - Height D Position 2
+        private float _kotadPoz2;
+        public float KotaDPoz2
+        {
+            get { return _kotadPoz2; }
+            set
+            {
+                if (_kotadPoz2 != value)
+                {
+                    _kotadPoz2 = value;
+                    OnPropertyChanged("KotaDPoz2");
+                }
+            }
+        }
+        // Databaseposition 24 - Height H1 Position 1
+        private float _kotah1Poz1;
+        public float KotaH1Poz1
+        {
+            get { return _kotah1Poz1; }
+            set
+            {
+                if (_kotah1Poz1 != value)
+                {
+                    _kotah1Poz1 = value;
+                    OnPropertyChanged("KotaH1Poz1");
+                }
+            }
+        }
+        // Databaseposition 25 - Height H1 Position 2
+        private float _kotah1Poz2;
+        public float KotaH1Poz2
+        {
+            get { return _kotah1Poz2; }
+            set
+            {
+                if (_kotah1Poz2 != value)
+                {
+                    _kotah1Poz2 = value;
+                    OnPropertyChanged("KotaH1Poz2");
+                }
+            }
+        }
+        // Databaseposition 26 - Height K Position 1
+        private float _kotakPoz1;
+        public float KotaKPoz1
+        {
+            get { return _kotakPoz1; }
+            set
+            {
+                if (_kotakPoz1 != value)
+                {
+                    _kotakPoz1 = value;
+                    OnPropertyChanged("KotaKPoz1");
+                }
+            }
+        }
+        // Databaseposition 27 - Height K Position 2
+        private float _kotakPoz2;
+        public float KotaKPoz2
+        {
+            get { return _kotakPoz2; }
+            set
+            {
+                if (_kotakPoz2 != value)
+                {
+                    _kotakPoz2 = value;
+                    OnPropertyChanged("KotaKPoz2");
+                }
+            }
+        }
+        // Write to database
+        public void ModifyDb(string mySQLconnectionString, string tableName)
         {
             DateTime myDateTime = DateTime.Now;
             string inDateTimeToDb = myDateTime.ToString("yyyy-MM-dd H:mm:ss");
             MySqlConnection databaseConnection = new MySqlConnection(mySQLconnectionString);
             // Good practice
-            string query = "INSERT INTO mjerenevrijednosti(`IDMjerenje`,`DateTime`, `RadniNalog`, `KotaC`, `KotaA11`, `KotaA12`, `KotaB`, `KotaF`, `KotaE`, `KotaD`) VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9)";
+            // Datacontext does not acept . ex. `A1.2Poz1`,`A1.2Poz2`, `A1.1Poz1`, `A1.1Poz2`
+            string query = $"INSERT INTO {tableName} " +
+                           "(`IDMjerenje`, `Vrijeme`, `RadniNalog`, `CPoz1`, `CPoz2`, `A12Poz1`,`A12Poz2`, `A11Poz1`, `A11Poz2`, `BPoz1`, `BPoz2`, `F1Ticalo2Poz1`,`F2Ticalo2Poz1`, `F1Ticalo3Poz1`, `F2Ticalo3Poz1`, `F1Ticalo2Poz2`, `F2Ticalo2Poz2`, `F1Ticalo3Poz2`,`F2Ticalo3Poz2`, `DPoz1`, `DPoz2`, `EPoz1`, `EPoz2`, `H1Poz1`, `H1Poz2`, `KPoz1`, `KPoz2` ) " +
+                           "VALUES (@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19, @20, @21, @22, @23, @24, @25, @26, @27)";
             // Connect to database
             //MySqlConnection databaseConnection = new MySqlConnection(mySQLconnectionString);
-            // Create command for database
+            // Create command for database - 
             MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
-            commandDatabase.Parameters.AddWithValue("@0", "NULL");
-            commandDatabase.Parameters.AddWithValue("@1", inDateTimeToDb);
-            commandDatabase.Parameters.AddWithValue("@2", RadniNalog);
-            commandDatabase.Parameters.AddWithValue("@3", KotaC);
-            commandDatabase.Parameters.AddWithValue("@4", KotaA11);
-            commandDatabase.Parameters.AddWithValue("@5", KotaA12);
-            commandDatabase.Parameters.AddWithValue("@6", KotaB);
-            commandDatabase.Parameters.AddWithValue("@7", KotaF);
-            commandDatabase.Parameters.AddWithValue("@8", KotaE);
-            commandDatabase.Parameters.AddWithValue("@9", KotaD);
+            commandDatabase.Parameters.AddWithValue("@1", "NULL");
+            commandDatabase.Parameters.AddWithValue("@2", inDateTimeToDb);
+            commandDatabase.Parameters.AddWithValue("@3", RadniNalog);
+            commandDatabase.Parameters.AddWithValue("@4", KotaCPoz1);
+            commandDatabase.Parameters.AddWithValue("@5", KotaCPoz2);
+            commandDatabase.Parameters.AddWithValue("@6", KotaA12Poz1);
+            commandDatabase.Parameters.AddWithValue("@7", KotaA12Poz2);
+            commandDatabase.Parameters.AddWithValue("@8", KotaA11Poz1);
+            commandDatabase.Parameters.AddWithValue("@9", KotaA11Poz2);
+            commandDatabase.Parameters.AddWithValue("@10", KotaBPoz1);
+            commandDatabase.Parameters.AddWithValue("@11", KotaBPoz2);
+            commandDatabase.Parameters.AddWithValue("@12", KotaF1LG2Poz1);
+            commandDatabase.Parameters.AddWithValue("@13", KotaF2LG2Poz1);
+            commandDatabase.Parameters.AddWithValue("@14", KotaF1LG3Poz1);
+            commandDatabase.Parameters.AddWithValue("@15", KotaF2LG3Poz1);
+            commandDatabase.Parameters.AddWithValue("@16", KotaF1LG2Poz2);
+            commandDatabase.Parameters.AddWithValue("@17", KotaF2LG2Poz2);
+            commandDatabase.Parameters.AddWithValue("@18", KotaF1LG3Poz2);
+            commandDatabase.Parameters.AddWithValue("@19", KotaF2LG3Poz2);
+            commandDatabase.Parameters.AddWithValue("@20", KotaDPoz1);
+            commandDatabase.Parameters.AddWithValue("@21", KotaDPoz2);
+            commandDatabase.Parameters.AddWithValue("@22", KotaEPoz1);
+            commandDatabase.Parameters.AddWithValue("@23", KotaEPoz2);
+            commandDatabase.Parameters.AddWithValue("@24", KotaH1Poz1);
+            commandDatabase.Parameters.AddWithValue("@25", KotaH1Poz2);
+            commandDatabase.Parameters.AddWithValue("@26", KotaKPoz1);
+            commandDatabase.Parameters.AddWithValue("@27", KotaKPoz2);
             // Good practice add query timeout 60 sec?
             commandDatabase.CommandTimeout = 60;
             try

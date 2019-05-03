@@ -23,17 +23,13 @@ namespace ToolOffset
         // Select all data in database
         //private string query = "SELECT * FROM `stroj2` ORDER BY IDMjerenje DESC LIMIT 5";
         //private string queryCount = "SELECT COUNT(*) FROM `stroj2`";
-        DataSet ds5ResultsSet = new DataSet();
-        DataSet ds2ResultsSet = new DataSet();
-        DataTable dt5ResultsTable = new DataTable();
-        DataTable dt2ResultsTable = new DataTable();
         private int _rowNum;
         private string _columnName;
         private string _Poz1;
         private string _Poz2;
         // WORK ORDER DATA
-        private string _firstWorkOrder;
-        private string _secondWorkOrder;
+        private string LastWorkOrder;
+        private string BeforeLastWorkOrder;
         // C VALUE
         private float CPoz1Value;
         private float CPoz2Value;
@@ -57,7 +53,6 @@ namespace ToolOffset
         private float EPoz1Value;
         private float EPoz2Value;
 
-
         // Event Database change 
         public delegate void DatabaseChangeEventHandler(object source, EventArgs args);
         public event DatabaseChangeEventHandler DatabaseChanged;
@@ -75,6 +70,20 @@ namespace ToolOffset
                 {
                     _databaseChange = value;
                     OnPropertyChanged("DatabaseChange");
+                }
+            }
+        }
+        // DATABASE ROW NUMBER
+        private int _databeseRowNubmer;
+        public int DatabaseRowNumber
+        {
+            get { return _databeseRowNubmer; }
+            set
+            {
+                if (_databeseRowNubmer != value)
+                {
+                    _databeseRowNubmer = value;
+                    OnPropertyChanged("DatabaseRowNumber");
                 }
             }
         }
@@ -569,17 +578,57 @@ namespace ToolOffset
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        // Scan database for new entry
-        public void DatabaseCount(string mySQLconnectionString, string tableName)
+        // Check database for new entry
+        public void CompareWorkOrder(string mySQLconnectionString, string tableName)
         {
             string query = $"SELECT * FROM {tableName} ORDER BY IDMjerenje DESC LIMIT 2";
+            MySqlConnection databaseConnection = new MySqlConnection(mySQLconnectionString);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(query, mySQLconnectionString);
+            // Refresh dataset every time we access DB (Update new data)
+            DataSet ds2ResultsSet = new DataSet();
+            DataTable dt2ResultsTable = new DataTable();
 
+            try
+            {
+                // Open com with database
+                databaseConnection.Open();
+                adapter.Fill(ds2ResultsSet, tableName);
+                dt2ResultsTable = ds2ResultsSet.Tables[tableName];
+
+                //***********************************
+                // Grab workpiece order data        *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 0; // row number
+                _columnName = "RadniNalog"; // database table column name
+                LastWorkOrder = dt2ResultsTable.Rows[_rowNum][_columnName].ToString();
+
+                // POZ 2 VALUE
+                _rowNum = 1; // row number
+                _columnName = "RadniNalog"; // database table column name
+                BeforeLastWorkOrder = dt2ResultsTable.Rows[_rowNum][_columnName].ToString();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Submit error" + e.Message);
+            }
+            finally
+            {
+                if (databaseConnection != null)
+                {
+                    databaseConnection.Close();
+                    Console.WriteLine($"Veza sa bazom podataka {tableName} je zatvorena!");
+                }
+            }
+        }
+
+        // Check database for new entry
+        public void DatabaseCount(string mySQLconnectionString, string tableName)
+        {
             string queryCount = $"SELECT COUNT(*) FROM {tableName}";
             MySqlConnection databaseConnection = new MySqlConnection(mySQLconnectionString);
-
             MySqlCommand commandDatabase = new MySqlCommand(queryCount, databaseConnection);
 
-            MySqlDataAdapter adapter = new MySqlDataAdapter(query, mySQLconnectionString);
             // Good practice add query timeout 30 sec
             commandDatabase.CommandTimeout = 30;
 
@@ -590,48 +639,41 @@ namespace ToolOffset
                 {
                     // Open com with database
                     databaseConnection.Open();
-                    Console.WriteLine("Veza sa bazom ostvarena");
+                    Console.WriteLine($"Veza sa bazom {tableName} ostvarena");
                     //MySqlDataReader myReader = commandDatabase.ExecuteReader();
                     DataBaseReadCounter = int.Parse(commandDatabase.ExecuteScalar().ToString());
                     DataBaseCounter = DataBaseReadCounter;
-                    
+                    DatabaseRowNumber = DataBaseReadCounter;
                 }
 
                 else
                 {
                     // Open com with database
                     databaseConnection.Open();
-                    Console.WriteLine("Veza sa bazom ostvarena");
+                    Console.WriteLine($"Veza sa bazom {tableName} ostvarena");
                     //MySqlDataReader myReader = commandDatabase.ExecuteReader();
                     DataBaseReadCounter = int.Parse(commandDatabase.ExecuteScalar().ToString());
+                    DatabaseRowNumber = DataBaseReadCounter;
                 }
 
-                adapter.Fill(ds2ResultsSet, tableName);
-                dt2ResultsTable = ds2ResultsSet.Tables[tableName];
-
-                //***********************************
-                // Grab workpiece order data        *
-                //***********************************
-                // POZ 1 VALUE
-                _rowNum = 0; // row number
-                _columnName = "RadniNalog";  // database table column name
-                _firstWorkOrder = dt2ResultsTable.Rows[_rowNum][_columnName].ToString();
-                
-                // POZ 2 VALUE
-                _rowNum = 1; // row number
-                _columnName = "RadniNalog";  // database table column name
-                _secondWorkOrder = dt2ResultsTable.Rows[_rowNum][_columnName].ToString();
-
-                // DETECT DATABSE CHANGE
-                if (DataBaseCounter != DataBaseReadCounter && _firstWorkOrder == _secondWorkOrder)
+                if (DataBaseCounter != DataBaseReadCounter && LastWorkOrder != BeforeLastWorkOrder)
                 {
-                    Console.WriteLine("Vrijednosti u bazi su izmjenjene");
+                    Console.WriteLine($"U bazu {tableName} dodana nova vrijednost razlicitog naloga");
+                    // We are tracking last five changes from same work order
+                    LastFiveChanges = 0;
+                    DataBaseCounter = DataBaseReadCounter;
+                }
+
+                // DETECT DATABSE CHANGE -> NEW RESULT AND SAME WORK ORDER 
+                else if (DataBaseCounter != DataBaseReadCounter && LastWorkOrder == BeforeLastWorkOrder)
+                {
+                    Console.WriteLine($"U bazu {tableName} dodana nova vrijednost istog naloga");
                     LastFiveChanges++;
                     DataBaseCounter = DataBaseReadCounter;
                 }
                 else
                 {
-                    Console.WriteLine("Vrijednosti u bazi su iste");
+                    Console.WriteLine($"Vrijednosti u bazi {tableName} su iste");
                 }
 
                 // IF WE HAVE FIVE RESULTS FROM SAME WP LOAD DATA
@@ -664,6 +706,9 @@ namespace ToolOffset
             string query = $"SELECT * FROM {tableName} ORDER BY IDMjerenje DESC LIMIT 5";
             MySqlConnection databaseConnection = new MySqlConnection(mySQLconnectionString);
             MySqlDataAdapter adapter = new MySqlDataAdapter(query, mySQLconnectionString);
+            // Refresh dataset every time we access DB (Update new data)
+            DataSet ds5ResultsSet = new DataSet();
+            DataTable dt5ResultsTable = new DataTable();
 
             try
             {
@@ -674,7 +719,7 @@ namespace ToolOffset
                 adapter.Fill(ds5ResultsSet, tableName);
                 dt5ResultsTable = ds5ResultsSet.Tables[tableName];
 
-                Console.WriteLine("Baza je učitana na stranicu!");
+                Console.WriteLine($"Rezultati iz {tableName} su ucitani u aplikaciju");
 
                 // To read a specific cell in a row:
 
@@ -1325,7 +1370,6 @@ namespace ToolOffset
 
                 EAverageValueMeas4 = (BPoz1Value + BPoz2Value) / 2;
                 #endregion
-
 
                 // CHECK DATA IN COLUMN
                 //foreach (DataRow dr in dt5ResultsTable.Rows)

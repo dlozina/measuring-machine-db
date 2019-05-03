@@ -75,6 +75,7 @@ namespace MeasuringMachineApp
             //Thread CheckDatabaseM1 = new Thread(() => MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName));
             //CheckDatabaseM1.Name = "CheckDatabaseM1";
             //CheckDatabaseM1.Start();
+            MeasurmentCalculationM1.CompareWorkOrder(MySQLconnectionString, _tableName);
             MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName);
             Clock_M1.Start();
         }

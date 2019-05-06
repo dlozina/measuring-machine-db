@@ -1061,7 +1061,7 @@ namespace ToolOffset
                 _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 APoz2Value = float.Parse(_Poz2);
 
-                AonePointAverageValueMeas4 = (APoz1Value + APoz2Value) / 2;
+                AonePointAverageValueMeas5 = (APoz1Value + APoz2Value) / 2;
                 #endregion
 
                 // B MEASUREMENT
@@ -1096,7 +1096,7 @@ namespace ToolOffset
                 _rowNum = 1; // row number
                 _columnName = "BPoz2";  // database table column name
                 _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
-                APoz2Value = float.Parse(_Poz2);
+                BPoz2Value = float.Parse(_Poz2);
 
                 BAverageValueMeas2 = (BPoz1Value + BPoz2Value) / 2;
 

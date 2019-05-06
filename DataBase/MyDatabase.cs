@@ -110,7 +110,35 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 10 - Diameter B Position 1
+        // Databaseposition 10 - Diameter A Position 1
+        private float _kotacapoz1;
+        public float KotaAPoz1
+        {
+            get { return _kotacapoz1; }
+            set
+            {
+                if (_kotacapoz1 != value)
+                {
+                    _kotacapoz1 = value;
+                    OnPropertyChanged("KotaAPoz1");
+                }
+            }
+        }
+        // Databaseposition 11 - Diameter A Position 2
+        private float _kotacapoz2;
+        public float KotaAPoz2
+        {
+            get { return _kotacapoz2; }
+            set
+            {
+                if (_kotacapoz2 != value)
+                {
+                    _kotacapoz2 = value;
+                    OnPropertyChanged("KotaAPoz2");
+                }
+            }
+        }
+        // Databaseposition 12 - Diameter B Position 1
         private float _kotabpoz1;
         public float KotaBPoz1
         {
@@ -124,7 +152,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 11 - Diameter B Position 2
+        // Databaseposition 13 - Diameter B Position 2
         private float _kotabpoz2;
         public float KotaBPoz2
         {
@@ -138,7 +166,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 12 - Dimension F1 with Length Gauge 2 (LG2) Position 1
+        // Databaseposition 14 - Dimension F1 with Length Gauge 2 (LG2) Position 1
         private float _kotaf1lg2poz1;
         public float KotaF1LG2Poz1
         {
@@ -152,7 +180,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 13 - Dimension F1 with Length Gauge 3 (LG3) Position 1
+        // Databaseposition 15 - Dimension F1 with Length Gauge 3 (LG3) Position 1
         private float _kotaf1lg3poz1;
         public float KotaF1LG3Poz1
         {
@@ -166,7 +194,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 14 - Dimension F2 with Length Gauge 2 (LG2) Position 1
+        // Databaseposition 16 - Dimension F2 with Length Gauge 2 (LG2) Position 1
         private float _kotaf2lg2poz1;
         public float KotaF2LG2Poz1
         {
@@ -180,7 +208,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 15 - Dimension F2 with Length Gauge 3 (LG3) Position 1
+        // Databaseposition 17 - Dimension F2 with Length Gauge 3 (LG3) Position 1
         private float _kotaf2lg3poz1;
         public float KotaF2LG3Poz1
         {
@@ -194,7 +222,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 16 - Dimension F1 with Length Gauge 2 (LG2) Position 2
+        // Databaseposition 18 - Dimension F1 with Length Gauge 2 (LG2) Position 2
         private float _kotaf1lg2poz2;
         public float KotaF1LG2Poz2
         {
@@ -208,7 +236,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 17 - Dimension F1 with Length Gauge 3 (LG3) Position 2
+        // Databaseposition 19 - Dimension F1 with Length Gauge 3 (LG3) Position 2
         private float _kotaf1lg3poz2;
         public float KotaF1LG3Poz2
         {
@@ -222,7 +250,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 18 - Dimension F2 with Length Gauge 2 (LG2) Position 2
+        // Databaseposition 20 - Dimension F2 with Length Gauge 2 (LG2) Position 2
         private float _kotaf2lg2poz2;
         public float KotaF2LG2Poz2
         {
@@ -236,7 +264,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 19 - Dimension F2 with Length Gauge 3 (LG3) Position 2
+        // Databaseposition 21 - Dimension F2 with Length Gauge 3 (LG3) Position 2
         private float _kotaf2lg3poz2;
         public float KotaF2LG3Poz2
         {
@@ -250,7 +278,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 20 - Height E Position 1
+        // Databaseposition 22 - Height E Position 1
         private float _kotacepoz1;
         public float KotaEPoz1
         {
@@ -264,7 +292,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 21 - Height E Position 2
+        // Databaseposition 23 - Height E Position 2
         private float _kotacepoz2;
         public float KotaEPoz2
         {
@@ -278,7 +306,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 22 - Height D Position 1
+        // Databaseposition 24 - Height D Position 1
         private float _kotadPoz1;
         public float KotaDPoz1
         {
@@ -292,7 +320,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 23 - Height D Position 2
+        // Databaseposition 25 - Height D Position 2
         private float _kotadPoz2;
         public float KotaDPoz2
         {
@@ -306,7 +334,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 24 - Height H1 Position 1
+        // Databaseposition 26 - Height H1 Position 1
         private float _kotah1Poz1;
         public float KotaH1Poz1
         {
@@ -320,7 +348,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 25 - Height H1 Position 2
+        // Databaseposition 27 - Height H1 Position 2
         private float _kotah1Poz2;
         public float KotaH1Poz2
         {
@@ -334,7 +362,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 26 - Height K Position 1
+        // Databaseposition 28 - Height K Position 1
         private float _kotakPoz1;
         public float KotaKPoz1
         {
@@ -348,7 +376,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 27 - Height K Position 2
+        // Databaseposition 29 - Height K Position 2
         private float _kotakPoz2;
         public float KotaKPoz2
         {
@@ -372,7 +400,7 @@ namespace DataBase
             // Datacontext does not acept . ex. `A1.2Poz1`,`A1.2Poz2`, `A1.1Poz1`, `A1.1Poz2`
             string query = $"INSERT INTO {tableName} " +
                            "(`IDMjerenje`, `Vrijeme`, `RadniNalog`, `CPoz1`, `CPoz2`, `A12Poz1`,`A12Poz2`, `A11Poz1`, `A11Poz2`, `BPoz1`, `BPoz2`, `F1Ticalo2Poz1`,`F2Ticalo2Poz1`, `F1Ticalo3Poz1`, `F2Ticalo3Poz1`, `F1Ticalo2Poz2`, `F2Ticalo2Poz2`, `F1Ticalo3Poz2`,`F2Ticalo3Poz2`, `DPoz1`, `DPoz2`, `EPoz1`, `EPoz2`, `H1Poz1`, `H1Poz2`, `KPoz1`, `KPoz2` ) " +
-                           "VALUES (@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19, @20, @21, @22, @23, @24, @25, @26, @27)";
+                           "VALUES (@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19, @20, @21, @22, @23, @24, @25, @26, @27, @28, @29)";
             // Connect to database
             //MySqlConnection databaseConnection = new MySqlConnection(mySQLconnectionString);
             // Create command for database - 
@@ -386,24 +414,26 @@ namespace DataBase
             commandDatabase.Parameters.AddWithValue("@7", KotaA12Poz2);
             commandDatabase.Parameters.AddWithValue("@8", KotaA11Poz1);
             commandDatabase.Parameters.AddWithValue("@9", KotaA11Poz2);
-            commandDatabase.Parameters.AddWithValue("@10", KotaBPoz1);
-            commandDatabase.Parameters.AddWithValue("@11", KotaBPoz2);
-            commandDatabase.Parameters.AddWithValue("@12", KotaF1LG2Poz1);
-            commandDatabase.Parameters.AddWithValue("@13", KotaF2LG2Poz1);
-            commandDatabase.Parameters.AddWithValue("@14", KotaF1LG3Poz1);
-            commandDatabase.Parameters.AddWithValue("@15", KotaF2LG3Poz1);
-            commandDatabase.Parameters.AddWithValue("@16", KotaF1LG2Poz2);
-            commandDatabase.Parameters.AddWithValue("@17", KotaF2LG2Poz2);
-            commandDatabase.Parameters.AddWithValue("@18", KotaF1LG3Poz2);
-            commandDatabase.Parameters.AddWithValue("@19", KotaF2LG3Poz2);
-            commandDatabase.Parameters.AddWithValue("@20", KotaDPoz1);
-            commandDatabase.Parameters.AddWithValue("@21", KotaDPoz2);
-            commandDatabase.Parameters.AddWithValue("@22", KotaEPoz1);
-            commandDatabase.Parameters.AddWithValue("@23", KotaEPoz2);
-            commandDatabase.Parameters.AddWithValue("@24", KotaH1Poz1);
-            commandDatabase.Parameters.AddWithValue("@25", KotaH1Poz2);
-            commandDatabase.Parameters.AddWithValue("@26", KotaKPoz1);
-            commandDatabase.Parameters.AddWithValue("@27", KotaKPoz2);
+            commandDatabase.Parameters.AddWithValue("@10", KotaAPoz1);
+            commandDatabase.Parameters.AddWithValue("@11", KotaAPoz2);
+            commandDatabase.Parameters.AddWithValue("@12", KotaBPoz1);
+            commandDatabase.Parameters.AddWithValue("@13", KotaBPoz2);
+            commandDatabase.Parameters.AddWithValue("@14", KotaF1LG2Poz1);
+            commandDatabase.Parameters.AddWithValue("@15", KotaF2LG2Poz1);
+            commandDatabase.Parameters.AddWithValue("@16", KotaF1LG3Poz1);
+            commandDatabase.Parameters.AddWithValue("@17", KotaF2LG3Poz1);
+            commandDatabase.Parameters.AddWithValue("@18", KotaF1LG2Poz2);
+            commandDatabase.Parameters.AddWithValue("@19", KotaF2LG2Poz2);
+            commandDatabase.Parameters.AddWithValue("@20", KotaF1LG3Poz2);
+            commandDatabase.Parameters.AddWithValue("@21", KotaF2LG3Poz2);
+            commandDatabase.Parameters.AddWithValue("@22", KotaDPoz1);
+            commandDatabase.Parameters.AddWithValue("@23", KotaDPoz2);
+            commandDatabase.Parameters.AddWithValue("@24", KotaEPoz1);
+            commandDatabase.Parameters.AddWithValue("@25", KotaEPoz2);
+            commandDatabase.Parameters.AddWithValue("@26", KotaH1Poz1);
+            commandDatabase.Parameters.AddWithValue("@27", KotaH1Poz2);
+            commandDatabase.Parameters.AddWithValue("@28", KotaKPoz1);
+            commandDatabase.Parameters.AddWithValue("@29", KotaKPoz2);
             // Good practice add query timeout 60 sec?
             commandDatabase.CommandTimeout = 60;
             try

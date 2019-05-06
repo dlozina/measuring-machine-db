@@ -67,7 +67,7 @@ namespace MeasuringMachineApp
             Clock_M1.Start();
             Clock_M2.Start();
         }
-
+        // New worker thread
         private void OnClockmsTickM1(Object source, System.Timers.ElapsedEventArgs e)
         {
             _tableName = "stroj1";
@@ -80,7 +80,7 @@ namespace MeasuringMachineApp
             MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName);
             Clock_M1.Start();
         }
-
+        // New worker thread
         //private void OnClockmsTickM2(Object source, System.Timers.ElapsedEventArgs e)
         //{
         //    _tableName = "stroj2";

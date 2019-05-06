@@ -691,17 +691,6 @@ namespace ToolOffset
                 {
                     Console.WriteLine($"Vrijednosti u bazi {tableName} su iste");
                 }
-
-                // IF WE HAVE FIVE RESULTS FROM SAME WP LOAD DATA
-                if (LastFiveChanges == 5)
-                {
-                    MeasurementDataLoaded(mySQLconnectionString, tableName);
-                    OnDatabaseChange();
-                    DatabaseChange = true;
-                    LastFiveChanges = 0;
-                    ConsecutiveOrders = LastFiveChanges.ToString();
-                }
-
             }
             catch (Exception b)
             {
@@ -714,6 +703,16 @@ namespace ToolOffset
                     databaseConnection.Close();
                     Console.WriteLine($"Veza sa bazom podataka {tableName} je zatvorena!");
                 }
+            }
+
+            // IF WE HAVE FIVE RESULTS FROM SAME WP LOAD DATA
+            if (LastFiveChanges == 5)
+            {
+                MeasurementDataLoaded(mySQLconnectionString, tableName);
+                OnDatabaseChange();
+                DatabaseChange = true;
+                LastFiveChanges = 0;
+                ConsecutiveOrders = LastFiveChanges.ToString();
             }
         }
 
@@ -1393,8 +1392,6 @@ namespace ToolOffset
                 //{
                 //    MessageBox.Show(dr["CPoz1"].ToString());
                 //}
-
-
             }
             catch (Exception b)
             {

@@ -25,11 +25,14 @@ namespace MeasuringMachineApp
         public static PLCInterface.Interface PlcInterface;
         public static MainWindow mwHandle;
         public static MyDatabase Database;
+        public static MyCorrectionDatabase CorrectionDatabase;
+
         // This is made static to access from another GUI class
         public static MeasurmentCalculation MeasurmentCalculationM1;
         public static MeasurmentCalculation MeasurmentCalculationM2;
         public static MeasurementData MeasurementDataM1;
         public static MeasurementData MeasurementDataM2;
+        
         // SslMode=none - If local host does not support SSL
         static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
         private bool _oneCallFlagSaveM1;
@@ -41,6 +44,7 @@ namespace MeasuringMachineApp
             //PlcInterface = new PLCInterface.Interface();
             PlcInterface = new Interface();
             Database = new MyDatabase();
+            CorrectionDatabase = new MyCorrectionDatabase();
             MeasurmentCalculationM1 = new MeasurmentCalculation();
             MeasurmentCalculationM2 = new MeasurmentCalculation();
             MeasurementDataM1 = new MeasurementData();
@@ -161,6 +165,10 @@ namespace MeasuringMachineApp
             //MeasurementDataM1.CorrectionDforMachine = (MeasurementDataM1.CorrectionDno1 + MeasurementDataM1.CorrectionDno2 +
             //                                         MeasurementDataM1.CorrectionDno3 + MeasurementDataM1.CorrectionDno4 +
             //                                         MeasurementDataM1.CorrectionDno5);
+
+             // Write corrections in DB
+            _tableName = "korekcijestroj1";
+            CorrectionDatabase.ModifyDb(MySQLconnectionString, _tableName);
         }
 
         // Calculate correction when we have results for M2

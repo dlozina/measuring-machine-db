@@ -1149,7 +1149,7 @@ namespace ToolOffset
                 _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 BPoz2Value = float.Parse(_Poz2);
 
-                BAverageValueMeas4 = (BPoz1Value + BPoz2Value) / 2;
+                BAverageValueMeas5 = (BPoz1Value + BPoz2Value) / 2;
                 #endregion
 
                 // F MEASUREMENT
@@ -1351,7 +1351,7 @@ namespace ToolOffset
                 _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 EPoz2Value = float.Parse(_Poz2);
 
-                EAverageValueMeas3 = (BPoz1Value + BPoz2Value) / 2;
+                EAverageValueMeas3 = (EPoz1Value + EPoz2Value) / 2;
 
                 //***********************************
                 // MEASUREMENT NO.4                 *
@@ -1368,24 +1368,24 @@ namespace ToolOffset
                 _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 EPoz2Value = float.Parse(_Poz2);
 
-                EAverageValueMeas4 = (BPoz1Value + BPoz2Value) / 2;
+                EAverageValueMeas4 = (EPoz1Value + EPoz2Value) / 2;
 
                 //***********************************
                 // MEASUREMENT NO.5                 *
                 //***********************************
                 // POZ 1 VALUE
                 _rowNum = 4; // row number
-                _columnName = "BPoz1";  // database table column name
+                _columnName = "EPoz1";  // database table column name
                 _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 EPoz1Value = float.Parse(_Poz1);
 
                 // POZ 2 VALUE
                 _rowNum = 4; // row number
-                _columnName = "BPoz2";  // database table column name
+                _columnName = "EPoz2";  // database table column name
                 _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
                 EPoz2Value = float.Parse(_Poz2);
 
-                EAverageValueMeas4 = (BPoz1Value + BPoz2Value) / 2;
+                EAverageValueMeas5 = (EPoz1Value + EPoz2Value) / 2;
                 #endregion
 
                 // CHECK DATA IN COLUMN

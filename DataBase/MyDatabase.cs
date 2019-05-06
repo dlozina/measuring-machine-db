@@ -399,7 +399,7 @@ namespace DataBase
             // Good practice
             // Datacontext does not acept . ex. `A1.2Poz1`,`A1.2Poz2`, `A1.1Poz1`, `A1.1Poz2`
             string query = $"INSERT INTO {tableName} " +
-                           "(`IDMjerenje`, `Vrijeme`, `RadniNalog`, `CPoz1`, `CPoz2`, `A12Poz1`,`A12Poz2`, `A11Poz1`, `A11Poz2`, `BPoz1`, `BPoz2`, `F1Ticalo2Poz1`,`F2Ticalo2Poz1`, `F1Ticalo3Poz1`, `F2Ticalo3Poz1`, `F1Ticalo2Poz2`, `F2Ticalo2Poz2`, `F1Ticalo3Poz2`,`F2Ticalo3Poz2`, `DPoz1`, `DPoz2`, `EPoz1`, `EPoz2`, `H1Poz1`, `H1Poz2`, `KPoz1`, `KPoz2` ) " +
+                           "(`IDMjerenje`, `Vrijeme`, `RadniNalog`, `CPoz1`, `CPoz2`, `A12Poz1`,`A12Poz2`, `A11Poz1`, `A11Poz2`, `APoz1`, `APoz2`, `BPoz1`, `BPoz2`, `F1Ticalo2Poz1`,`F2Ticalo2Poz1`, `F1Ticalo3Poz1`, `F2Ticalo3Poz1`, `F1Ticalo2Poz2`, `F2Ticalo2Poz2`, `F1Ticalo3Poz2`,`F2Ticalo3Poz2`, `DPoz1`, `DPoz2`, `EPoz1`, `EPoz2`, `H1Poz1`, `H1Poz2`, `KPoz1`, `KPoz2` ) " +
                            "VALUES (@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19, @20, @21, @22, @23, @24, @25, @26, @27, @28, @29)";
             // Connect to database
             //MySqlConnection databaseConnection = new MySqlConnection(mySQLconnectionString);

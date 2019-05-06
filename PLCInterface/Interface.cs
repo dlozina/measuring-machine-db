@@ -138,7 +138,7 @@ namespace PLCInterface
                     // Measuredpos1
                     STATUS.MeasuredPos2.C.GetValueFromGroupBuffer(CyclicStatusBuffer);
                     STATUS.MeasuredPos2.A11.GetValueFromGroupBuffer(CyclicStatusBuffer);
-                    STATUS.MeasuredPos1.A.GetValueFromGroupBuffer(CyclicStatusBuffer);
+                    STATUS.MeasuredPos2.A.GetValueFromGroupBuffer(CyclicStatusBuffer);
                     STATUS.MeasuredPos2.A12.GetValueFromGroupBuffer(CyclicStatusBuffer);
                     STATUS.MeasuredPos2.B.GetValueFromGroupBuffer(CyclicStatusBuffer);
                     STATUS.MeasuredPos2.F1LG2.GetValueFromGroupBuffer(CyclicStatusBuffer);

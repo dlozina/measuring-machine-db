@@ -55,7 +55,7 @@ namespace MeasuringMachineApp
             // Database check Machine1
             MeasurmentCalculationM1.DatabaseChanged += OnDatabaseChangedM1;
             Clock_M1 = new System.Timers.Timer(30000);
-            Clock_M1.Elapsed += OnClockmsTickM1;
+            //Clock_M1.Elapsed += OnClockmsTickM1;
             Clock_M1.AutoReset = false;
             // Database check Machine2
             MeasurmentCalculationM2.DatabaseChanged += OnDatabaseChangedM2;
@@ -72,18 +72,18 @@ namespace MeasuringMachineApp
             Clock_M2.Start();
         }
         // New worker thread
-        private void OnClockmsTickM1(Object source, System.Timers.ElapsedEventArgs e)
-        {
-            _tableName = "stroj1";
-            // Get last five values
-            // New thread
-            //Thread CheckDatabaseM1 = new Thread(() => MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName));
-            //CheckDatabaseM1.Name = "CheckDatabaseM1";
-            //CheckDatabaseM1.Start();
-            MeasurmentCalculationM1.CompareWorkOrder(MySQLconnectionString, _tableName);
-            MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName);
-            Clock_M1.Start();
-        }
+        //private void OnClockmsTickM1(Object source, System.Timers.ElapsedEventArgs e)
+        //{
+        //    _tableName = "stroj1";
+        //    // Get last five values
+        //    // New thread
+        //    //Thread CheckDatabaseM1 = new Thread(() => MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName));
+        //    //CheckDatabaseM1.Name = "CheckDatabaseM1";
+        //    //CheckDatabaseM1.Start();
+        //    MeasurmentCalculationM1.CompareWorkOrder(MySQLconnectionString, _tableName);
+        //    MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName);
+        //    Clock_M1.Start();
+        //}
         // New worker thread
         //private void OnClockmsTickM2(Object source, System.Timers.ElapsedEventArgs e)
         //{
@@ -284,6 +284,9 @@ namespace MeasuringMachineApp
                 // B
                 Database.KotaBPoz1 = (float)e.StatusData.MeasuredPos1.B.Value;
                 Database.KotaBPoz2 = (float)e.StatusData.MeasuredPos2.B.Value;
+                // J
+                Database.KotaJPoz1 = (float)e.StatusData.MeasuredPos1.J.Value;
+                Database.KotaJPoz2 = (float)e.StatusData.MeasuredPos2.J.Value;
                 // F1 AND F2 POS 1
                 Database.KotaF1LG2Poz1 = (float)e.StatusData.MeasuredPos1.F1LG2.Value;
                 Database.KotaF2LG2Poz1 = (float)e.StatusData.MeasuredPos1.F2LG2.Value;
@@ -344,6 +347,9 @@ namespace MeasuringMachineApp
                 // B
                 Database.KotaBPoz1 = (float)e.StatusData.MeasuredPos1.B.Value;
                 Database.KotaBPoz2 = (float)e.StatusData.MeasuredPos2.B.Value;
+                // J
+                Database.KotaJPoz1 = (float)e.StatusData.MeasuredPos1.J.Value;
+                Database.KotaJPoz2 = (float)e.StatusData.MeasuredPos2.J.Value;
                 // F1 AND F2 POS 1
                 Database.KotaF1LG2Poz1 = (float)e.StatusData.MeasuredPos1.F1LG2.Value;
                 Database.KotaF2LG2Poz1 = (float)e.StatusData.MeasuredPos1.F2LG2.Value;

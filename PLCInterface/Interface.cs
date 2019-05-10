@@ -95,9 +95,9 @@ namespace PLCInterface
                 while (!Client.Connected())
                 {
                     // Real PLC
-                    //Client.ConnectTo("192.168.20.21", 0, 1);
+                    Client.ConnectTo("192.168.20.21", 0, 1);
                     // Simulation PLC
-                    Client.ConnectTo("192.168.20.88", 0, 1);
+                    //Client.ConnectTo("192.168.20.88", 0, 1);
                     Thread.Sleep(200);
                     if (Client.Connected())
                     {

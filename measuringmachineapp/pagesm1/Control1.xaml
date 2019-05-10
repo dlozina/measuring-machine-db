@@ -52,19 +52,50 @@
             </Grid.RowDefinitions>
             <!-- DB entry number -->
             <Grid Grid.Row="0" Grid.Column="0"  Background="Black">
-                <Label  Content="BROJ PODATAKA U BAZI" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+                <Label  Content="BROJ PODATAKA" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1"  Background="Black">
                 <!--TextBox    Text="TextBox"  / -->
                 <Label Name="DbCountLabel" Content="{Binding DatabaseRowNumber}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0"  Background="Black">
-                <Label  Content="BROJ SLJEDNIH NALOGA" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+                <Label  Content="BROJ NALOGA" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1"  Background="Black">
                 <!--TextBox    Text="TextBox"  / -->
                 <Label Name="DbCountSameOrder" Content="{Binding ConsecutiveOrders}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
             </Grid>
+            <Grid Grid.Row="2" Grid.Column="0"  Background="#FFB6B6B6">
+                
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="1"  Background="#FFB6B6B6">
+                <!--TextBox    Text="TextBox"  / -->
+                
+            </Grid>
+            <Grid Grid.Row="3" Grid.Column="0"  Background="#FFB6B6B6">
+
+            </Grid>
+            <Grid Grid.Row="3" Grid.Column="1"  Background="#FFB6B6B6">
+                <!--TextBox    Text="TextBox"  / -->
+
+            </Grid>
+            <Grid Grid.Row="4" Grid.Column="0"  Background="#FFB6B6B6">
+
+            </Grid>
+            <Grid Grid.Row="4" Grid.Column="1"  Background="#FFB6B6B6">
+                <!--TextBox    Text="TextBox"  / -->
+
+            </Grid>
+            <Grid Grid.Row="5" Grid.Column="0"  Background="#FFB6B6B6">
+
+            </Grid>
+            <Grid Grid.Row="5" Grid.Column="1"  Background="#FFB6B6B6">
+                <!--TextBox    Text="TextBox"  / -->
+
+            </Grid>
+
+
+
         </Grid>
 
         <!-- Corection data -->

@@ -25,7 +25,8 @@ namespace MeasuringMachineApp
         public static PLCInterface.Interface PlcInterface;
         public static MainWindow mwHandle;
         public static MyDatabase Database;
-        public static MyCorrectionDatabase CorrectionDatabase;
+        public static MyCorrectionDatabase CorrectionDatabaseM1;
+        public static MyCorrectionDatabase CorrectionDatabaseM2;
 
         // This is made static to access from another GUI class
         public static MeasurmentCalculation MeasurmentCalculationM1;
@@ -44,7 +45,7 @@ namespace MeasuringMachineApp
             //PlcInterface = new PLCInterface.Interface();
             PlcInterface = new Interface();
             Database = new MyDatabase();
-            CorrectionDatabase = new MyCorrectionDatabase();
+            CorrectionDatabaseM1 = new MyCorrectionDatabase();
             MeasurmentCalculationM1 = new MeasurmentCalculation();
             MeasurmentCalculationM2 = new MeasurmentCalculation();
             MeasurementDataM1 = new MeasurementData();
@@ -55,7 +56,7 @@ namespace MeasuringMachineApp
             // Database check Machine1
             MeasurmentCalculationM1.DatabaseChanged += OnDatabaseChangedM1;
             Clock_M1 = new System.Timers.Timer(30000);
-            //Clock_M1.Elapsed += OnClockmsTickM1;
+            Clock_M1.Elapsed += OnClockmsTickM1;
             Clock_M1.AutoReset = false;
             // Database check Machine2
             MeasurmentCalculationM2.DatabaseChanged += OnDatabaseChangedM2;
@@ -72,18 +73,18 @@ namespace MeasuringMachineApp
             Clock_M2.Start();
         }
         // New worker thread
-        //private void OnClockmsTickM1(Object source, System.Timers.ElapsedEventArgs e)
-        //{
-        //    _tableName = "stroj1";
-        //    // Get last five values
-        //    // New thread
-        //    //Thread CheckDatabaseM1 = new Thread(() => MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName));
-        //    //CheckDatabaseM1.Name = "CheckDatabaseM1";
-        //    //CheckDatabaseM1.Start();
-        //    MeasurmentCalculationM1.CompareWorkOrder(MySQLconnectionString, _tableName);
-        //    MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName);
-        //    Clock_M1.Start();
-        //}
+        private void OnClockmsTickM1(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            _tableName = "stroj1";
+            // Get last five values
+            // New thread
+            //Thread CheckDatabaseM1 = new Thread(() => MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName));
+            //CheckDatabaseM1.Name = "CheckDatabaseM1";
+            //CheckDatabaseM1.Start();
+            MeasurmentCalculationM1.CompareWorkOrder(MySQLconnectionString, _tableName);
+            MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName);
+            Clock_M1.Start();
+        }
         // New worker thread
         //private void OnClockmsTickM2(Object source, System.Timers.ElapsedEventArgs e)
         //{
@@ -166,9 +167,11 @@ namespace MeasuringMachineApp
             //                                         MeasurementDataM1.CorrectionDno3 + MeasurementDataM1.CorrectionDno4 +
             //                                         MeasurementDataM1.CorrectionDno5);
 
-             // Write corrections in DB
+            // Write corrections in DB
             _tableName = "korekcijestroj1";
-            CorrectionDatabase.ModifyDb(MySQLconnectionString, _tableName);
+            // Set Workorder number
+            CorrectionDatabaseM1.RadniNalog = MeasurmentCalculationM1.LastWorkOrder;
+            CorrectionDatabaseM1.ModifyDb(MySQLconnectionString, _tableName);
         }
 
         // Calculate correction when we have results for M2
@@ -239,6 +242,12 @@ namespace MeasuringMachineApp
             //MeasurementDataM1.CorrectionDforMachine = (MeasurementDataM1.CorrectionDno1 + MeasurementDataM1.CorrectionDno2 +
             //                                         MeasurementDataM1.CorrectionDno3 + MeasurementDataM1.CorrectionDno4 +
             //                                         MeasurementDataM1.CorrectionDno5);
+
+            // Write corrections in DB
+            _tableName = "korekcijestroj2";
+            // Set Workorder number
+            CorrectionDatabaseM2.RadniNalog = MeasurmentCalculationM2.LastWorkOrder;
+            CorrectionDatabaseM2.ModifyDb(MySQLconnectionString, _tableName);
         }
 
         private void PLC_Update_100_ms(Interface sender, InterfaceEventArgs e)

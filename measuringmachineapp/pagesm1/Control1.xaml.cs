@@ -47,12 +47,13 @@ namespace MeasuringMachineApp.PagesM1
         static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
         private string _tableName;
 
+        // Test method
         private void ReadDb_Click(object sender, RoutedEventArgs e)
         {
             _tableName = "stroj1";
             App.MeasurmentCalculationM2.MeasurementDataLoaded(MySQLconnectionString, _tableName);
         }
-
+        // Test method
         private void OffsetCal_Click(object sender, RoutedEventArgs e)
         {
             _tableName = "stroj1";

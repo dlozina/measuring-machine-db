@@ -28,7 +28,7 @@ namespace ToolOffset
         private string _Poz1;
         private string _Poz2;
         // WORK ORDER DATA
-        private string LastWorkOrder;
+        //private string LastWorkOrder;
         private string BeforeLastWorkOrder;
         // C VALUE
         private float CPoz1Value;
@@ -58,6 +58,21 @@ namespace ToolOffset
         public event DatabaseChangeEventHandler DatabaseChanged;
         // Measurement value
         public event PropertyChangedEventHandler PropertyChanged;
+
+        //LAST WORKORDER
+        private string _lastWorkOrder;
+        public string LastWorkOrder
+        {
+            get { return _lastWorkOrder; }
+            set
+            {
+                if (_lastWorkOrder != value)
+                {
+                    _lastWorkOrder = value;
+                    OnPropertyChanged("LastWorkOrder");
+                }
+            }
+        }
 
         //DATABASE CHANGE SIGNAL
         private bool _databaseChange;

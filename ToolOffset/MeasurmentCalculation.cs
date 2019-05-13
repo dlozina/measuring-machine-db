@@ -44,6 +44,9 @@ namespace ToolOffset
         // B VALUE
         private float BPoz1Value;
         private float BPoz2Value;
+        // J VALUE
+        private float JPoz1Value;
+        private float JPoz2Value;
         // F VALUE
         private float F1T2Poz1Value;
         private float F1T2Poz2Value;
@@ -435,6 +438,86 @@ namespace ToolOffset
                 {
                     _BAverageValueMeas5 = value;
                     OnPropertyChanged("BAverageValueMeas5");
+                }
+            }
+        }
+        #endregion
+
+        //***********************************
+        // J  DIAMETER AVERAGE              *
+        //***********************************
+        #region J diameter average
+        //MACHINE  AVERAGE VALUES
+        private float _JAverageValueMeas1;
+        public float JAverageValueMeas1
+        {
+            get { return _JAverageValueMeas1; }
+            set
+            {
+                if (_JAverageValueMeas1 != value)
+                {
+                    _JAverageValueMeas1 = value;
+                    OnPropertyChanged("JAverageValueMeas1");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _JAverageValueMeas2;
+        public float JAverageValueMeas2
+        {
+            get { return _JAverageValueMeas2; }
+            set
+            {
+                if (_JAverageValueMeas2 != value)
+                {
+                    _JAverageValueMeas2 = value;
+                    OnPropertyChanged("JAverageValueMeas2");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _JAverageValueMeas3;
+        public float JAverageValueMeas3
+        {
+            get { return _JAverageValueMeas3; }
+            set
+            {
+                if (_JAverageValueMeas3 != value)
+                {
+                    _JAverageValueMeas3 = value;
+                    OnPropertyChanged("JAverageValueMeas3");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _JAverageValueMeas4;
+        public float JAverageValueMeas4
+        {
+            get { return _JAverageValueMeas4; }
+            set
+            {
+                if (_JAverageValueMeas4 != value)
+                {
+                    _JAverageValueMeas4 = value;
+                    OnPropertyChanged("JAverageValueMeas4");
+                }
+            }
+        }
+
+        //MACHINE  AVERAGE VALUES
+        private float _JAverageValueMeas5;
+        public float JAverageValueMeas5
+        {
+            get { return _JAverageValueMeas5; }
+            set
+            {
+                if (_JAverageValueMeas5 != value)
+                {
+                    _JAverageValueMeas5 = value;
+                    OnPropertyChanged("JAverageValueMeas5");
                 }
             }
         }
@@ -1164,6 +1247,94 @@ namespace ToolOffset
                 BPoz2Value = float.Parse(_Poz2);
 
                 BAverageValueMeas5 = (BPoz1Value + BPoz2Value) / 2;
+                #endregion
+
+                // J MEASUREMENT
+                #region J calculation
+                //***********************************
+                // MEASUREMENT NO.1                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 0; // row number
+                _columnName = "JPoz1";  // database table column name
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
+                JPoz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 0; // row number
+                _columnName = "JPoz2";  // database table column name
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
+                JPoz2Value = float.Parse(_Poz2);
+
+                JAverageValueMeas1 = (JPoz1Value + JPoz2Value) / 2;
+
+                //***********************************
+                // MEASUREMENT NO.2                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 1; // row number
+                _columnName = "JPoz1";  // database table column name
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
+                JPoz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 1; // row number
+                _columnName = "JPoz2";  // database table column name
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
+                JPoz2Value = float.Parse(_Poz2);
+
+                JAverageValueMeas2 = (JPoz1Value + JPoz2Value) / 2;
+
+                //***********************************
+                // MEASUREMENT NO.3                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 2; // row number
+                _columnName = "JPoz1";  // database table column name
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
+                JPoz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 2; // row number
+                _columnName = "JPoz2";  // database table column name
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
+                JPoz2Value = float.Parse(_Poz2);
+
+                JAverageValueMeas3 = (JPoz1Value + JPoz2Value) / 2;
+
+                //***********************************
+                // MEASUREMENT NO.4                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 3; // row number
+                _columnName = "JPoz1";  // database table column name
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
+                JPoz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 3; // row number
+                _columnName = "JPoz2";  // database table column name
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
+                JPoz2Value = float.Parse(_Poz2);
+
+                JAverageValueMeas4 = (JPoz1Value + JPoz2Value) / 2;
+
+                //***********************************
+                // MEASUREMENT NO.5                 *
+                //***********************************
+                // POZ 1 VALUE
+                _rowNum = 4; // row number
+                _columnName = "JPoz1";  // database table column name
+                _Poz1 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
+                JPoz1Value = float.Parse(_Poz1);
+
+                // POZ 2 VALUE
+                _rowNum = 4; // row number
+                _columnName = "JPoz2";  // database table column name
+                _Poz2 = dt5ResultsTable.Rows[_rowNum][_columnName].ToString();
+                JPoz2Value = float.Parse(_Poz2);
+
+                JAverageValueMeas5 = (JPoz1Value + JPoz2Value) / 2;
                 #endregion
 
                 // F MEASUREMENT

@@ -138,6 +138,14 @@ namespace MeasuringMachineApp
                                                       MeasurementDataM1.CorrectionBno3 + MeasurementDataM1.CorrectionBno4 +
                                                       MeasurementDataM1.CorrectionBno5)/5);
             // Corection value for diameter J - Add new Measurement
+            MeasurementDataM1.CorrectionJno1 = MeasurmentCalculationM1.JAverageValueMeas1 - MeasurementDataM1.jNominal;
+            MeasurementDataM1.CorrectionJno2 = MeasurmentCalculationM1.JAverageValueMeas2 - MeasurementDataM1.jNominal;
+            MeasurementDataM1.CorrectionJno3 = MeasurmentCalculationM1.JAverageValueMeas3 - MeasurementDataM1.jNominal;
+            MeasurementDataM1.CorrectionJno4 = MeasurmentCalculationM1.JAverageValueMeas4 - MeasurementDataM1.jNominal;
+            MeasurementDataM1.CorrectionJno5 = MeasurmentCalculationM1.JAverageValueMeas5 - MeasurementDataM1.jNominal;
+            MeasurementDataM1.CorrectionJforMachine = ((MeasurementDataM1.CorrectionJno1 + MeasurementDataM1.CorrectionJno2 +
+                                                        MeasurementDataM1.CorrectionJno3 + MeasurementDataM1.CorrectionJno4 +
+                                                        MeasurementDataM1.CorrectionJno5) / 5);
 
             // Corection value for diameter F
             MeasurementDataM1.CorrectionFno1 = MeasurmentCalculationM1.FAverageValueMeas1 - MeasurementDataM1.fNominal;
@@ -171,6 +179,12 @@ namespace MeasuringMachineApp
             _tableName = "korekcijestroj1";
             // Set Workorder number
             CorrectionDatabaseM1.RadniNalog = MeasurmentCalculationM1.LastWorkOrder;
+            CorrectionDatabaseM1.CorrectionCforMachine = MeasurementDataM1.CorrectionCforMachine;
+            CorrectionDatabaseM1.CorrectionA2forMachine = MeasurementDataM1.CorrectionA2forMachine;
+            CorrectionDatabaseM1.CorrectionA1forMachine = MeasurementDataM1.CorrectionA1forMachine;
+            CorrectionDatabaseM1.CorrectionBforMachine = MeasurementDataM1.CorrectionBforMachine;
+            CorrectionDatabaseM1.CorrectionFforMachine = MeasurementDataM1.CorrectionFforMachine;
+            CorrectionDatabaseM1.CorrectionEforMachine = MeasurementDataM1.CorrectionEforMachine;
             CorrectionDatabaseM1.ModifyDb(MySQLconnectionString, _tableName);
         }
 
@@ -214,6 +228,14 @@ namespace MeasuringMachineApp
                                                       MeasurementDataM2.CorrectionBno3 + MeasurementDataM2.CorrectionBno4 +
                                                       MeasurementDataM2.CorrectionBno5);
             // Corection value for diameter J - Add new Measurement
+            MeasurementDataM2.CorrectionFno1 = MeasurmentCalculationM2.FAverageValueMeas1 - MeasurementDataM2.fNominal;
+            MeasurementDataM2.CorrectionFno2 = MeasurmentCalculationM2.FAverageValueMeas2 - MeasurementDataM2.fNominal;
+            MeasurementDataM2.CorrectionFno3 = MeasurmentCalculationM2.FAverageValueMeas3 - MeasurementDataM2.fNominal;
+            MeasurementDataM2.CorrectionFno4 = MeasurmentCalculationM2.FAverageValueMeas4 - MeasurementDataM2.fNominal;
+            MeasurementDataM2.CorrectionFno5 = MeasurmentCalculationM2.FAverageValueMeas5 - MeasurementDataM2.fNominal;
+            MeasurementDataM2.CorrectionFforMachine = ((MeasurementDataM2.CorrectionFno1 + MeasurementDataM2.CorrectionFno2 +
+                                                        MeasurementDataM2.CorrectionFno3 + MeasurementDataM2.CorrectionFno4 +
+                                                        MeasurementDataM2.CorrectionFno5) / 5);
 
             // Corection value for diameter F
             MeasurementDataM2.CorrectionFno1 = MeasurmentCalculationM2.FAverageValueMeas1 - MeasurementDataM2.fNominal;
@@ -247,6 +269,12 @@ namespace MeasuringMachineApp
             _tableName = "korekcijestroj2";
             // Set Workorder number
             CorrectionDatabaseM2.RadniNalog = MeasurmentCalculationM2.LastWorkOrder;
+            CorrectionDatabaseM2.CorrectionCforMachine = MeasurementDataM2.CorrectionCforMachine;
+            CorrectionDatabaseM2.CorrectionA2forMachine = MeasurementDataM2.CorrectionA2forMachine;
+            CorrectionDatabaseM2.CorrectionA1forMachine = MeasurementDataM2.CorrectionA1forMachine;
+            CorrectionDatabaseM2.CorrectionBforMachine = MeasurementDataM2.CorrectionBforMachine;
+            CorrectionDatabaseM2.CorrectionFforMachine = MeasurementDataM2.CorrectionFforMachine;
+            CorrectionDatabaseM2.CorrectionEforMachine = MeasurementDataM2.CorrectionEforMachine;
             CorrectionDatabaseM2.ModifyDb(MySQLconnectionString, _tableName);
         }
 

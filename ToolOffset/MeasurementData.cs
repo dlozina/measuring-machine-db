@@ -475,6 +475,93 @@ namespace ToolOffset
         }
         #endregion
 
+        #region J -> Corection data to Machine
+        // CORECTION DATA
+        private float _correctionJno1;
+        public float CorrectionJno1
+        {
+            get { return _correctionJno1; }
+            set
+            {
+                if (_correctionJno1 != value)
+                {
+                    _correctionJno1 = value;
+                    OnPropertyChanged("CorrectionJno1");
+                }
+            }
+        }
+
+        private float _correctionJno2;
+        public float CorrectionJno2
+        {
+            get { return _correctionJno2; }
+            set
+            {
+                if (_correctionJno2 != value)
+                {
+                    _correctionJno2 = value;
+                    OnPropertyChanged("CorrectionJno2");
+                }
+            }
+        }
+
+        private float _correctionJno3;
+        public float CorrectionJno3
+        {
+            get { return _correctionJno3; }
+            set
+            {
+                if (_correctionJno3 != value)
+                {
+                    _correctionJno3 = value;
+                    OnPropertyChanged("CorrectionJno3");
+                }
+            }
+        }
+
+        private float _correctionJno4;
+        public float CorrectionJno4
+        {
+            get { return _correctionJno4; }
+            set
+            {
+                if (_correctionJno4 != value)
+                {
+                    _correctionJno4 = value;
+                    OnPropertyChanged("CorrectionJno4");
+                }
+            }
+        }
+
+        private float _correctionJno5;
+        public float CorrectionJno5
+        {
+            get { return _correctionJno5; }
+            set
+            {
+                if (_correctionJno5 != value)
+                {
+                    _correctionJno5 = value;
+                    OnPropertyChanged("CorrectionJno5");
+                }
+            }
+        }
+
+        private float _correctionJforMachine;
+        public float CorrectionJforMachine
+        {
+            get { return _correctionJforMachine; }
+            set
+            {
+                if (_correctionJforMachine != value)
+                {
+                    _correctionJforMachine = value;
+                    OnPropertyChanged("CorrectionJforMachine");
+                }
+            }
+        }
+        #endregion
+
         #region F -> Corection data to Machine
         // CORECTION DATA
         private float _correctionFno1;

@@ -11,7 +11,7 @@
         <Color x:Key="MainBackground">Green</Color>
         <SolidColorBrush x:Key="Background1" Color="WhiteSmoke"></SolidColorBrush>
         <SolidColorBrush x:Key="Background2" Color="White"></SolidColorBrush>
-        <SolidColorBrush x:Key="Background3" Color="Gray"></SolidColorBrush>
+        <SolidColorBrush x:Key="Background3" Color="#FFB6B6B6"></SolidColorBrush>
         <SolidColorBrush x:Key="TextBackground" Color="CadetBlue"></SolidColorBrush>
         <SolidColorBrush x:Key="MouseEnterBackground" Color="CadetBlue"></SolidColorBrush>
         <!--Colors end-->

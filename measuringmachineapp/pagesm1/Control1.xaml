@@ -12,32 +12,26 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.2*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <!-- -->
-        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="Black">
-            <Label  Content="TEST PANEL" Margin="1" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="Black">
+            <Label  Content="PRORAČUN KOREKCIJA STROJA 1" Margin="1" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
         </Grid>
         <!-- -->
         <Grid Grid.Row="1" Grid.Column="0" Background="Black">
-            <Button Name="ReadDb" Margin="0,1,0,0" Content="ČITAJ BP" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED" Click="ReadDb_Click" />
         </Grid>
         <!-- -->
         <Grid Grid.Row="1" Grid.Column="1" Background="Black">
-            <Button Name="OffsetCal" Margin="0,1,0,0" Content="KOREKCIJA" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED" Click="OffsetCal_Click" />
         </Grid>
         <!-- -->
         <Grid Grid.Row="1" Grid.Column="2" Background="Black">
-            <Button Name="Test" Margin="0,1,0,0" Content="TEST" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED" />
         </Grid>
         <!-- DB row number -->
-        <Grid Grid.Row="2" Grid.Column="1"  Background="Black">
+        <Grid Grid.Row="1" Grid.Column="0"  Background="Black">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -99,7 +93,7 @@
         </Grid>
 
         <!-- Corection data -->
-        <Grid Grid.Row="2" Grid.Column="2"  Background="Black">
+        <Grid Grid.Row="1" Grid.Column="1"  Background="Black">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>

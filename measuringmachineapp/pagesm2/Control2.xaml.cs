@@ -31,17 +31,19 @@ namespace MeasuringMachineApp.PagesM2
             CorectionA2.DataContext = App.MeasurementDataM2;
             CorectionA1.DataContext = App.MeasurementDataM2;
             CorectionB.DataContext = App.MeasurementDataM2;
+            CorectionJ.DataContext = App.MeasurementDataM2;
             CorectionF.DataContext = App.MeasurementDataM2;
             CorectionE.DataContext = App.MeasurementDataM2;
             // Init values
             //App.MeasurmentCalculationM1.DatabaseRowNumber = "0";
             //App.MeasurmentCalculationM1.ConsecutiveOrders = "0";
-            App.MeasurementDataM2.CorrectionCforMachine = 0.0f;
-            App.MeasurementDataM2.CorrectionA2forMachine = 0.0f;
-            App.MeasurementDataM2.CorrectionA1forMachine = 0.0f;
-            App.MeasurementDataM2.CorrectionBforMachine = 0.0f;
-            App.MeasurementDataM2.CorrectionFforMachine = 0.0f;
-            App.MeasurementDataM2.CorrectionEforMachine = 0.0f;
+            //App.MeasurementDataM2.CorrectionCforMachine = 0.0f;
+            //App.MeasurementDataM2.CorrectionA2forMachine = 0.0f;
+            //App.MeasurementDataM2.CorrectionA1forMachine = 0.0f;
+            //App.MeasurementDataM2.CorrectionBforMachine = 0.0f;
+            //App.MeasurementDataM2.CorrectionJforMachine = 0.0f;
+            //App.MeasurementDataM2.CorrectionFforMachine = 0.0f;
+            //App.MeasurementDataM2.CorrectionEforMachine = 0.0f;
         }
     }
 }

@@ -82,7 +82,21 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 8 - Diameter F correction
+        // Databaseposition 8 - Diameter B correction
+        private float _correctionJforMachine;
+        public float CorrectionJforMachine
+        {
+            get { return _correctionJforMachine; }
+            set
+            {
+                if (_correctionJforMachine != value)
+                {
+                    _correctionJforMachine = value;
+                    OnPropertyChanged("CorrectionJforMachine");
+                }
+            }
+        }
+        // Databaseposition 9 - Diameter F correction
         private float _correctionFforMachine;
         public float CorrectionFforMachine
         {
@@ -96,7 +110,7 @@ namespace DataBase
                 }
             }
         }
-        // Databaseposition 9 - Diameter E correction
+        // Databaseposition 10 - Diameter E correction
         private float _correctionEforMachine;
         public float CorrectionEforMachine
         {
@@ -120,8 +134,8 @@ namespace DataBase
             // Good practice
             // Datacontext does not acept . ex. `A1.2Poz1`,`A1.2Poz2`, `A1.1Poz1`, `A1.1Poz2`
             string query = $"INSERT INTO {tableName} " +
-                           "(`IDMjerenje`, `Vrijeme`, `RadniNalog`, `KorekcijaC`, `KorekcijaA2`, `KorekcijaA1`,`KorekcijaB`, `KorekcijaF`, `KorekcijaE` ) " +
-                           "VALUES (@1, @2, @3, @4, @5, @6, @7, @8, @9)";
+                           "(`IDMjerenje`, `Vrijeme`, `RadniNalog`, `KorekcijaC`, `KorekcijaA2`, `KorekcijaA1`,`KorekcijaB`, `KorekcijaJ`, `KorekcijaF`, `KorekcijaE` ) " +
+                           "VALUES (@1, @2, @3, @4, @5, @6, @7, @8, @9, @10)";
             // Connect to database
             //MySqlConnection databaseConnection = new MySqlConnection(mySQLconnectionString);
             // Create command for database - 
@@ -133,8 +147,9 @@ namespace DataBase
             commandDatabase.Parameters.AddWithValue("@5", CorrectionA2forMachine);
             commandDatabase.Parameters.AddWithValue("@6", CorrectionA1forMachine);
             commandDatabase.Parameters.AddWithValue("@7", CorrectionBforMachine);
-            commandDatabase.Parameters.AddWithValue("@8", CorrectionFforMachine);
-            commandDatabase.Parameters.AddWithValue("@9", CorrectionEforMachine);
+            commandDatabase.Parameters.AddWithValue("@8", CorrectionJforMachine);
+            commandDatabase.Parameters.AddWithValue("@9", CorrectionFforMachine);
+            commandDatabase.Parameters.AddWithValue("@10", CorrectionEforMachine);
             
             // Good practice add query timeout 60 sec?
             commandDatabase.CommandTimeout = 60;

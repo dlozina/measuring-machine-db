@@ -446,8 +446,8 @@ namespace DataBase
             commandDatabase.Parameters.AddWithValue("@11", KotaAPoz2);
             commandDatabase.Parameters.AddWithValue("@12", KotaBPoz1);
             commandDatabase.Parameters.AddWithValue("@13", KotaBPoz2);
-            commandDatabase.Parameters.AddWithValue("@14", KotaBPoz1);
-            commandDatabase.Parameters.AddWithValue("@15", KotaBPoz2);
+            commandDatabase.Parameters.AddWithValue("@14", KotaJPoz1);
+            commandDatabase.Parameters.AddWithValue("@15", KotaJPoz2);
             commandDatabase.Parameters.AddWithValue("@16", KotaF1LG2Poz1);
             commandDatabase.Parameters.AddWithValue("@17", KotaF2LG2Poz1);
             commandDatabase.Parameters.AddWithValue("@18", KotaF1LG3Poz1);

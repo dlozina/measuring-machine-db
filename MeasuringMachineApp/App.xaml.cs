@@ -56,12 +56,12 @@ namespace MeasuringMachineApp
             PlcInterface.Update_100_ms += new Interface.UpdateHandler(PLC_Update_100_ms);
             // Database check Machine1
             MeasurmentCalculationM1.DatabaseChanged += OnDatabaseChangedM1;
-            Clock_M1 = new System.Timers.Timer(1000);
+            Clock_M1 = new System.Timers.Timer(10000);
             Clock_M1.Elapsed += OnClockmsTickM1;
             Clock_M1.AutoReset = false;
             // Database check Machine2
             MeasurmentCalculationM2.DatabaseChanged += OnDatabaseChangedM2;
-            Clock_M2 = new System.Timers.Timer(2000);
+            Clock_M2 = new System.Timers.Timer(15000);
             Clock_M2.Elapsed += OnClockmsTickM2;
             Clock_M2.AutoReset = false;
             // Counter start

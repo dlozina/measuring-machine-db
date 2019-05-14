@@ -33,7 +33,9 @@
         </Grid>
 
         <Grid Grid.Row="3" Grid.Column="0">
-            <Button Name="Data1" Margin="0,1,0,0" Content="BAZA PODATAKA" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED" Click="Data1_Click"/>
+            <Button Name="Data1" Margin="0,1,0,0"  FontWeight="Bold" FontSize="18" Background="#FFF1EDED" Click="Data1_Click">
+                <TextBlock Text="BAZA PODATAKA MJERENJA" TextWrapping="Wrap" TextAlignment="Center"/>
+             </Button>
         </Grid>
 
         <Grid Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" >
@@ -53,7 +55,9 @@
         </Grid>
 
         <Grid Grid.Row="3" Grid.Column="2">
-            <Button Name="Data2" Margin="0,1,0,0" Content="BAZA PODATAKA" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED" Click="Data2_Click"/>
+            <Button Name="Data2" Margin="0,1,0,0"  FontWeight="Bold" FontSize="18"  Background="#FFF1EDED" Click="Data2_Click">
+                <TextBlock Text="BAZA PODATAKA MJERENJA" TextWrapping="Wrap" TextAlignment="Center"/>
+            </Button>
         </Grid>
 
         <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,2,0,0" Background="Black">

@@ -95,6 +95,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PagesM1\DataCorrection1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PagesM1\ManualInput1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -104,6 +108,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PagesM2\Data2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PagesM2\DataCorrection2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,6 +127,9 @@
     <Compile Include="PagesM1\Data1.xaml.cs">
       <DependentUpon>Data1.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PagesM1\DataCorrection1.xaml.cs">
+      <DependentUpon>DataCorrection1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PagesM1\ManualInput1.xaml.cs">
       <DependentUpon>ManualInput1.xaml</DependentUpon>
     </Compile>
@@ -127,6 +138,9 @@
     </Compile>
     <Compile Include="PagesM2\Data2.xaml.cs">
       <DependentUpon>Data2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PagesM2\DataCorrection2.xaml.cs">
+      <DependentUpon>DataCorrection2.xaml</DependentUpon>
     </Compile>
     <Compile Include="PagesM2\ManualInput2.xaml.cs">
       <DependentUpon>ManualInput2.xaml</DependentUpon>

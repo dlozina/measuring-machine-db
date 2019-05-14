@@ -50,7 +50,7 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <TextBox Name="IpAddress" Grid.Row="0" VerticalContentAlignment="Center" Text="192.168.20.152" />
+                <TextBox Name="IpAddress" Grid.Row="0" VerticalContentAlignment="Center" Text="192.168.20.151" />
                 <TextBox Name="PortNumber" Grid.Row="1" VerticalContentAlignment="Center" Text="8193"/>
                 <Button Grid.Row="2" x:Name="MtoolInfo" Margin="1" FontWeight="Bold" Content="READ TOOL INFO" Click="MtoolInfo_Click" Background="#FFF1EDED"/>
             </Grid>

@@ -60,44 +60,10 @@
                 <!--TextBox    Text="TextBox"  / -->
                 <Label Name="DbCountSameOrder" Content="{Binding ConsecutiveOrders}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White" />
             </Grid>
-            <Grid Grid.Row="2" Grid.Column="0"  Background="#FFB6B6B6">
+            <Grid Grid.Row="2" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="2" Background="#FFB6B6B6">
                 
             </Grid>
-            <Grid Grid.Row="2" Grid.Column="1"  Background="#FFB6B6B6">
-                <!--TextBox    Text="TextBox"  / -->
-                
-            </Grid>
-            <Grid Grid.Row="3" Grid.Column="0"  Background="#FFB6B6B6">
-
-            </Grid>
-            <Grid Grid.Row="3" Grid.Column="1"  Background="#FFB6B6B6">
-                <!--TextBox    Text="TextBox"  / -->
-
-            </Grid>
-            <Grid Grid.Row="4" Grid.Column="0"  Background="#FFB6B6B6">
-
-            </Grid>
-            <Grid Grid.Row="4" Grid.Column="1"  Background="#FFB6B6B6">
-                <!--TextBox    Text="TextBox"  / -->
-
-            </Grid>
-            <Grid Grid.Row="5" Grid.Column="0"  Background="#FFB6B6B6">
-
-            </Grid>
-            <Grid Grid.Row="5" Grid.Column="1"  Background="#FFB6B6B6">
-                <!--TextBox    Text="TextBox"  / -->
-
-            </Grid>
-            <Grid Grid.Row="6" Grid.Column="0"  Background="#FFB6B6B6">
-
-            </Grid>
-            <Grid Grid.Row="6" Grid.Column="1"  Background="#FFB6B6B6">
-                <!--TextBox    Text="TextBox"  / -->
-
-            </Grid>
-
-
-
+            
         </Grid>
 
         <!-- Corection data -->

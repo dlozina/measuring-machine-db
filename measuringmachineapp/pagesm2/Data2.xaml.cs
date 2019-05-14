@@ -31,13 +31,13 @@ namespace MeasuringMachineApp.PagesM2
         // Database string - Change if needed
         static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
         // Select all data in database
-        private string query = "SELECT * FROM `stroj2` WHERE 1 ";
+        //private string query = "SELECT * FROM `stroj2` WHERE 1 ";
+        static string query = $"SELECT * FROM `stroj2` ORDER BY IDMjerenje DESC LIMIT 30";
+        MySqlConnection databaseConnection = new MySqlConnection(MySQLconnectionString);
+        MySqlDataAdapter adapter = new MySqlDataAdapter(query, MySQLconnectionString);
 
         private void Data2PageLoaded(object sender, RoutedEventArgs e)
         {
-            MySqlConnection databaseConnection = new MySqlConnection(MySQLconnectionString);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(query, MySQLconnectionString);
-
             try
             {
                 // Open com with database

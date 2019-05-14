@@ -9,7 +9,16 @@
       Title="ManualInput2">
 
     <Grid>
-        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" Background="Black">
+            <Label  Content="RUČNI UNOS KOREKCIJA STROJ 2" Margin="1" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+        </Grid>
+
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -30,7 +39,7 @@
 
                 <Label Grid.Row="0" Content="IP Adress:" FontWeight="Bold" VerticalContentAlignment="Center"/>
                 <Label Grid.Row="1" Content="Port Number:" FontWeight="Bold" VerticalContentAlignment="Center"/>
-                <Button Grid.Row="2" x:Name="TestConnection" Margin="1" FontWeight="Bold" Content="TEST CONNECTION" Click="TestConnection_Click"/>
+                <Button Grid.Row="2" x:Name="TestConnection" Margin="1" FontWeight="Bold" Content="TEST CONNECTION" Click="TestConnection_Click" Background="#FFF1EDED"/>
 
             </Grid>
 
@@ -43,7 +52,7 @@
                 </Grid.RowDefinitions>
                 <TextBox Name="IpAddress" Grid.Row="0" VerticalContentAlignment="Center" Text="192.168.20.152" />
                 <TextBox Name="PortNumber" Grid.Row="1" VerticalContentAlignment="Center" Text="8193"/>
-                <Button Grid.Row="2" x:Name="MtoolInfo" Margin="1" FontWeight="Bold" Content="READ TOOL INFO" Click="MtoolInfo_Click"/>
+                <Button Grid.Row="2" x:Name="MtoolInfo" Margin="1" FontWeight="Bold" Content="READ TOOL INFO" Click="MtoolInfo_Click" Background="#FFF1EDED"/>
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="2" Background="White">
@@ -62,7 +71,7 @@
                     <Label Grid.Row="0" Content="ERROR NO:" FontWeight="Bold" VerticalContentAlignment="Center"/>
                     <TextBox Name="ErrorCode" Grid.Row="0" Grid.Column="1" Text="{Binding Path=ErrorCode, Mode=OneWay}"  VerticalContentAlignment="Center" />
                 </Grid>
-                <Button Grid.Row="2" x:Name="MtoolOffset" Margin="1" FontWeight="Bold" Content="READ TOOL OFFSET" Click="MtoolOffset_Click"/>
+                <Button Grid.Row="2" x:Name="MtoolOffset" Margin="1" FontWeight="Bold" Content="READ TOOL OFFSET" Click="MtoolOffset_Click" Background="#FFF1EDED"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="0" Background="White">
@@ -74,7 +83,7 @@
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Test Tool Offset(X) write" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
                 <TextBox Name="ToolOffsetX" Grid.Row="1" VerticalContentAlignment="Center"/>
-                <Button Grid.Row="2" x:Name="TestOffsetX" Margin="1" FontWeight="Bold" Content="TEST OFFSET WR (X)" Click="TestOffsetX_Click" />
+                <Button Grid.Row="2" x:Name="TestOffsetX" Margin="1" FontWeight="Bold" Content="TEST OFFSET WR (X)" Click="TestOffsetX_Click" Background="#FFF1EDED"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="1" Background="White">
@@ -86,7 +95,7 @@
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Test Tool Offset(Y) write" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
                 <TextBox Name="ToolOffsetY" Grid.Row="1" VerticalContentAlignment="Center"/>
-                <Button Grid.Row="2" x:Name="TestOffsetY" Margin="1" FontWeight="Bold" Content="TEST OFFSET WR (Y)" Click="TestOffsetY_Click" />
+                <Button Grid.Row="2" x:Name="TestOffsetY" Margin="1" FontWeight="Bold" Content="TEST OFFSET WR (Y)" Click="TestOffsetY_Click" Background="#FFF1EDED"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="2" Background="White">
@@ -98,7 +107,7 @@
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Test Tool Offset(R) write" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
                 <TextBox Name="ToolOffsetZ" Grid.Row="1" VerticalContentAlignment="Center"/>
-                <Button Grid.Row="2" x:Name="TestOffsetZ" Margin="1" FontWeight="Bold" Content="TEST OFFSET WR (R)" Click="TestOffsetZ_Click" />
+                <Button Grid.Row="2" x:Name="TestOffsetZ" Margin="1" FontWeight="Bold" Content="TEST OFFSET WR (R)" Click="TestOffsetZ_Click" Background="#FFF1EDED"/>
             </Grid>
         </Grid>
     </Grid>

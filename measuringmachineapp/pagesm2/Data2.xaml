@@ -9,32 +9,44 @@
       Title="Data2">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
 
-        <DataGrid x:Name="Machine2Data" 
-                  ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+        <Grid Grid.Row="0" Grid.Column="0" Background="Black">
+               <Label  Content="BAZA PODATAKA STROJA 2" Margin="1" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0" Background="Black">
+            <DataGrid x:Name="Machine2Data" 
+                      ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
                   
-                  ItemsSource="{Binding}" 
-                  MinColumnWidth="100"
-                  AutoGenerateColumns="True"
-                  CanUserResizeRows="False" 
-                  CanUserAddRows="False" 
-                  CanUserDeleteRows="False"
-                  CanUserReorderColumns="False"
-                  CanUserResizeColumns="False"
-                  CanUserSortColumns="True"
-                  IsReadOnly="True"
+                      ItemsSource="{Binding}" 
+                      MinColumnWidth="100"
+                      AutoGenerateColumns="True"
+                      CanUserResizeRows="False" 
+                      CanUserAddRows="False" 
+                      CanUserDeleteRows="False"
+                      CanUserReorderColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserSortColumns="True"
+                      IsReadOnly="True"
     
-                  VerticalGridLinesBrush="Black" 
-                  HorizontalGridLinesBrush="Black"
-                  GridLinesVisibility="All"
-                  RowBackground="#FFF1EDED"
-                  AlternatingRowBackground="#FFB6B6B6" 
+                      VerticalGridLinesBrush="Black" 
+                      HorizontalGridLinesBrush="Black"
+                      GridLinesVisibility="All"
+                      RowBackground="#FFF1EDED"
+                      AlternatingRowBackground="#FFB6B6B6" 
+               />
+        </Grid>
 
-                  
-                  
-                  
-                  
-        />
+        <Grid Grid.Row="2" Grid.Column="0" Background="Black">
+            <Label  Content="PRIKAZ ZADNJIH 30 MJERENJA" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+        </Grid>
 
     </Grid>
 </Page>

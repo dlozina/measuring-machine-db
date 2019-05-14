@@ -51,14 +51,14 @@
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1"  Background="Black">
                 <!--TextBox    Text="TextBox"  / -->
-                <Label Name="DbCountLabel" Content="{Binding DatabaseRowNumber}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+                <Label Name="DbCountLabel" Content="{Binding DatabaseRowNumber}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White" />
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0"  Background="Black">
                 <Label  Content="BROJ NALOGA" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1"  Background="Black">
                 <!--TextBox    Text="TextBox"  / -->
-                <Label Name="DbCountSameOrder" Content="{Binding ConsecutiveOrders}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+                <Label Name="DbCountSameOrder" Content="{Binding ConsecutiveOrders}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White" />
             </Grid>
             <Grid Grid.Row="2" Grid.Column="0"  Background="#FFB6B6B6">
                 
@@ -121,28 +121,28 @@
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1"  Background="Black">
                 <!--TextBox    Text="TextBox"  / -->
-                <Label Name="CorectionC" Content="{Binding CorrectionCforMachine}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+                <Label Name="CorectionC" Content="{Binding CorrectionCforMachine}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White" />
             </Grid>
             <!-- Corection no.2 -->
             <Grid Grid.Row="1" Grid.Column="0"  Background="Black">
                 <Label  Content="KOREKCIJA A(2) DIJ." Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1"  Background="Black">
-                <Label Name="CorectionA2" Content="{Binding CorrectionA2forMachine}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+                <Label Name="CorectionA2" Content="{Binding CorrectionA2forMachine}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White" />
             </Grid>
             <!-- Corection no.3 -->
             <Grid Grid.Row="2" Grid.Column="0"  Background="Black">
                 <Label  Content="KOREKCIJA A(1) DIJ." Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
             </Grid>
             <Grid Grid.Row="2" Grid.Column="1"  Background="Black">
-                <Label Name="CorectionA1" Content="{Binding CorrectionA1forMachine}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+                <Label Name="CorectionA1" Content="{Binding CorrectionA1forMachine}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White" />
             </Grid>
             <!-- Corection no.4 -->
             <Grid Grid.Row="3" Grid.Column="0"  Background="Black">
                 <Label  Content="KOREKCIJA B DIJ." Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
             </Grid>
             <Grid Grid.Row="3" Grid.Column="1"  Background="Black">
-                <Label Name="CorectionB" Content="{Binding CorrectionBforMachine}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+                <Label Name="CorectionB" Content="{Binding CorrectionBforMachine}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White" />
             </Grid>
 
             <!-- Corection no.5 -->
@@ -150,7 +150,7 @@
                 <Label  Content="KOREKCIJA J DIJ." Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
             </Grid>
             <Grid Grid.Row="4" Grid.Column="1"  Background="Black">
-                <Label Name="CorectionJ" Content="{Binding CorrectionJforMachine}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+                <Label Name="CorectionJ" Content="{Binding CorrectionJforMachine}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White" />
             </Grid>
 
             <!-- Corection no.6 -->
@@ -158,14 +158,14 @@
                 <Label  Content="KOREKCIJA F DIJ." Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
             </Grid>
             <Grid Grid.Row="5" Grid.Column="1"  Background="Black">
-                <Label Name="CorectionF" Content="{Binding CorrectionFforMachine}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+                <Label Name="CorectionF" Content="{Binding CorrectionFforMachine}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White" />
             </Grid>
             <!-- Corection no.7 -->
             <Grid Grid.Row="6" Grid.Column="0"  Background="Black">
                 <Label  Content="KOREKCIJA E DIJ." Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
             </Grid>
             <Grid Grid.Row="6" Grid.Column="1"  Background="Black">
-                <Label Name="CorectionE" Content="{Binding CorrectionEforMachine}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+                <Label Name="CorectionE" Content="{Binding CorrectionEforMachine}" Margin="1" FontWeight="Bold" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White" />
             </Grid>
 
 

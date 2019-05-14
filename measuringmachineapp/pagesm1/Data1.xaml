@@ -39,7 +39,7 @@
                       VerticalGridLinesBrush="Black" 
                       HorizontalGridLinesBrush="Black"
                       GridLinesVisibility="All"
-                      RowBackground="#FFF1EDED"
+                      RowBackground="White"
                       AlternatingRowBackground="#FFB6B6B6"     
             />
         </Grid>

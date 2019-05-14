@@ -31,39 +31,43 @@ namespace MeasuringMachineApp
         // Machine 1
         private void Control1_Click(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Navigate(new Control1());
             MainFrame.Content = new Control1();
         }
 
         private void Data1_Click(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Navigate(new Data1());
             MainFrame.Content = new Data1();
         }
 
         // Machine 2
         private void Control2_Click(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Navigate(new Control2());
             MainFrame.Content = new Control2();
         }
 
         private void Data2_Click(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Navigate(new Data2());
             MainFrame.Content = new Data2();
         }
 
         private void Manual1_Click(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Navigate(new ManualInput1());
             MainFrame.Content = new ManualInput1();
         }
 
         private void Manual2_Click(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Navigate(new ManualInput2());
             MainFrame.Content = new ManualInput2();
+        }
+
+        private void DataCor1_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new DataCorrection1();
+        }
+
+        private void DataCor2_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new DataCorrection2();
         }
     }
 }

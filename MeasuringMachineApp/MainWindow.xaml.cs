@@ -53,5 +53,17 @@ namespace MeasuringMachineApp
             //MainFrame.Navigate(new Data2());
             MainFrame.Content = new Data2();
         }
+
+        private void Manual1_Click(object sender, RoutedEventArgs e)
+        {
+            //MainFrame.Navigate(new ManualInput1());
+            MainFrame.Content = new ManualInput1();
+        }
+
+        private void Manual2_Click(object sender, RoutedEventArgs e)
+        {
+            //MainFrame.Navigate(new ManualInput2());
+            MainFrame.Content = new ManualInput2();
+        }
     }
 }

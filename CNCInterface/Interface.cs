@@ -46,6 +46,8 @@ namespace CNCInterface
         //Tool Correction Z
         public int ToolZcorrection;
 
+        public int ret;
+
         public void TestConnection(string cncAdress, ushort portNumber)
         {
             Focas1.ODBST buf = new Focas1.ODBST();
@@ -73,7 +75,7 @@ namespace CNCInterface
                 // Get CNC info
                 Focas1.cnc_rdtofsinfo(Handle, buf);
                 // Store Number and Offset type for tool
-                UseNo = buf.use_no;
+                UseNo = 120; //buf.use_no;
                 OfsType = buf.ofs_type;
                 // Close COM handle
                 Focas1.cnc_freelibhndl(Handle);
@@ -87,18 +89,19 @@ namespace CNCInterface
 
         public void ReadToolOffset(string cncAdress, ushort portNumber)
         {
+
             Focas1.ODBTOFS bufX = new Focas1.ODBTOFS();
-            Focas1.ODBTOFS bufY = new Focas1.ODBTOFS();
             Focas1.ODBTOFS bufZ = new Focas1.ODBTOFS();
+            Focas1.ODBTOFS bufR = new Focas1.ODBTOFS();
             ComReturnValue = Focas1.cnc_allclibhndl3(cncAdress, portNumber, TimeOut, out Handle);
             if (ComReturnValue == Focas1.EW_OK)
             {
-                Focas1.cnc_rdtofs(Handle, UseNo, 0, 8, bufX);
+                ret = Focas1.cnc_rdtofs(Handle, UseNo, 0, 8, bufX);
                 Console.WriteLine("X({0}) = {1}", UseNo, bufX.data);
-                Focas1.cnc_rdtofs(Handle, UseNo, 2, 8, bufY);
-                Console.WriteLine("X({0}) = {1}", UseNo, bufX.data);
-                Focas1.cnc_rdtofs(Handle, UseNo, 8, 8, bufZ);
-                Console.WriteLine("X({0}) = {1}", UseNo, bufX.data);
+                ret = Focas1.cnc_rdtofs(Handle, UseNo, 2, 8, bufZ);
+                Console.WriteLine("Z({0}) = {1}", UseNo, bufZ.data);
+                ret = Focas1.cnc_rdtofs(Handle, UseNo, 4, 8, bufR);
+                Console.WriteLine("R({0}) = {1}", UseNo, bufR.data);
             }
             else
             {
@@ -107,11 +110,12 @@ namespace CNCInterface
             }
         }
 
-        public void WriteToolOffsetX(string cncAdress, ushort portNumber)
+        public void WriteToolOffsetX(string cncAdress, ushort portNumber, int value)
         {
             ComReturnValue = Focas1.cnc_allclibhndl3(cncAdress, portNumber, TimeOut, out Handle);
             if (ComReturnValue == Focas1.EW_OK)
             {
+                ToolXcorrection = value;
                 // X tool offset write
                 Focas1.cnc_wrtofs(Handle, UseNo, 0, 8, ToolXcorrection);
             }
@@ -122,11 +126,12 @@ namespace CNCInterface
             }
         }
 
-        public void WriteToolOffsetY(string cncAdress, ushort portNumber)
+        public void WriteToolOffsetZ(string cncAdress, ushort portNumber, int value)
         {
             ComReturnValue = Focas1.cnc_allclibhndl3(cncAdress, portNumber, TimeOut, out Handle);
             if (ComReturnValue == Focas1.EW_OK)
             {
+                ToolYcorrection = value;
                 // Y tool offset write
                 Focas1.cnc_wrtofs(Handle, UseNo, 2, 8, ToolYcorrection);
             }
@@ -137,14 +142,15 @@ namespace CNCInterface
             }
         }
 
-        public void WriteToolOffsetZ(string cncAdress, ushort portNumber)
+        public void WriteToolOffsetR(string cncAdress, ushort portNumber, int value)
         {
             ErrorCode = "None";
             ComReturnValue = Focas1.cnc_allclibhndl3(cncAdress, portNumber, TimeOut, out Handle);
             if (ComReturnValue == Focas1.EW_OK)
             {
+                ToolZcorrection = value;
                 // Z tool offset write
-                Focas1.cnc_wrtofs(Handle, UseNo, 8, 8, ToolZcorrection);
+                Focas1.cnc_wrtofs(Handle, UseNo, 4, 8, ToolZcorrection);
             }
             else
             {
@@ -159,5 +165,5 @@ namespace CNCInterface
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-    
+
 }

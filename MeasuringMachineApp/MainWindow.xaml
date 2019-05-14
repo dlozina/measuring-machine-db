@@ -16,6 +16,7 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="22"/>
         </Grid.RowDefinitions>
 
@@ -28,10 +29,14 @@
         </Grid>
 
         <Grid Grid.Row="2" Grid.Column="0">
+            <Button Name="Manual1" Margin="0,1,0,0" Content="RUČNI UNOS" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED" Click="Manual1_Click" />
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="0">
             <Button Name="Data1" Margin="0,1,0,0" Content="BAZA PODATAKA" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED" Click="Data1_Click"/>
         </Grid>
 
-        <Grid Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" >
+        <Grid Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" >
             <Frame x:Name="MainFrame" Margin="1" NavigationUIVisibility="Hidden" />
         </Grid>
 
@@ -42,12 +47,16 @@
         <Grid Grid.Row="1" Grid.Column="2">
             <Button Name="Control2" Margin="0,1,0,0" Content="KOREKCIJE" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED" Click="Control2_Click"/>
         </Grid>
- 
+
         <Grid Grid.Row="2" Grid.Column="2">
+            <Button Name="Manual2" Margin="0,1,0,0" Content="RUČNI UNOS" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED" Click="Manual2_Click" />
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="2">
             <Button Name="Data2" Margin="0,1,0,0" Content="BAZA PODATAKA" FontWeight="Bold" FontSize="18"  Background="#FFF1EDED" Click="Data2_Click"/>
         </Grid>
 
-        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,2,0,0" Background="Black">
+        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,2,0,0" Background="Black">
             <StatusBar Height="20" VerticalAlignment="Bottom" Margin="0,1,0,0">
                 <StatusBar.ItemsPanel>
                     <ItemsPanelTemplate>

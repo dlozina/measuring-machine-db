@@ -51,6 +51,7 @@ namespace CNCInterface
             ComReturnValue = Focas1.cnc_allclibhndl3(cncAdress, portNumber, TimeOut, out Handle);
             if (ComReturnValue == Focas1.EW_OK)
             {
+                ErrorCode = "None";
                 // Get CNC info
                 Focas1.cnc_statinfo(Handle, buf);
                 // Close COM handle
@@ -69,6 +70,7 @@ namespace CNCInterface
             ComReturnValue = Focas1.cnc_allclibhndl3(cncAdress, portNumber, TimeOut, out Handle);
             if (ComReturnValue == Focas1.EW_OK)
             {
+                ErrorCode = "None";
                 // Get CNC info
                 Focas1.cnc_rdtofsinfo(Handle, buf);
                 // Store Number and Offset type for tool
@@ -93,6 +95,7 @@ namespace CNCInterface
             ComReturnValue = Focas1.cnc_allclibhndl3(cncAdress, portNumber, TimeOut, out Handle);
             if (ComReturnValue == Focas1.EW_OK)
             {
+                ErrorCode = "None";
                 ret = Focas1.cnc_rdtofs(Handle, useNo, 0, 8, bufX);
                 Console.WriteLine("X({0}) = {1}", useNo, bufX.data);
                 ret = Focas1.cnc_rdtofs(Handle, useNo, 2, 8, bufZ);
@@ -112,6 +115,7 @@ namespace CNCInterface
             ComReturnValue = Focas1.cnc_allclibhndl3(cncAdress, portNumber, TimeOut, out Handle);
             if (ComReturnValue == Focas1.EW_OK)
             {
+                ErrorCode = "None";
                 ToolXcorrection = value;
                 // X tool offset write
                 Focas1.cnc_wrtofs(Handle, useNo, 0, 8, ToolXcorrection);
@@ -128,6 +132,7 @@ namespace CNCInterface
             ComReturnValue = Focas1.cnc_allclibhndl3(cncAdress, portNumber, TimeOut, out Handle);
             if (ComReturnValue == Focas1.EW_OK)
             {
+                ErrorCode = "None";
                 ToolYcorrection = value;
                 // Y tool offset write
                 Focas1.cnc_wrtofs(Handle, useNo, 2, 8, ToolYcorrection);
@@ -141,10 +146,11 @@ namespace CNCInterface
 
         public void WriteToolOffsetR(string cncAdress, ushort portNumber, int value, short useNo)
         {
-            ErrorCode = "None";
+            
             ComReturnValue = Focas1.cnc_allclibhndl3(cncAdress, portNumber, TimeOut, out Handle);
             if (ComReturnValue == Focas1.EW_OK)
             {
+                ErrorCode = "None";
                 ToolRcorrection = value;
                 // Z tool offset write
                 Focas1.cnc_wrtofs(Handle, useNo, 4, 8, ToolRcorrection);

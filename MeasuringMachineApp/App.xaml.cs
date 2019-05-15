@@ -18,9 +18,9 @@ namespace MeasuringMachineApp
     /// </summary>
     public partial class App : Application
     {
-        // DatabaseTimer
-        System.Timers.Timer Clock_M1;
-        System.Timers.Timer Clock_M2;
+        // DatabaseScanTimer
+        readonly System.Timers.Timer Clock_M1;
+        readonly System.Timers.Timer Clock_M2;
         // Static Class definition
         public static PLCInterface.Interface PlcInterface;
         public static MainWindow mwHandle;
@@ -33,6 +33,7 @@ namespace MeasuringMachineApp
         public static MeasurmentCalculation MeasurmentCalculationM2;
         public static MeasurementData MeasurementDataM1;
         public static MeasurementData MeasurementDataM2;
+        public static CNCInterface.Interface CncInterface;
         
         // SslMode=none - If local host does not support SSL
         static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
@@ -42,8 +43,7 @@ namespace MeasuringMachineApp
 
         public App()
         {
-            //PlcInterface = new PLCInterface.Interface();
-            PlcInterface = new Interface();
+            PlcInterface = new PLCInterface.Interface();
             Database = new MyDatabase();
             CorrectionDatabaseM1 = new MyCorrectionDatabase();
             CorrectionDatabaseM2 = new MyCorrectionDatabase();
@@ -51,6 +51,7 @@ namespace MeasuringMachineApp
             MeasurmentCalculationM2 = new MeasurmentCalculation();
             MeasurementDataM1 = new MeasurementData();
             MeasurementDataM2 = new MeasurementData();
+            CncInterface = new CNCInterface.Interface();
             PlcInterface.StartCyclic(); // Possible system null reference
             PlcInterface.Update_Online_Flag += new Interface.OnlineMarker(PLCInterface_PLCOnlineChanged);
             PlcInterface.Update_100_ms += new Interface.UpdateHandler(PLC_Update_100_ms);

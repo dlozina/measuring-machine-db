@@ -43,8 +43,8 @@ namespace CNCInterface
         public int ToolXcorrection;
         //Tool Correction Y
         public int ToolYcorrection;
-        //Tool Correction Z
-        public int ToolZcorrection;
+        //Tool Correction R
+        public int ToolRcorrection;
 
         public int ret;
 
@@ -126,7 +126,7 @@ namespace CNCInterface
             }
         }
 
-        public void WriteToolOffsetZ(string cncAdress, ushort portNumber, int value)
+        public void WriteToolOffsetY(string cncAdress, ushort portNumber, int value)
         {
             ComReturnValue = Focas1.cnc_allclibhndl3(cncAdress, portNumber, TimeOut, out Handle);
             if (ComReturnValue == Focas1.EW_OK)
@@ -148,9 +148,9 @@ namespace CNCInterface
             ComReturnValue = Focas1.cnc_allclibhndl3(cncAdress, portNumber, TimeOut, out Handle);
             if (ComReturnValue == Focas1.EW_OK)
             {
-                ToolZcorrection = value;
+                ToolRcorrection = value;
                 // Z tool offset write
-                Focas1.cnc_wrtofs(Handle, UseNo, 4, 8, ToolZcorrection);
+                Focas1.cnc_wrtofs(Handle, UseNo, 4, 8, ToolRcorrection);
             }
             else
             {

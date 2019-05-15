@@ -107,7 +107,7 @@
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Offset(R) ALATA" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
                 <TextBox Name="ToolOffsetZ" Grid.Row="1" VerticalContentAlignment="Center"/>
-                <Button Grid.Row="2" x:Name="TestOffsetZ" Margin="1" FontWeight="Bold" Content="UPIŠI (R)" Click="TestOffsetZ_Click" Background="#FFF1EDED"/>
+                <Button Grid.Row="2" x:Name="TestOffsetR" Margin="1" FontWeight="Bold" Content="UPIŠI (R)" Click="TestOffsetR_Click" Background="#FFF1EDED"/>
             </Grid>
 
 

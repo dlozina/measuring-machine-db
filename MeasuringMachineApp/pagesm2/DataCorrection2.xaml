@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Grid.Column="0" Background="Black">
-            <Label  Content="BAZA PODATAKA KOREKCIJA STROJA 1" Margin="1" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
+            <Label  Content="BAZA PODATAKA KOREKCIJA STROJA 2" Margin="1" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFB6B6B6" />
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="0" Background="Black">

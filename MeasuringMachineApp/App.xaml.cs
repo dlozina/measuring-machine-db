@@ -21,6 +21,8 @@ namespace MeasuringMachineApp
         // DatabaseScanTimer
         readonly System.Timers.Timer Clock_M1;
         readonly System.Timers.Timer Clock_M2;
+        System.Threading.Timer TimerDB1;
+        System.Threading.Timer TimerDB2;
         // Static Class definition
         public static PLCInterface.Interface PlcInterface;
         public static MainWindow mwHandle;
@@ -59,49 +61,65 @@ namespace MeasuringMachineApp
             PlcInterface.Update_100_ms += new Interface.UpdateHandler(PLC_Update_100_ms);
             // Database check Machine1
             MeasurmentCalculationM1.DatabaseChanged += OnDatabaseChangedM1;
-            Clock_M1 = new System.Timers.Timer(10000);
-            Clock_M1.Elapsed += OnClockmsTickM1;
-            Clock_M1.AutoReset = false;
+            TimerDB1 = new System.Threading.Timer(TickDB1, null, 5000, 5000);
+            //Clock_M1 = new System.Timers.Timer(10000);
+            //Clock_M1.Elapsed += OnClockmsTickM1;
+            //Clock_M1.AutoReset = false;
             // Database check Machine2
             MeasurmentCalculationM2.DatabaseChanged += OnDatabaseChangedM2;
-            Clock_M2 = new System.Timers.Timer(15000);
-            Clock_M2.Elapsed += OnClockmsTickM2;
-            Clock_M2.AutoReset = false;
+            TimerDB2 = new System.Threading.Timer(TickDB2, null, 8000, 8000);
+            //Clock_M2 = new System.Timers.Timer(10000);
+            //Clock_M2.Elapsed += OnClockmsTickM2;
+            //Clock_M2.AutoReset = false;
             // Counter start
-            StartCyclic();
+            //StartCyclic();
         }
 
         public void StartCyclic()
         {
-            Clock_M1.Start();
-            Clock_M2.Start();
+            //Clock_M1.Start();
+            //Clock_M2.Start();
         }
         // New worker thread
-        private void OnClockmsTickM1(Object source, System.Timers.ElapsedEventArgs e)
+        public void TickDB1(object info1)
         {
             _tableName = "stroj1";
-            // Get last five values
-            // New thread
-            //Thread CheckDatabaseM1 = new Thread(() => MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName));
-            //CheckDatabaseM1.Name = "CheckDatabaseM1";
-            //CheckDatabaseM1.Start();
             MeasurmentCalculationM1.CompareWorkOrder(MySQLconnectionString, _tableName);
             MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName);
-            Clock_M1.Start();
         }
+        //private void OnClockmsTickM1(Object source, System.Timers.ElapsedEventArgs e)
+        //{
+        //    _tableName = "stroj1";
+        //    // Get last five values
+        //    // New thread
+        //    //Thread CheckDatabaseM1 = new Thread(() => MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName));
+        //    //CheckDatabaseM1.Name = "CheckDatabaseM1";
+        //    //CheckDatabaseM1.Start();
+        //    MeasurmentCalculationM1.CompareWorkOrder(MySQLconnectionString, _tableName);
+        //    MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName);
+        //    Clock_M1.Stop();
+        //    Clock_M1.Start();
+        //}
         // New worker thread
-        private void OnClockmsTickM2(Object source, System.Timers.ElapsedEventArgs e)
+        public void TickDB2(object info2)
         {
             _tableName = "stroj2";
-            // Get last five values
-            // New thread
-            //Thread CheckDatabaseM2 = new Thread(() => MeasurmentCalculationM2.DatabaseCount(MySQLconnectionString, _tableName));
-            //CheckDatabaseM2.Name = "CheckDatabaseM2";
-            //CheckDatabaseM2.Start();
             MeasurmentCalculationM2.CompareWorkOrder(MySQLconnectionString, _tableName);
             MeasurmentCalculationM2.DatabaseCount(MySQLconnectionString, _tableName);
-            Clock_M2.Start();
         }
+        //private void OnClockmsTickM2(Object source, System.Timers.ElapsedEventArgs e)
+        //{
+        //    _tableName = "stroj2";
+        //    // Get last five values
+        //    // New thread
+        //    //Thread CheckDatabaseM2 = new Thread(() => MeasurmentCalculationM2.DatabaseCount(MySQLconnectionString, _tableName));
+        //    //CheckDatabaseM2.Name = "CheckDatabaseM2";
+        //    //CheckDatabaseM2.Start();
+        //    MeasurmentCalculationM2.CompareWorkOrder(MySQLconnectionString, _tableName);
+        //    MeasurmentCalculationM2.DatabaseCount(MySQLconnectionString, _tableName);
+        //    Clock_M2.Stop();
+        //    Clock_M2.Start();
+        //}
         // Calculate correction when we have results for M2
         public void OnDatabaseChangedM1(object source, EventArgs e)
         {

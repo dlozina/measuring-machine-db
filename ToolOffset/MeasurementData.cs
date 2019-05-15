@@ -348,13 +348,13 @@ namespace ToolOffset
         private float _correctionA2no4;
         public float CorrectionA2no4
         {
-            get { return _correctionA1no4; }
+            get { return _correctionA2no4; }
             set
             {
-                if (_correctionA1no4 != value)
+                if (_correctionA2no4 != value)
                 {
-                    _correctionA1no4 = value;
-                    OnPropertyChanged("CorrectionA1no4");
+                    _correctionA2no4 = value;
+                    OnPropertyChanged("CorrectionA2no4");
                 }
             }
         }

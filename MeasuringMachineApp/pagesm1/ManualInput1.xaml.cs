@@ -24,11 +24,12 @@ namespace MeasuringMachineApp.PagesM1
         public ManualInput1()
         {
             InitializeComponent();
-            DataContext = App.CncInterface;
+            DataContext = App.CncInterfaceM1;
         }
 
         private string _ipAddress;
         private ushort _portNumber;
+        private short _rowNumber;
         private int _value;
 
         private void TestConnection_Click(object sender, RoutedEventArgs e)
@@ -36,7 +37,7 @@ namespace MeasuringMachineApp.PagesM1
             _portNumber = ushort.Parse(PortNumber.Text);
             _ipAddress = IpAddress.Text;
 
-            Thread TestConnectionM1 = new Thread(() => App.CncInterface.TestConnection(_ipAddress, _portNumber));
+            Thread TestConnectionM1 = new Thread(() => App.CncInterfaceM1.TestConnection(_ipAddress, _portNumber));
             TestConnectionM1.Name = "TestConnectionM1";
             TestConnectionM1.Start();
         }
@@ -46,7 +47,7 @@ namespace MeasuringMachineApp.PagesM1
             _portNumber = ushort.Parse(PortNumber.Text);
             _ipAddress = IpAddress.Text;
 
-            Thread ToolInfoM1 = new Thread(() => App.CncInterface.ReadMachineToolInfo(_ipAddress, _portNumber));
+            Thread ToolInfoM1 = new Thread(() => App.CncInterfaceM1.ReadMachineToolInfo(_ipAddress, _portNumber));
             ToolInfoM1.Name = "ToolInfoM1";
             ToolInfoM1.Start();
         }
@@ -55,8 +56,9 @@ namespace MeasuringMachineApp.PagesM1
         {
             _portNumber = ushort.Parse(PortNumber.Text);
             _ipAddress = IpAddress.Text;
+            _rowNumber = short.Parse(RowNumber.Text);
 
-            Thread ToolOffsetM1 = new Thread(() => App.CncInterface.ReadToolOffset(_ipAddress, _portNumber));
+            Thread ToolOffsetM1 = new Thread(() => App.CncInterfaceM1.ReadToolOffset(_ipAddress, _portNumber, _rowNumber));
             ToolOffsetM1.Name = "ToolOffsetM1";
             ToolOffsetM1.Start();
         }
@@ -66,8 +68,9 @@ namespace MeasuringMachineApp.PagesM1
             _portNumber = ushort.Parse(PortNumber.Text);
             _value = int.Parse(ToolOffsetX.Text);
             _ipAddress = IpAddress.Text;
+            _rowNumber = short.Parse(RowNumber.Text);
 
-            Thread WriteToolOffsetXM1 = new Thread(() => App.CncInterface.WriteToolOffsetX(_ipAddress, _portNumber, _value));
+            Thread WriteToolOffsetXM1 = new Thread(() => App.CncInterfaceM1.WriteToolOffsetX(_ipAddress, _portNumber, _value, _rowNumber));
             WriteToolOffsetXM1.Name = "WriteToolOffsetXM1";
             WriteToolOffsetXM1.Start();   
         }
@@ -77,8 +80,9 @@ namespace MeasuringMachineApp.PagesM1
             _portNumber = ushort.Parse(PortNumber.Text);
             _value = int.Parse(ToolOffsetY.Text);
             _ipAddress = IpAddress.Text;
+            _rowNumber = short.Parse(RowNumber.Text);
 
-            Thread WriteToolOffsetYM1 = new Thread(() => App.CncInterface.WriteToolOffsetY(_ipAddress, _portNumber, _value));
+            Thread WriteToolOffsetYM1 = new Thread(() => App.CncInterfaceM1.WriteToolOffsetY(_ipAddress, _portNumber, _value, _rowNumber));
             WriteToolOffsetYM1.Name = "WriteToolOffsetYM1";
             WriteToolOffsetYM1.Start(); 
         }
@@ -88,8 +92,9 @@ namespace MeasuringMachineApp.PagesM1
             _portNumber = ushort.Parse(PortNumber.Text);
             _value = int.Parse(ToolOffsetZ.Text);
             _ipAddress = IpAddress.Text;
+            _rowNumber = short.Parse(RowNumber.Text);
 
-            Thread WriteToolOffsetRM1 = new Thread(() => App.CncInterface.WriteToolOffsetR(_ipAddress, _portNumber, _value));
+            Thread WriteToolOffsetRM1 = new Thread(() => App.CncInterfaceM1.WriteToolOffsetR(_ipAddress, _portNumber, _value, _rowNumber));
             WriteToolOffsetRM1.Name = "WriteToolOffsetRM1";
             WriteToolOffsetRM1.Start();
         }

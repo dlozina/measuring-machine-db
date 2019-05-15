@@ -33,8 +33,9 @@ namespace MeasuringMachineApp
         public static MeasurmentCalculation MeasurmentCalculationM2;
         public static MeasurementData MeasurementDataM1;
         public static MeasurementData MeasurementDataM2;
-        public static CNCInterface.Interface CncInterface;
-        
+        public static CNCInterface.Interface CncInterfaceM1;
+        public static CNCInterface.Interface CncInterfaceM2;
+
         // SslMode=none - If local host does not support SSL
         static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
         private bool _oneCallFlagSaveM1;
@@ -51,7 +52,8 @@ namespace MeasuringMachineApp
             MeasurmentCalculationM2 = new MeasurmentCalculation();
             MeasurementDataM1 = new MeasurementData();
             MeasurementDataM2 = new MeasurementData();
-            CncInterface = new CNCInterface.Interface();
+            CncInterfaceM1 = new CNCInterface.Interface();
+            CncInterfaceM2 = new CNCInterface.Interface();
             PlcInterface.StartCyclic(); // Possible system null reference
             PlcInterface.Update_Online_Flag += new Interface.OnlineMarker(PLCInterface_PLCOnlineChanged);
             PlcInterface.Update_100_ms += new Interface.UpdateHandler(PLC_Update_100_ms);

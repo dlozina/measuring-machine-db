@@ -16,3 +16,9 @@ I have divided this APP into couple of projects:
 2. Business logic for processing (We are calculating tool offset)
 3. Comunication interface for other two machines (They need same type of CNC interface)
 4. GUI for APP
+
+APP Images:
+Show last 30 database results:
+![DB](https://user-images.githubusercontent.com/28594128/57850161-8c7d2400-77dd-11e9-8987-674d3f3a7340.PNG)
+
+

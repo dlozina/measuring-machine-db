@@ -1,7 +1,5 @@
 # measuring-machine-db
 
-*** Under Dev ***
-
 APP Images:
 
 Manual input of CNC machine correction:

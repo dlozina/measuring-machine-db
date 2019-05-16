@@ -19,8 +19,8 @@ namespace MeasuringMachineApp
     public partial class App : Application
     {
         // DatabaseScanTimer
-        readonly System.Timers.Timer Clock_M1;
-        readonly System.Timers.Timer Clock_M2;
+        //readonly System.Timers.Timer Clock_M1;
+        //readonly System.Timers.Timer Clock_M2;
         System.Threading.Timer TimerDB1;
         System.Threading.Timer TimerDB2;
         // Static Class definition
@@ -61,65 +61,26 @@ namespace MeasuringMachineApp
             PlcInterface.Update_100_ms += new Interface.UpdateHandler(PLC_Update_100_ms);
             // Database check Machine1
             MeasurmentCalculationM1.DatabaseChanged += OnDatabaseChangedM1;
-            TimerDB1 = new System.Threading.Timer(TickDB1, null, 5000, 5000);
-            //Clock_M1 = new System.Timers.Timer(10000);
-            //Clock_M1.Elapsed += OnClockmsTickM1;
-            //Clock_M1.AutoReset = false;
+            TimerDB1 = new System.Threading.Timer(TickDB1, null, 8000, 5000);
             // Database check Machine2
             MeasurmentCalculationM2.DatabaseChanged += OnDatabaseChangedM2;
-            TimerDB2 = new System.Threading.Timer(TickDB2, null, 8000, 8000);
-            //Clock_M2 = new System.Timers.Timer(10000);
-            //Clock_M2.Elapsed += OnClockmsTickM2;
-            //Clock_M2.AutoReset = false;
-            // Counter start
-            //StartCyclic();
+            TimerDB2 = new System.Threading.Timer(TickDB2, null, 8000, 5000);
         }
 
-        public void StartCyclic()
-        {
-            //Clock_M1.Start();
-            //Clock_M2.Start();
-        }
         // New worker thread
         public void TickDB1(object info1)
         {
-            _tableName = "stroj1";
-            MeasurmentCalculationM1.CompareWorkOrder(MySQLconnectionString, _tableName);
-            MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName);
+            MeasurmentCalculationM1.CompareWorkOrder(MySQLconnectionString, "stroj1");
+            MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, "stroj1");
         }
-        //private void OnClockmsTickM1(Object source, System.Timers.ElapsedEventArgs e)
-        //{
-        //    _tableName = "stroj1";
-        //    // Get last five values
-        //    // New thread
-        //    //Thread CheckDatabaseM1 = new Thread(() => MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName));
-        //    //CheckDatabaseM1.Name = "CheckDatabaseM1";
-        //    //CheckDatabaseM1.Start();
-        //    MeasurmentCalculationM1.CompareWorkOrder(MySQLconnectionString, _tableName);
-        //    MeasurmentCalculationM1.DatabaseCount(MySQLconnectionString, _tableName);
-        //    Clock_M1.Stop();
-        //    Clock_M1.Start();
-        //}
+        
         // New worker thread
         public void TickDB2(object info2)
         {
-            _tableName = "stroj2";
-            MeasurmentCalculationM2.CompareWorkOrder(MySQLconnectionString, _tableName);
-            MeasurmentCalculationM2.DatabaseCount(MySQLconnectionString, _tableName);
+            MeasurmentCalculationM2.CompareWorkOrder(MySQLconnectionString, "stroj2");
+            MeasurmentCalculationM2.DatabaseCount(MySQLconnectionString, "stroj2");
         }
-        //private void OnClockmsTickM2(Object source, System.Timers.ElapsedEventArgs e)
-        //{
-        //    _tableName = "stroj2";
-        //    // Get last five values
-        //    // New thread
-        //    //Thread CheckDatabaseM2 = new Thread(() => MeasurmentCalculationM2.DatabaseCount(MySQLconnectionString, _tableName));
-        //    //CheckDatabaseM2.Name = "CheckDatabaseM2";
-        //    //CheckDatabaseM2.Start();
-        //    MeasurmentCalculationM2.CompareWorkOrder(MySQLconnectionString, _tableName);
-        //    MeasurmentCalculationM2.DatabaseCount(MySQLconnectionString, _tableName);
-        //    Clock_M2.Stop();
-        //    Clock_M2.Start();
-        //}
+        
         // Calculate correction when we have results for M2
         public void OnDatabaseChangedM1(object source, EventArgs e)
         {
@@ -197,8 +158,6 @@ namespace MeasuringMachineApp
             //                                         MeasurementDataM1.CorrectionDno3 + MeasurementDataM1.CorrectionDno4 +
             //                                         MeasurementDataM1.CorrectionDno5);
 
-            // Write corrections in DB
-            _tableName = "korekcijestroj1";
             // Set Workorder number
             CorrectionDatabaseM1.RadniNalog = MeasurmentCalculationM1.LastWorkOrder;
             CorrectionDatabaseM1.CorrectionCforMachine = MeasurementDataM1.CorrectionCforMachine;
@@ -208,7 +167,7 @@ namespace MeasuringMachineApp
             CorrectionDatabaseM1.CorrectionJforMachine = MeasurementDataM1.CorrectionJforMachine;
             CorrectionDatabaseM1.CorrectionFforMachine = MeasurementDataM1.CorrectionFforMachine;
             CorrectionDatabaseM1.CorrectionEforMachine = MeasurementDataM1.CorrectionEforMachine;
-            CorrectionDatabaseM1.ModifyDb(MySQLconnectionString, _tableName);
+            CorrectionDatabaseM1.ModifyDb(MySQLconnectionString, "korekcijestroj1");
         }
 
         // Calculate correction when we have results for M2
@@ -288,8 +247,6 @@ namespace MeasuringMachineApp
             //                                         MeasurementDataM1.CorrectionDno3 + MeasurementDataM1.CorrectionDno4 +
             //                                         MeasurementDataM1.CorrectionDno5);
 
-            // Write corrections in DB
-            _tableName = "korekcijestroj2";
             // Set Workorder number
             CorrectionDatabaseM2.RadniNalog = MeasurmentCalculationM2.LastWorkOrder;
             CorrectionDatabaseM2.CorrectionCforMachine = MeasurementDataM2.CorrectionCforMachine;
@@ -299,7 +256,7 @@ namespace MeasuringMachineApp
             CorrectionDatabaseM2.CorrectionJforMachine = MeasurementDataM2.CorrectionJforMachine;
             CorrectionDatabaseM2.CorrectionFforMachine = MeasurementDataM2.CorrectionFforMachine;
             CorrectionDatabaseM2.CorrectionEforMachine = MeasurementDataM2.CorrectionEforMachine;
-            CorrectionDatabaseM2.ModifyDb(MySQLconnectionString, _tableName);
+            CorrectionDatabaseM2.ModifyDb(MySQLconnectionString, "korekcijestroj2");
         }
 
         private void PLC_Update_100_ms(Interface sender, InterfaceEventArgs e)
@@ -328,7 +285,6 @@ namespace MeasuringMachineApp
             if ((bool)e.StatusData.Savedata.M1.Value && _oneCallFlagSaveM1)
             {
                 _oneCallFlagSaveM1 = false;
-                _tableName = "stroj1";
                 // Value setting
                 // C
                 Database.KotaCPoz1 = (float)e.StatusData.MeasuredPos1.C.Value;
@@ -376,11 +332,9 @@ namespace MeasuringMachineApp
 
                 // Fill SQL base for Machine 1
                 // New thread
-                Thread WriteToDatabaseM1 = new Thread(() => Database.ModifyDb(MySQLconnectionString, _tableName));
+                Thread WriteToDatabaseM1 = new Thread(() => Database.ModifyDb(MySQLconnectionString, "stroj1"));
                 WriteToDatabaseM1.Name = "WriteToDatabaseM1";
                 WriteToDatabaseM1.Start();
-
-                //Database.ModifyDb(MySQLconnectionString, _tableName);
             }
             else if (!(bool)e.StatusData.Savedata.M1.Value)
             {
@@ -391,7 +345,6 @@ namespace MeasuringMachineApp
             if ((bool)e.StatusData.Savedata.M2.Value && _oneCallFlagSaveM2)
             {
                 _oneCallFlagSaveM2 = false;
-                _tableName = "stroj2";
                 // Value setting
                 // C
                 Database.KotaCPoz1 = (float)e.StatusData.MeasuredPos1.C.Value;
@@ -439,11 +392,9 @@ namespace MeasuringMachineApp
 
                 // Fill SQL base for Machine 1
                 // New thread
-                Thread WriteToDatabaseM2 = new Thread(() => Database.ModifyDb(MySQLconnectionString, _tableName));
+                Thread WriteToDatabaseM2 = new Thread(() => Database.ModifyDb(MySQLconnectionString, "stroj2"));
                 WriteToDatabaseM2.Name = "WriteToDatabaseM2";
                 WriteToDatabaseM2.Start();
-
-                //Database.ModifyDb(MySQLconnectionString, _tableName);
             }
             else if (!(bool)e.StatusData.Savedata.M2.Value)
             {
@@ -454,16 +405,6 @@ namespace MeasuringMachineApp
             {
                 mwHandle.TbStatusMessage.Dispatcher.BeginInvoke((Action)(() => { mwHandle.TbStatusMessage.Text = msg; }));
             }
-
-        }
-
-        private void WriteToDatabaseM1()
-        {
-
-        }
-
-        private void WriteToDatabaseM2()
-        {
 
         }
 

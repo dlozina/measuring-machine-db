@@ -19,8 +19,6 @@ namespace MeasuringMachineApp
     public partial class App : Application
     {
         // DatabaseScanTimer
-        //readonly System.Timers.Timer Clock_M1;
-        //readonly System.Timers.Timer Clock_M2;
         System.Threading.Timer TimerDB1;
         System.Threading.Timer TimerDB2;
         // Static Class definition
@@ -42,7 +40,7 @@ namespace MeasuringMachineApp
         static string MySQLconnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=mjernastanica;SslMode=none";
         private bool _oneCallFlagSaveM1;
         private bool _oneCallFlagSaveM2;
-        private string _tableName;
+ 
 
         public App()
         {

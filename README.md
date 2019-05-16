@@ -21,4 +21,6 @@ APP Images:
 Show last 30 database results:
 ![DB](https://user-images.githubusercontent.com/28594128/57850161-8c7d2400-77dd-11e9-8987-674d3f3a7340.PNG)
 
+Calculate correction results from last 5 database results:
+![Correction](https://user-images.githubusercontent.com/28594128/57850382-162cf180-77de-11e9-962e-3c27db646f36.PNG)
 

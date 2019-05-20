@@ -95,9 +95,9 @@ namespace PLCInterface
                 while (!Client.Connected())
                 {
                     // Real PLC
-                    //Client.ConnectTo("192.168.20.21", 0, 1);
+                    Client.ConnectTo("192.168.20.21", 0, 1);
                     // Simulation PLC
-                    Client.ConnectTo("192.168.56.1", 0, 1);
+                    //Client.ConnectTo("192.168.56.1", 0, 1);
                     Thread.Sleep(200);
                     if (Client.Connected())
                     {
@@ -260,88 +260,96 @@ namespace PLCInterface
 
         private void OnClock100msTick(Object source, System.Timers.ElapsedEventArgs e)
         {
-            int result;
-            lock (TimerLock)
+            if (Client.Connected())
             {
-                result = ReadStatus();
-            }
+                int result;
+                lock (TimerLock)
+                {
+                    result = ReadStatus();
+                }
 
-            InterfaceEventArgs p1 = new InterfaceEventArgs();
-            p1.StatusData = STATUS;
-            p1.CyclicStatusBuffer = CyclicStatusBuffer;
-            if (Update_100_ms != null)
-                Update_100_ms(this, p1);
+                InterfaceEventArgs p1 = new InterfaceEventArgs();
+                p1.StatusData = STATUS;
+                p1.CyclicStatusBuffer = CyclicStatusBuffer;
+                if (Update_100_ms != null)
+                    Update_100_ms(this, p1);
 
-            Clock_100_ms.Start();
+                Clock_100_ms.Start();
+            } 
         }
 
         private void OnClockWatchdogTick(Object source, System.Timers.ElapsedEventArgs e)
         {
-            lock (TimerLock)
+            if (Client.Connected())
             {
-                int result = -99;
-                Array.Clear(WatchdogBuffer, 0, WatchdogBuffer.Length);
-                switch (activeScreen)
+                lock (TimerLock)
                 {
-                    case 0:
-                        break;
-                    case 1:
-                        S7.SetBitAt(ref WatchdogBuffer, 0, 3, true);
-                        break;
-                    case 2:
-                        S7.SetBitAt(ref WatchdogBuffer, 0, 4, true);
-                        break;
-                    case 3:
-                        S7.SetBitAt(ref WatchdogBuffer, 0, 5, true);
-                        break;
-                    case 4:
-                        S7.SetBitAt(ref WatchdogBuffer, 0, 6, true);
-                        break;
-                    case 5:
-                        S7.SetBitAt(ref WatchdogBuffer, 0, 7, true);
-                        break;
-                    case 6:
-                        S7.SetBitAt(ref WatchdogBuffer, 1, 0, true);
-                        break;
-                    case 7:
-                        S7.SetBitAt(ref WatchdogBuffer, 1, 1, true);
-                        break;
-                    case 8:
-                        S7.SetBitAt(ref WatchdogBuffer, 1, 2, true);
-                        break;
+                    int result = -99;
+                    Array.Clear(WatchdogBuffer, 0, WatchdogBuffer.Length);
+                    switch (activeScreen)
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            S7.SetBitAt(ref WatchdogBuffer, 0, 3, true);
+                            break;
+                        case 2:
+                            S7.SetBitAt(ref WatchdogBuffer, 0, 4, true);
+                            break;
+                        case 3:
+                            S7.SetBitAt(ref WatchdogBuffer, 0, 5, true);
+                            break;
+                        case 4:
+                            S7.SetBitAt(ref WatchdogBuffer, 0, 6, true);
+                            break;
+                        case 5:
+                            S7.SetBitAt(ref WatchdogBuffer, 0, 7, true);
+                            break;
+                        case 6:
+                            S7.SetBitAt(ref WatchdogBuffer, 1, 0, true);
+                            break;
+                        case 7:
+                            S7.SetBitAt(ref WatchdogBuffer, 1, 1, true);
+                            break;
+                        case 8:
+                            S7.SetBitAt(ref WatchdogBuffer, 1, 2, true);
+                            break;
+                    }
+
+                    S7.SetBitAt(ref WatchdogBuffer, 0, 1, true);
+                    result = Client.DBWrite(49, 0, 2, WatchdogBuffer);
+                    if (result == 0)
+                        Errorcode = Client.DBRead(51, 0, 1, WatchdogBuffer);
+                    else
+                        OnlineMark = false;
+
+                    if (Errorcode == 0)
+                    {
+                        OnlineMark = S7.GetBitAt(WatchdogBuffer, 0, 0);
+                    }
+                    else
+                    {
+                        OnlineMark = false;
+
+                    }
                 }
 
-                S7.SetBitAt(ref WatchdogBuffer, 0, 1, true);
-                result = Client.DBWrite(49, 0, 2, WatchdogBuffer);
-                if (result == 0)
-                    Errorcode = Client.DBRead(51, 0, 1, WatchdogBuffer);
+            }
+
+                OnlineMarkerEventArgs p = new OnlineMarkerEventArgs();
+                p.OnlineMark = OnlineMark;
+                if (Update_Online_Flag != null)
+                    Update_Online_Flag(this, p);
+                if (OnlineMark)
+                {
+                    WatchDogTimer.Start();
+                }
                 else
-                    OnlineMark = false;
-
-                if (Errorcode == 0)
                 {
-                    OnlineMark = S7.GetBitAt(WatchdogBuffer, 0, 0);
+                    Errorcode = Errorcode + 0;
+                    RestartInterface();
                 }
-                else
-                {
-                    OnlineMark = false;
-
-                }
-            }
-
-            OnlineMarkerEventArgs p = new OnlineMarkerEventArgs();
-            p.OnlineMark = OnlineMark;
-            if (Update_Online_Flag != null)
-                Update_Online_Flag(this, p);
-            if (OnlineMark)
-            {
-                WatchDogTimer.Start();
-            }
-            else
-            {
-                Errorcode = Errorcode + 0;
-                RestartInterface();
-            }
+                 
         }
 
     }

@@ -172,69 +172,148 @@ namespace MeasuringMachineApp
         public void OnDatabaseChangedM2(object source, EventArgs e)
         {
             // Corection value for diameter C
-            MeasurementDataM2.CorrectionCno1 = MeasurmentCalculationM2.CAverageValueMeas1 - MeasurementDataM2.cNominal;
-            MeasurementDataM2.CorrectionCno2 = MeasurmentCalculationM2.CAverageValueMeas2 - MeasurementDataM2.cNominal;
-            MeasurementDataM2.CorrectionCno3 = MeasurmentCalculationM2.CAverageValueMeas3 - MeasurementDataM2.cNominal;
-            MeasurementDataM2.CorrectionCno4 = MeasurmentCalculationM2.CAverageValueMeas4 - MeasurementDataM2.cNominal;
-            MeasurementDataM2.CorrectionCno5 = MeasurmentCalculationM2.CAverageValueMeas5 - MeasurementDataM2.cNominal;
-            MeasurementDataM2.CorrectionCforMachine = ((MeasurementDataM2.CorrectionCno1 + MeasurementDataM2.CorrectionCno2 +
-                                                     MeasurementDataM2.CorrectionCno3 + MeasurementDataM2.CorrectionCno4 +
-                                                     MeasurementDataM2.CorrectionCno5)/5);
+            if (MeasurmentCalculationM2.CAverageValueMeas1 != 0.0 & 
+                MeasurmentCalculationM2.CAverageValueMeas2 != 0.0 &
+                MeasurmentCalculationM2.CAverageValueMeas3 != 0.0 & 
+                MeasurmentCalculationM2.CAverageValueMeas4 != 0.0 &
+                MeasurmentCalculationM2.CAverageValueMeas5 != 0.0)
+            {
+                MeasurementDataM2.CorrectionCno1 = MeasurmentCalculationM2.CAverageValueMeas1 - MeasurementDataM2.cNominal;
+                MeasurementDataM2.CorrectionCno2 = MeasurmentCalculationM2.CAverageValueMeas2 - MeasurementDataM2.cNominal;
+                MeasurementDataM2.CorrectionCno3 = MeasurmentCalculationM2.CAverageValueMeas3 - MeasurementDataM2.cNominal;
+                MeasurementDataM2.CorrectionCno4 = MeasurmentCalculationM2.CAverageValueMeas4 - MeasurementDataM2.cNominal;
+                MeasurementDataM2.CorrectionCno5 = MeasurmentCalculationM2.CAverageValueMeas5 - MeasurementDataM2.cNominal;
+                MeasurementDataM2.CorrectionCforMachine = ((MeasurementDataM2.CorrectionCno1 + MeasurementDataM2.CorrectionCno2 +
+                                                            MeasurementDataM2.CorrectionCno3 + MeasurementDataM2.CorrectionCno4 +
+                                                            MeasurementDataM2.CorrectionCno5) / 5);
+            }
+            else
+            {
+                MeasurementDataM2.CorrectionCforMachine = 0;
+            }
+
             // Corection value for diameter A (Two Point)
-            MeasurementDataM2.CorrectionA2no1 = MeasurmentCalculationM2.AtwoPointAverageValueMeas1 - MeasurementDataM2.aNominal;
-            MeasurementDataM2.CorrectionA2no2 = MeasurmentCalculationM2.AtwoPointAverageValueMeas2 - MeasurementDataM2.aNominal;
-            MeasurementDataM2.CorrectionA2no3 = MeasurmentCalculationM2.AtwoPointAverageValueMeas3 - MeasurementDataM2.aNominal;
-            MeasurementDataM2.CorrectionA2no4 = MeasurmentCalculationM2.AtwoPointAverageValueMeas4 - MeasurementDataM2.aNominal;
-            MeasurementDataM2.CorrectionA2no5 = MeasurmentCalculationM2.AtwoPointAverageValueMeas5 - MeasurementDataM2.aNominal;
-            MeasurementDataM2.CorrectionA2forMachine = ((MeasurementDataM2.CorrectionA2no1 + MeasurementDataM2.CorrectionA2no2 +
-                                                     MeasurementDataM2.CorrectionA2no3 + MeasurementDataM2.CorrectionA2no4 +
-                                                     MeasurementDataM2.CorrectionA2no5)/5);
+            if (MeasurmentCalculationM2.AtwoPointAverageValueMeas1 != 0.0 & 
+                MeasurmentCalculationM2.AtwoPointAverageValueMeas2 != 0.0 &
+                MeasurmentCalculationM2.AtwoPointAverageValueMeas3 != 0.0 & 
+                MeasurmentCalculationM2.AtwoPointAverageValueMeas4 != 0.0 &
+                MeasurmentCalculationM2.AtwoPointAverageValueMeas5 != 0.0)
+            {
+                MeasurementDataM2.CorrectionA2no1 = MeasurmentCalculationM2.AtwoPointAverageValueMeas1 - MeasurementDataM2.aNominal;
+                MeasurementDataM2.CorrectionA2no2 = MeasurmentCalculationM2.AtwoPointAverageValueMeas2 - MeasurementDataM2.aNominal;
+                MeasurementDataM2.CorrectionA2no3 = MeasurmentCalculationM2.AtwoPointAverageValueMeas3 - MeasurementDataM2.aNominal;
+                MeasurementDataM2.CorrectionA2no4 = MeasurmentCalculationM2.AtwoPointAverageValueMeas4 - MeasurementDataM2.aNominal;
+                MeasurementDataM2.CorrectionA2no5 = MeasurmentCalculationM2.AtwoPointAverageValueMeas5 - MeasurementDataM2.aNominal;
+                MeasurementDataM2.CorrectionA2forMachine = ((MeasurementDataM2.CorrectionA2no1 + MeasurementDataM2.CorrectionA2no2 +
+                                                             MeasurementDataM2.CorrectionA2no3 + MeasurementDataM2.CorrectionA2no4 +
+                                                             MeasurementDataM2.CorrectionA2no5) / 5);
+            }
+            else
+            {
+                MeasurementDataM2.CorrectionA2forMachine = 0;
+            }
+            
             // Corection value for diameter A (One Point)
-            MeasurementDataM2.CorrectionA1no1 = MeasurmentCalculationM2.AonePointAverageValueMeas1 - MeasurementDataM2.aNominal;
-            MeasurementDataM2.CorrectionA1no2 = MeasurmentCalculationM2.AonePointAverageValueMeas2 - MeasurementDataM2.aNominal;
-            MeasurementDataM2.CorrectionA1no3 = MeasurmentCalculationM2.AonePointAverageValueMeas3 - MeasurementDataM2.aNominal;
-            MeasurementDataM2.CorrectionA1no4 = MeasurmentCalculationM2.AonePointAverageValueMeas4 - MeasurementDataM2.aNominal;
-            MeasurementDataM2.CorrectionA1no5 = MeasurmentCalculationM2.AonePointAverageValueMeas5 - MeasurementDataM2.aNominal;
-            MeasurementDataM2.CorrectionA1forMachine = ((MeasurementDataM2.CorrectionA1no1 + MeasurementDataM2.CorrectionA1no2 +
-                                                      MeasurementDataM2.CorrectionA1no3 + MeasurementDataM2.CorrectionA1no4 +
-                                                      MeasurementDataM2.CorrectionA1no5)/5);
+            if (MeasurmentCalculationM2.AonePointAverageValueMeas1 != 0.0 &
+                MeasurmentCalculationM2.AonePointAverageValueMeas2 != 0.0 &
+                MeasurmentCalculationM2.AonePointAverageValueMeas3 != 0.0 &
+                MeasurmentCalculationM2.AonePointAverageValueMeas4 != 0.0 &
+                MeasurmentCalculationM2.AonePointAverageValueMeas5 != 0.0)
+            {
+                MeasurementDataM2.CorrectionA1no1 = MeasurmentCalculationM2.AonePointAverageValueMeas1 - MeasurementDataM2.aNominal;
+                MeasurementDataM2.CorrectionA1no2 = MeasurmentCalculationM2.AonePointAverageValueMeas2 - MeasurementDataM2.aNominal;
+                MeasurementDataM2.CorrectionA1no3 = MeasurmentCalculationM2.AonePointAverageValueMeas3 - MeasurementDataM2.aNominal;
+                MeasurementDataM2.CorrectionA1no4 = MeasurmentCalculationM2.AonePointAverageValueMeas4 - MeasurementDataM2.aNominal;
+                MeasurementDataM2.CorrectionA1no5 = MeasurmentCalculationM2.AonePointAverageValueMeas5 - MeasurementDataM2.aNominal;
+                MeasurementDataM2.CorrectionA1forMachine = ((MeasurementDataM2.CorrectionA1no1 + MeasurementDataM2.CorrectionA1no2 +
+                                                             MeasurementDataM2.CorrectionA1no3 + MeasurementDataM2.CorrectionA1no4 +
+                                                             MeasurementDataM2.CorrectionA1no5) / 5);
+            }
+            
             // Corection value for diameter B
-            MeasurementDataM2.CorrectionBno1 = MeasurmentCalculationM2.BAverageValueMeas1 - MeasurementDataM2.bNominal;
-            MeasurementDataM2.CorrectionBno2 = MeasurmentCalculationM2.BAverageValueMeas2 - MeasurementDataM2.bNominal;
-            MeasurementDataM2.CorrectionBno3 = MeasurmentCalculationM2.BAverageValueMeas3 - MeasurementDataM2.bNominal;
-            MeasurementDataM2.CorrectionBno4 = MeasurmentCalculationM2.BAverageValueMeas4 - MeasurementDataM2.bNominal;
-            MeasurementDataM2.CorrectionBno5 = MeasurmentCalculationM2.BAverageValueMeas5 - MeasurementDataM2.bNominal;
-            MeasurementDataM2.CorrectionBforMachine = ((MeasurementDataM2.CorrectionBno1 + MeasurementDataM2.CorrectionBno2 +
-                                                      MeasurementDataM2.CorrectionBno3 + MeasurementDataM2.CorrectionBno4 +
-                                                      MeasurementDataM2.CorrectionBno5)/5);
+            if (MeasurmentCalculationM2.BAverageValueMeas1 != 0.0 & 
+                MeasurmentCalculationM2.BAverageValueMeas2 != 0.0 &
+                MeasurmentCalculationM2.BAverageValueMeas3 != 0.0 & 
+                MeasurmentCalculationM2.BAverageValueMeas4 != 0.0 &
+                MeasurmentCalculationM2.BAverageValueMeas5 != 0.0)
+            {
+                MeasurementDataM2.CorrectionBno1 = MeasurmentCalculationM2.BAverageValueMeas1 - MeasurementDataM2.bNominal;
+                MeasurementDataM2.CorrectionBno2 = MeasurmentCalculationM2.BAverageValueMeas2 - MeasurementDataM2.bNominal;
+                MeasurementDataM2.CorrectionBno3 = MeasurmentCalculationM2.BAverageValueMeas3 - MeasurementDataM2.bNominal;
+                MeasurementDataM2.CorrectionBno4 = MeasurmentCalculationM2.BAverageValueMeas4 - MeasurementDataM2.bNominal;
+                MeasurementDataM2.CorrectionBno5 = MeasurmentCalculationM2.BAverageValueMeas5 - MeasurementDataM2.bNominal;
+                MeasurementDataM2.CorrectionBforMachine = ((MeasurementDataM2.CorrectionBno1 + MeasurementDataM2.CorrectionBno2 +
+                                                            MeasurementDataM2.CorrectionBno3 + MeasurementDataM2.CorrectionBno4 +
+                                                            MeasurementDataM2.CorrectionBno5) / 5);
+            }
+            else
+            {
+                MeasurementDataM2.CorrectionBforMachine = 0;
+            }
+            
             // Corection value for diameter J - Add new Measurement
-            MeasurementDataM2.CorrectionJno1 = MeasurmentCalculationM2.JAverageValueMeas1 - MeasurementDataM2.fNominal;
-            MeasurementDataM2.CorrectionJno2 = MeasurmentCalculationM2.JAverageValueMeas2 - MeasurementDataM2.fNominal;
-            MeasurementDataM2.CorrectionJno3 = MeasurmentCalculationM2.JAverageValueMeas3 - MeasurementDataM2.fNominal;
-            MeasurementDataM2.CorrectionJno4 = MeasurmentCalculationM2.JAverageValueMeas4 - MeasurementDataM2.fNominal;
-            MeasurementDataM2.CorrectionJno5 = MeasurmentCalculationM2.JAverageValueMeas5 - MeasurementDataM2.fNominal;
-            MeasurementDataM2.CorrectionJforMachine = ((MeasurementDataM2.CorrectionJno1 + MeasurementDataM2.CorrectionJno2 +
-                                                        MeasurementDataM2.CorrectionJno3 + MeasurementDataM2.CorrectionJno4 +
-                                                        MeasurementDataM2.CorrectionJno5)/5);
+            if (MeasurmentCalculationM2.JAverageValueMeas1 != 0.0 &
+                MeasurmentCalculationM2.JAverageValueMeas2 != 0.0 &
+                MeasurmentCalculationM2.JAverageValueMeas3 != 0.0 &
+                MeasurmentCalculationM2.JAverageValueMeas4 != 0.0 &
+                MeasurmentCalculationM2.JAverageValueMeas5 != 0.0)
+            {
+                MeasurementDataM2.CorrectionJno1 = MeasurmentCalculationM2.JAverageValueMeas1 - MeasurementDataM2.jNominal;
+                MeasurementDataM2.CorrectionJno2 = MeasurmentCalculationM2.JAverageValueMeas2 - MeasurementDataM2.jNominal;
+                MeasurementDataM2.CorrectionJno3 = MeasurmentCalculationM2.JAverageValueMeas3 - MeasurementDataM2.jNominal;
+                MeasurementDataM2.CorrectionJno4 = MeasurmentCalculationM2.JAverageValueMeas4 - MeasurementDataM2.jNominal;
+                MeasurementDataM2.CorrectionJno5 = MeasurmentCalculationM2.JAverageValueMeas5 - MeasurementDataM2.jNominal;
+                MeasurementDataM2.CorrectionJforMachine = ((MeasurementDataM2.CorrectionJno1 + MeasurementDataM2.CorrectionJno2 +
+                                                            MeasurementDataM2.CorrectionJno3 + MeasurementDataM2.CorrectionJno4 +
+                                                            MeasurementDataM2.CorrectionJno5) / 5);
+            }
+            else
+            {
+                MeasurementDataM2.CorrectionJforMachine = 0;
+            }
 
             // Corection value for diameter F
-            MeasurementDataM2.CorrectionFno1 = MeasurmentCalculationM2.FAverageValueMeas1 - MeasurementDataM2.fNominal;
-            MeasurementDataM2.CorrectionFno2 = MeasurmentCalculationM2.FAverageValueMeas2 - MeasurementDataM2.fNominal;
-            MeasurementDataM2.CorrectionFno3 = MeasurmentCalculationM2.FAverageValueMeas3 - MeasurementDataM2.fNominal;
-            MeasurementDataM2.CorrectionFno4 = MeasurmentCalculationM2.FAverageValueMeas4 - MeasurementDataM2.fNominal;
-            MeasurementDataM2.CorrectionFno5 = MeasurmentCalculationM2.FAverageValueMeas5 - MeasurementDataM2.fNominal;
-            MeasurementDataM2.CorrectionFforMachine = ((MeasurementDataM2.CorrectionFno1 + MeasurementDataM2.CorrectionFno2 +
-                                                     MeasurementDataM2.CorrectionFno3 + MeasurementDataM2.CorrectionFno4 +
-                                                     MeasurementDataM2.CorrectionFno5)/5);
+            if (MeasurmentCalculationM2.FAverageValueMeas1 != 0.0 &
+                MeasurmentCalculationM2.FAverageValueMeas2 != 0.0 &
+                MeasurmentCalculationM2.FAverageValueMeas3 != 0.0 &
+                MeasurmentCalculationM2.FAverageValueMeas4 != 0.0 &
+                MeasurmentCalculationM2.FAverageValueMeas5 != 0.0)
+            {
+                MeasurementDataM2.CorrectionFno1 = MeasurmentCalculationM2.FAverageValueMeas1 - MeasurementDataM2.fNominal;
+                MeasurementDataM2.CorrectionFno2 = MeasurmentCalculationM2.FAverageValueMeas2 - MeasurementDataM2.fNominal;
+                MeasurementDataM2.CorrectionFno3 = MeasurmentCalculationM2.FAverageValueMeas3 - MeasurementDataM2.fNominal;
+                MeasurementDataM2.CorrectionFno4 = MeasurmentCalculationM2.FAverageValueMeas4 - MeasurementDataM2.fNominal;
+                MeasurementDataM2.CorrectionFno5 = MeasurmentCalculationM2.FAverageValueMeas5 - MeasurementDataM2.fNominal;
+                MeasurementDataM2.CorrectionFforMachine = ((MeasurementDataM2.CorrectionFno1 + MeasurementDataM2.CorrectionFno2 +
+                                                            MeasurementDataM2.CorrectionFno3 + MeasurementDataM2.CorrectionFno4 +
+                                                            MeasurementDataM2.CorrectionFno5) / 5);
+            }
+            else
+            {
+                MeasurementDataM2.CorrectionFforMachine = 0;
+            }
+            
             // Corection value for diameter E
-            MeasurementDataM2.CorrectionEno1 = MeasurmentCalculationM2.EAverageValueMeas1 - MeasurementDataM2.eNominal;
-            MeasurementDataM2.CorrectionEno2 = MeasurmentCalculationM2.EAverageValueMeas2 - MeasurementDataM2.eNominal;
-            MeasurementDataM2.CorrectionEno3 = MeasurmentCalculationM2.EAverageValueMeas3 - MeasurementDataM2.eNominal;
-            MeasurementDataM2.CorrectionEno4 = MeasurmentCalculationM2.EAverageValueMeas4 - MeasurementDataM2.eNominal;
-            MeasurementDataM2.CorrectionEno5 = MeasurmentCalculationM2.EAverageValueMeas5 - MeasurementDataM2.eNominal;
-            MeasurementDataM2.CorrectionEforMachine = ((MeasurementDataM2.CorrectionEno1 + MeasurementDataM2.CorrectionEno2 +
-                                                     MeasurementDataM2.CorrectionEno3 + MeasurementDataM2.CorrectionEno4 +
-                                                     MeasurementDataM2.CorrectionEno5)/5);
+            if (MeasurmentCalculationM2.EAverageValueMeas1 != 0.0 &
+                MeasurmentCalculationM2.EAverageValueMeas2 != 0.0 &
+                MeasurmentCalculationM2.EAverageValueMeas3 != 0.0 &
+                MeasurmentCalculationM2.EAverageValueMeas4 != 0.0 &
+                MeasurmentCalculationM2.EAverageValueMeas5 != 0.0)
+            {
+                MeasurementDataM2.CorrectionEno1 = MeasurmentCalculationM2.EAverageValueMeas1 - MeasurementDataM2.eNominal;
+                MeasurementDataM2.CorrectionEno2 = MeasurmentCalculationM2.EAverageValueMeas2 - MeasurementDataM2.eNominal;
+                MeasurementDataM2.CorrectionEno3 = MeasurmentCalculationM2.EAverageValueMeas3 - MeasurementDataM2.eNominal;
+                MeasurementDataM2.CorrectionEno4 = MeasurmentCalculationM2.EAverageValueMeas4 - MeasurementDataM2.eNominal;
+                MeasurementDataM2.CorrectionEno5 = MeasurmentCalculationM2.EAverageValueMeas5 - MeasurementDataM2.eNominal;
+                MeasurementDataM2.CorrectionEforMachine = ((MeasurementDataM2.CorrectionEno1 + MeasurementDataM2.CorrectionEno2 +
+                                                            MeasurementDataM2.CorrectionEno3 + MeasurementDataM2.CorrectionEno4 +
+                                                            MeasurementDataM2.CorrectionEno5) / 5);
+            }
+            else
+            {
+                MeasurementDataM2.CorrectionEforMachine = 0;
+            }
+            
             // Corection value for diameter D
             //MeasurementDataM1.CorrectionDno1 = MeasurmentCalculationM2.DAverageValueMeas1 - MeasurementDataM1.dNominalM2;
             //MeasurementDataM1.CorrectionDno2 = MeasurmentCalculationM2.DAverageValueMeas2 - MeasurementDataM1.dNominalM2;
